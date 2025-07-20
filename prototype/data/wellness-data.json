@@ -1,0 +1,175 @@
+{
+  "moodTracking": {
+    "current": {
+      "date": "2024-03-20",
+      "mood": "energetic",
+      "energy": 8,
+      "stress": 3,
+      "motivation": 9,
+      "notes": "Feeling great after morning workout!"
+    },
+    "history": [
+      {"date": "2024-03-19", "mood": "focused", "energy": 7, "stress": 4, "motivation": 8},
+      {"date": "2024-03-18", "mood": "calm", "energy": 6, "stress": 2, "motivation": 7},
+      {"date": "2024-03-17", "mood": "tired", "energy": 4, "stress": 6, "motivation": 5},
+      {"date": "2024-03-16", "mood": "energetic", "energy": 9, "stress": 2, "motivation": 9},
+      {"date": "2024-03-15", "mood": "focused", "energy": 7, "stress": 3, "motivation": 8}
+    ],
+    "moods": [
+      {"id": "energetic", "label": "Energetic", "emoji": "⚡", "color": "#4ecdc4"},
+      {"id": "focused", "label": "Focused", "emoji": "🎯", "color": "#667eea"},
+      {"id": "calm", "label": "Calm", "emoji": "😌", "color": "#764ba2"},
+      {"id": "tired", "label": "Tired", "emoji": "😴", "color": "#95a5a6"},
+      {"id": "stressed", "label": "Stressed", "emoji": "😰", "color": "#e74c3c"},
+      {"id": "happy", "label": "Happy", "emoji": "😊", "color": "#f39c12"}
+    ]
+  },
+  "sleepData": {
+    "current": {
+      "date": "2024-03-20",
+      "bedtime": "22:30",
+      "wakeTime": "06:30",
+      "totalSleep": 8.0,
+      "deepSleep": 2.1,
+      "remSleep": 1.8,
+      "lightSleep": 4.1,
+      "quality": 8.5,
+      "heartRate": {
+        "min": 48,
+        "max": 72,
+        "avg": 55
+      }
+    },
+    "history": [
+      {"date": "2024-03-19", "totalSleep": 7.5, "quality": 7.8, "deepSleep": 1.9},
+      {"date": "2024-03-18", "totalSleep": 8.2, "quality": 9.1, "deepSleep": 2.4},
+      {"date": "2024-03-17", "totalSleep": 6.8, "quality": 6.2, "deepSleep": 1.5},
+      {"date": "2024-03-16", "totalSleep": 8.1, "quality": 8.7, "deepSleep": 2.2},
+      {"date": "2024-03-15", "totalSleep": 7.9, "quality": 8.3, "deepSleep": 2.0}
+    ],
+    "goals": {
+      "bedtime": "22:30",
+      "wakeTime": "06:30",
+      "targetSleep": 8.0,
+      "minQuality": 7.5
+    }
+  },
+  "hrvData": {
+    "current": {
+      "date": "2024-03-20",
+      "morning": 52,
+      "status": "optimal",
+      "trend": "improving",
+      "recovery": "ready"
+    },
+    "history": [
+      {"date": "2024-03-19", "morning": 49, "status": "good"},
+      {"date": "2024-03-18", "morning": 54, "status": "optimal"},
+      {"date": "2024-03-17", "morning": 42, "status": "low"},
+      {"date": "2024-03-16", "morning": 51, "status": "good"},
+      {"date": "2024-03-15", "morning": 48, "status": "good"}
+    ],
+    "ranges": {
+      "optimal": {"min": 50, "max": 100},
+      "good": {"min": 40, "max": 49},
+      "low": {"min": 0, "max": 39}
+    }
+  },
+  "mindfulnessActivities": [
+    {
+      "id": "breathing",
+      "name": "Breathing Exercise",
+      "description": "Simple breathing technique to reduce stress",
+      "duration": 5,
+      "icon": "fas fa-wind",
+      "instructions": [
+        "Sit comfortably with eyes closed",
+        "Breathe in for 4 counts",
+        "Hold for 4 counts",
+        "Breathe out for 6 counts",
+        "Repeat for duration"
+      ]
+    },
+    {
+      "id": "meditation",
+      "name": "Guided Meditation",
+      "description": "Mindfulness meditation for mental clarity",
+      "duration": 10,
+      "icon": "fas fa-lotus-position",
+      "instructions": [
+        "Find a quiet, comfortable space",
+        "Close eyes and focus on breath",
+        "Notice thoughts without judgment",
+        "Return focus to breathing when distracted"
+      ]
+    },
+    {
+      "id": "body_scan",
+      "name": "Body Scan",
+      "description": "Progressive relaxation technique",
+      "duration": 15,
+      "icon": "fas fa-body",
+      "instructions": [
+        "Lie down comfortably",
+        "Start with toes, notice sensations",
+        "Gradually move up through body",
+        "Relax each area as you focus on it"
+      ]
+    },
+    {
+      "id": "visualization",
+      "name": "Visualization",
+      "description": "Mental imagery for relaxation",
+      "duration": 8,
+      "icon": "fas fa-eye",
+      "instructions": [
+        "Close eyes and breathe deeply",
+        "Imagine a peaceful, safe place",
+        "Engage all senses in the visualization",
+        "Stay in this space for the duration"
+      ]
+    }
+  ],
+  "stepTracking": {
+    "today": {
+      "date": "2024-03-20",
+      "steps": 8547,
+      "goal": 10000,
+      "distance": 6.2,
+      "caloriesBurned": 327,
+      "activeMinutes": 89,
+      "hourlySteps": [
+        {"hour": 6, "steps": 45},
+        {"hour": 7, "steps": 892},
+        {"hour": 8, "steps": 234},
+        {"hour": 9, "steps": 756},
+        {"hour": 10, "steps": 1205},
+        {"hour": 11, "steps": 678},
+        {"hour": 12, "steps": 923},
+        {"hour": 13, "steps": 432},
+        {"hour": 14, "steps": 1134},
+        {"hour": 15, "steps": 887},
+        {"hour": 16, "steps": 692},
+        {"hour": 17, "steps": 669}
+      ]
+    },
+    "weeklyGoal": 70000,
+    "weeklyProgress": 52341
+  },
+  "wellnessScore": {
+    "overall": 8.2,
+    "components": {
+      "sleep": 8.5,
+      "mood": 8.0,
+      "activity": 7.8,
+      "recovery": 8.5,
+      "nutrition": 7.9
+    },
+    "trend": "improving",
+    "recommendations": [
+      "Great sleep quality! Keep your consistent bedtime routine.",
+      "Consider adding 10 minutes of meditation to boost your mood score.",
+      "You're close to your step goal - try a evening walk!"
+    ]
+  }
+} 

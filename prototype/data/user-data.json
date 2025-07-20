@@ -1,0 +1,92 @@
+{
+  "profile": {
+    "id": "user_001",
+    "name": "Alex Johnson",
+    "email": "alex.johnson@email.com",
+    "avatar": "https://via.placeholder.com/40",
+    "joinDate": "2024-01-15",
+    "preferences": {
+      "theme": "light",
+      "notifications": true,
+      "units": "metric"
+    }
+  },
+  "stats": {
+    "level": 12,
+    "xp": 2450,
+    "xpToNext": 3000,
+    "streak": 7,
+    "totalWorkouts": 127,
+    "totalMinutes": 8540,
+    "caloriesBurned": 24680,
+    "averageWorkoutLength": 67
+  },
+  "achievements": [
+    {
+      "id": "streak_7",
+      "name": "7-Day Streak",
+      "description": "Completed workouts for 7 consecutive days",
+      "icon": "fas fa-fire",
+      "unlockedDate": "2024-03-20",
+      "xpReward": 100
+    },
+    {
+      "id": "workouts_50",
+      "name": "50 Workouts",
+      "description": "Completed 50 total workouts",
+      "icon": "fas fa-dumbbell",
+      "unlockedDate": "2024-03-15",
+      "xpReward": 200
+    },
+    {
+      "id": "early_bird",
+      "name": "Early Bird",
+      "description": "Completed 10 morning workouts",
+      "icon": "fas fa-sun",
+      "unlockedDate": "2024-03-10",
+      "xpReward": 150
+    }
+  ],
+  "badges": [
+    {
+      "id": "consistency_master",
+      "name": "Consistency Master",
+      "description": "30-day workout streak",
+      "icon": "fas fa-trophy",
+      "rarity": "gold",
+      "progress": 7,
+      "target": 30
+    },
+    {
+      "id": "strength_builder",
+      "name": "Strength Builder",
+      "description": "Complete 100 strength workouts",
+      "icon": "fas fa-weight-hanging",
+      "rarity": "silver",
+      "progress": 45,
+      "target": 100
+    }
+  ],
+  "goals": [
+    {
+      "id": "weight_loss",
+      "type": "weight",
+      "title": "Lose 10 lbs by June",
+      "target": 160,
+      "current": 170,
+      "unit": "lbs",
+      "deadline": "2024-06-01",
+      "status": "active"
+    },
+    {
+      "id": "bench_press",
+      "type": "strength",
+      "title": "Bench Press 200 lbs",
+      "target": 200,
+      "current": 165,
+      "unit": "lbs",
+      "deadline": "2024-07-15",
+      "status": "active"
+    }
+  ]
+} 

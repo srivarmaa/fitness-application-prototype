@@ -1,0 +1,200 @@
+{
+  "trainingModes": [
+    {
+      "id": "gym",
+      "name": "Gym",
+      "description": "Equipment-based workouts",
+      "icon": "fas fa-weight-hanging",
+      "color": "#667eea",
+      "equipment": ["dumbbells", "barbells", "machines", "cables"]
+    },
+    {
+      "id": "calisthenics",
+      "name": "Calisthenics",
+      "description": "Bodyweight exercises",
+      "icon": "fas fa-running",
+      "color": "#4ecdc4",
+      "equipment": ["bodyweight"]
+    },
+    {
+      "id": "hiit",
+      "name": "HIIT",
+      "description": "High-intensity intervals",
+      "icon": "fas fa-bolt",
+      "color": "#ff6b6b",
+      "equipment": ["minimal", "bodyweight"]
+    },
+    {
+      "id": "aerobics",
+      "name": "Aerobics",
+      "description": "Cardio workouts",
+      "icon": "fas fa-heart",
+      "color": "#ffa500",
+      "equipment": ["none"]
+    },
+    {
+      "id": "yoga",
+      "name": "Yoga",
+      "description": "Flexibility & mindfulness",
+      "icon": "fas fa-leaf",
+      "color": "#32cd32",
+      "equipment": ["yoga mat"]
+    },
+    {
+      "id": "stretching",
+      "name": "Stretching",
+      "description": "Recovery & mobility",
+      "icon": "fas fa-expand-arrows-alt",
+      "color": "#9370db",
+      "equipment": ["none"]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "push_ups",
+      "name": "Push-ups",
+      "category": "calisthenics",
+      "muscleGroups": ["chest", "triceps", "shoulders"],
+      "difficulty": "beginner",
+      "equipment": "bodyweight",
+      "description": "Classic upper body bodyweight exercise",
+      "instructions": [
+        "Start in plank position",
+        "Lower body until chest nearly touches floor",
+        "Push back up to starting position"
+      ],
+      "defaultSets": 3,
+      "defaultReps": 12
+    },
+    {
+      "id": "squats",
+      "name": "Squats",
+      "category": "calisthenics",
+      "muscleGroups": ["quads", "glutes", "calves"],
+      "difficulty": "beginner",
+      "equipment": "bodyweight",
+      "description": "Fundamental lower body exercise",
+      "instructions": [
+        "Stand with feet shoulder-width apart",
+        "Lower body as if sitting back into chair",
+        "Return to standing position"
+      ],
+      "defaultSets": 3,
+      "defaultReps": 15
+    },
+    {
+      "id": "planks",
+      "name": "Planks",
+      "category": "calisthenics",
+      "muscleGroups": ["core", "shoulders"],
+      "difficulty": "beginner",
+      "equipment": "bodyweight",
+      "description": "Core strengthening exercise",
+      "instructions": [
+        "Start in push-up position",
+        "Hold body straight from head to heels",
+        "Maintain position for specified time"
+      ],
+      "defaultSets": 3,
+      "defaultDuration": 30
+    },
+    {
+      "id": "bench_press",
+      "name": "Bench Press",
+      "category": "gym",
+      "muscleGroups": ["chest", "triceps", "shoulders"],
+      "difficulty": "intermediate",
+      "equipment": "barbell",
+      "description": "Classic chest building exercise",
+      "instructions": [
+        "Lie on bench with barbell above chest",
+        "Lower bar to chest with control",
+        "Press bar back to starting position"
+      ],
+      "defaultSets": 4,
+      "defaultReps": 8
+    },
+    {
+      "id": "deadlifts",
+      "name": "Deadlifts",
+      "category": "gym",
+      "muscleGroups": ["back", "glutes", "hamstrings"],
+      "difficulty": "advanced",
+      "equipment": "barbell",
+      "description": "Compound posterior chain exercise",
+      "instructions": [
+        "Stand with barbell over mid-foot",
+        "Hinge at hips and grip bar",
+        "Stand up while keeping back straight"
+      ],
+      "defaultSets": 5,
+      "defaultReps": 5
+    }
+  ],
+  "workoutTemplates": [
+    {
+      "id": "upper_body_strength",
+      "name": "Upper Body Strength",
+      "description": "Focus on building upper body muscle and strength",
+      "duration": 45,
+      "difficulty": "intermediate",
+      "category": "gym",
+      "exercises": [
+        {"exerciseId": "bench_press", "sets": 4, "reps": 8, "weight": 135},
+        {"exerciseId": "push_ups", "sets": 3, "reps": 12}
+      ]
+    },
+    {
+      "id": "bodyweight_basics",
+      "name": "Bodyweight Basics",
+      "description": "Simple bodyweight routine for beginners",
+      "duration": 30,
+      "difficulty": "beginner",
+      "category": "calisthenics",
+      "exercises": [
+        {"exerciseId": "push_ups", "sets": 3, "reps": 10},
+        {"exerciseId": "squats", "sets": 3, "reps": 15},
+        {"exerciseId": "planks", "sets": 3, "duration": 30}
+      ]
+    },
+    {
+      "id": "hiit_cardio",
+      "name": "HIIT Cardio Blast",
+      "description": "High-intensity interval training for fat burning",
+      "duration": 20,
+      "difficulty": "intermediate",
+      "category": "hiit",
+      "exercises": [
+        {"exerciseId": "squats", "sets": 4, "duration": 45, "rest": 15},
+        {"exerciseId": "push_ups", "sets": 4, "duration": 45, "rest": 15}
+      ]
+    }
+  ],
+  "workoutHistory": [
+    {
+      "id": "workout_001",
+      "date": "2024-03-20",
+      "templateId": "upper_body_strength",
+      "duration": 47,
+      "caloriesBurned": 285,
+      "exercises": [
+        {"exerciseId": "bench_press", "sets": [135, 135, 140, 140], "reps": [8, 8, 6, 6]},
+        {"exerciseId": "push_ups", "sets": [12, 11, 10]}
+      ],
+      "notes": "Felt strong today, increased weight on last two sets"
+    },
+    {
+      "id": "workout_002",
+      "date": "2024-03-19",
+      "templateId": "bodyweight_basics",
+      "duration": 32,
+      "caloriesBurned": 195,
+      "exercises": [
+        {"exerciseId": "push_ups", "sets": [10, 10, 8]},
+        {"exerciseId": "squats", "sets": [15, 15, 15]},
+        {"exerciseId": "planks", "duration": [30, 35, 30]}
+      ],
+      "notes": "Good form focus session"
+    }
+  ]
+} 

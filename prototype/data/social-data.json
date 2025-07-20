@@ -1,0 +1,226 @@
+{
+  "userFeed": [
+    {
+      "id": "post_001",
+      "userId": "sarah_trainer",
+      "userName": "Sarah Johnson",
+      "userAvatar": "https://via.placeholder.com/40",
+      "timestamp": "2024-03-20T14:30:00Z",
+      "type": "achievement",
+      "content": {
+        "text": "Just hit a new PR on deadlifts! 💪 185 lbs x 5 reps. Consistency pays off!",
+        "achievement": {
+          "type": "personal_record",
+          "exercise": "deadlifts",
+          "weight": 185,
+          "reps": 5
+        }
+      },
+      "interactions": {
+        "likes": 23,
+        "comments": 5,
+        "shares": 2
+      },
+      "privacy": "public"
+    },
+    {
+      "id": "post_002",
+      "userId": "mike_runner",
+      "userName": "Mike Chen",
+      "userAvatar": "https://via.placeholder.com/40",
+      "timestamp": "2024-03-20T09:15:00Z",
+      "type": "workout_completion",
+      "content": {
+        "text": "Morning 5K done! Beautiful sunrise run through the park 🌅",
+        "workout": {
+          "type": "running",
+          "duration": 28,
+          "distance": 5.0,
+          "pace": "5:36/km"
+        }
+      },
+      "interactions": {
+        "likes": 18,
+        "comments": 3,
+        "shares": 1
+      },
+      "privacy": "public"
+    },
+    {
+      "id": "post_003",
+      "userId": "jessica_yoga",
+      "userName": "Jessica Martinez",
+      "userAvatar": "https://via.placeholder.com/40",
+      "timestamp": "2024-03-19T19:45:00Z",
+      "type": "milestone",
+      "content": {
+        "text": "30 days of daily yoga complete! 🧘‍♀️ Feeling more flexible and centered than ever.",
+        "milestone": {
+          "type": "streak",
+          "activity": "yoga",
+          "days": 30
+        }
+      },
+      "interactions": {
+        "likes": 34,
+        "comments": 8,
+        "shares": 4
+      },
+      "privacy": "public"
+    }
+  ],
+  "challenges": {
+    "active": [
+      {
+        "id": "march_madness",
+        "name": "March Madness Fitness Challenge",
+        "description": "Complete 31 workouts in 31 days",
+        "type": "monthly",
+        "startDate": "2024-03-01",
+        "endDate": "2024-03-31",
+        "participants": 247,
+        "userProgress": {
+          "completed": 19,
+          "target": 31,
+          "rank": 42
+        },
+        "rewards": {
+          "completion": {"xp": 500, "badge": "march_champion"},
+          "top10": {"xp": 1000, "badge": "march_legend"}
+        }
+      },
+      {
+        "id": "step_it_up",
+        "name": "Step It Up Weekly",
+        "description": "Reach 70,000 steps this week",
+        "type": "weekly",
+        "startDate": "2024-03-18",
+        "endDate": "2024-03-24",
+        "participants": 89,
+        "userProgress": {
+          "completed": 52341,
+          "target": 70000,
+          "rank": 23
+        },
+        "rewards": {
+          "completion": {"xp": 200, "badge": "step_master"}
+        }
+      }
+    ],
+    "upcoming": [
+      {
+        "id": "april_strength",
+        "name": "April Strength Building",
+        "description": "Focus on strength training throughout April",
+        "type": "monthly",
+        "startDate": "2024-04-01",
+        "endDate": "2024-04-30",
+        "registrationOpen": true,
+        "estimatedParticipants": 150
+      }
+    ]
+  },
+  "leaderboards": {
+    "weekly": [
+      {"rank": 1, "userId": "alex_beast", "name": "Alex Thompson", "points": 850},
+      {"rank": 2, "userId": "sarah_trainer", "name": "Sarah Johnson", "points": 820},
+      {"rank": 3, "userId": "mike_runner", "name": "Mike Chen", "points": 785},
+      {"rank": 4, "userId": "current_user", "name": "Alex Johnson", "points": 740},
+      {"rank": 5, "userId": "jessica_yoga", "name": "Jessica Martinez", "points": 720}
+    ],
+    "monthly": [
+      {"rank": 1, "userId": "sarah_trainer", "name": "Sarah Johnson", "points": 3250},
+      {"rank": 2, "userId": "alex_beast", "name": "Alex Thompson", "points": 3100},
+      {"rank": 3, "userId": "mike_runner", "name": "Mike Chen", "points": 2980},
+      {"rank": 4, "userId": "current_user", "name": "Alex Johnson", "points": 2850},
+      {"rank": 5, "userId": "fitness_guru", "name": "David Kim", "points": 2790}
+    ]
+  },
+  "groups": [
+    {
+      "id": "morning_warriors",
+      "name": "Morning Warriors",
+      "description": "Early bird workout enthusiasts",
+      "memberCount": 127,
+      "isJoined": true,
+      "privacy": "public",
+      "tags": ["morning", "motivation", "accountability"],
+      "recentActivity": "5 members completed morning workouts today"
+    },
+    {
+      "id": "strength_society",
+      "name": "Strength Society",
+      "description": "Powerlifters and strength training community",
+      "memberCount": 89,
+      "isJoined": false,
+      "privacy": "public",
+      "tags": ["strength", "powerlifting", "technique"],
+      "recentActivity": "New PR videos shared by 3 members"
+    },
+    {
+      "id": "yoga_zen",
+      "name": "Yoga & Zen",
+      "description": "Mindful movement and meditation",
+      "memberCount": 156,
+      "isJoined": true,
+      "privacy": "public",
+      "tags": ["yoga", "meditation", "flexibility"],
+      "recentActivity": "Daily pose challenge: Tree Pose"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "notif_001",
+      "type": "challenge_progress",
+      "title": "Challenge Update",
+      "message": "You're 19/31 workouts complete in March Madness Challenge!",
+      "timestamp": "2024-03-20T15:00:00Z",
+      "read": false
+    },
+    {
+      "id": "notif_002",
+      "type": "social_interaction",
+      "title": "New Like",
+      "message": "Sarah Johnson liked your workout post",
+      "timestamp": "2024-03-20T13:45:00Z",
+      "read": true
+    },
+    {
+      "id": "notif_003",
+      "type": "group_activity",
+      "title": "Group Activity",
+      "message": "5 new posts in Morning Warriors group",
+      "timestamp": "2024-03-20T08:30:00Z",
+      "read": true
+    }
+  ],
+  "friends": [
+    {
+      "userId": "sarah_trainer",
+      "name": "Sarah Johnson",
+      "avatar": "https://via.placeholder.com/40",
+      "status": "online",
+      "relationship": "trainer",
+      "mutualFriends": 12,
+      "lastActivity": "2024-03-20T14:30:00Z"
+    },
+    {
+      "userId": "mike_runner",
+      "name": "Mike Chen",
+      "avatar": "https://via.placeholder.com/40",
+      "status": "offline",
+      "relationship": "friend",
+      "mutualFriends": 8,
+      "lastActivity": "2024-03-20T09:15:00Z"
+    },
+    {
+      "userId": "jessica_yoga",
+      "name": "Jessica Martinez",
+      "avatar": "https://via.placeholder.com/40",
+      "status": "active",
+      "relationship": "friend",
+      "mutualFriends": 15,
+      "lastActivity": "2024-03-19T19:45:00Z"
+    }
+  ]
+} 

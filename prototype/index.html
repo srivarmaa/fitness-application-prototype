@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitAI Pro - AI-Driven Fitness Platform</title>
+    <meta name="description" content="FitAI Pro - Comprehensive fitness tracking with AI recommendations, workout planning, nutrition tracking, and progress monitoring.">
+    <meta name="keywords" content="fitness, AI, workout, nutrition, progress tracking, exercise">
+    
+    <!-- Fonts and Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chart.js for visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- ExerciseDB API Service -->
+    <script src="exercise-api-service.js"></script>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='90' font-size='90'>💪</text></svg>">
+</head>
+<body>
+    <!-- Main App Container with Grid Layout -->
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left flex items-center gap-md">
+                <div class="logo">
+                    <i class="fas fa-dumbbell"></i>
+                    <span>FitAI Pro</span>
+                </div>
+            </div>
+            
+            <div class="header-center">
+                <!-- Search or breadcrumb could go here -->
+            </div>
+            
+            <div class="header-actions flex items-center gap-md">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                
+                <div class="user-profile">
+                    <div class="profile-info">
+                        <div class="profile-name">Alex Johnson</div>
+                        <div class="xp-badge">Level 12 • 2,450 XP</div>
+                    </div>
+                    <div class="profile-avatar">
+                        <span>AJ</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Sidebar Navigation Panel -->
+        <aside class="app-sidebar" id="app-sidebar">
+            <div class="sidebar-header">
+                <h2 class="sidebar-title">Navigation</h2>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" data-tab="dashboard">
+                    <i class="nav-icon fas fa-th-large"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="planner">
+                    <i class="nav-icon fas fa-calendar-alt"></i>
+                    <span>Planner</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="train">
+                    <i class="nav-icon fas fa-dumbbell"></i>
+                    <span>Train</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="progress">
+                    <i class="nav-icon fas fa-chart-line"></i>
+                    <span>Progress</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="nutrition">
+                    <i class="nav-icon fas fa-apple-alt"></i>
+                    <span>Nutrition</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="coach">
+                    <i class="nav-icon fas fa-user-tie"></i>
+                    <span>Coach</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="wellness">
+                    <i class="nav-icon fas fa-heart"></i>
+                    <span>Wellness</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="profile">
+                    <i class="nav-icon fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="gif">
+                    <i class="nav-icon fas fa-images"></i>
+                    <span>GIF</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="app-main">
+            <!-- Dashboard Tab -->
+            <div id="dashboard" class="tab-content active">
+                <div class="dashboard-grid">
+                    <!-- Left Column -->
+                    <div class="dashboard-left-column">
+                        <!-- Top Section -->
+                        <div class="dashboard-top-section">
+                            <!-- Quick Stats -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="fas fa-chart-bar"></i>
+                                        Today's Stats
+                                    </h3>
+                                </div>
+                                <div class="card-content">
+                                    <div class="stats-grid">
+                                        <div class="stat-card">
+                                            <div class="stat-icon">
+                                                <i class="fas fa-fire"></i>
+                                            </div>
+                                            <div class="stat-value" id="calories-burned">0</div>
+                                            <div class="stat-label">Calories Burned</div>
+                                        </div>
+                                        <div class="stat-card">
+                                            <div class="stat-icon">
+                                                <i class="fas fa-clock"></i>
+                                            </div>
+                                            <div class="stat-value" id="active-time">0</div>
+                                            <div class="stat-label">Active Minutes</div>
+                                        </div>
+                                        <div class="stat-card">
+                                            <div class="stat-icon">
+                                                <i class="fas fa-walking"></i>
+                                            </div>
+                                            <div class="stat-value" id="steps-count">0</div>
+                                            <div class="stat-label">Steps Today</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Sections -->
+                        <div class="dashboard-bottom-sections">
+                            <!-- Body Visualization -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="fas fa-male"></i>
+                                        Body Visualization
+                                    </h3>
+                                    <button class="btn btn-outline btn-sm" id="toggle-view">
+                                        <i class="fas fa-sync-alt"></i>
+                                        Toggle 2D/3D
+                                    </button>
+                                </div>
+                                <div class="card-content">
+                                    <div id="body-visualization" class="text-center">
+                                        <div class="muscle-groups-grid">
+                                            <div class="muscle-group trained" data-group="chest">
+                                                <span>Chest</span>
+                                                <div class="muscle-status">Trained</div>
+                                            </div>
+                                            <div class="muscle-group moderate" data-group="shoulders">
+                                                <span>Shoulders</span>
+                                                <div class="muscle-status">Moderate</div>
+                                            </div>
+                                            <div class="muscle-group trained" data-group="arms">
+                                                <span>Arms</span>
+                                                <div class="muscle-status">Trained</div>
+                                            </div>
+                                            <div class="muscle-group neglected" data-group="legs">
+                                                <span>Legs</span>
+                                                <div class="muscle-status">Neglected</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- AI Recommendations -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="fas fa-brain"></i>
+                                        AI Recommendations
+                                    </h3>
+                                </div>
+                                <div class="card-content">
+                                    <div id="recommendations-list">
+                                        <!-- Recommendations will be loaded dynamically -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Next Workout -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="fas fa-play-circle"></i>
+                                        Next Workout
+                                    </h3>
+                                </div>
+                                <div class="card-content">
+                                    <div id="next-workout">
+                                        <!-- Next workout will be loaded dynamically -->
+                                    </div>
+                                    <button class="btn btn-primary" id="start-workout">
+                                        <i class="fas fa-play"></i>
+                                        Start Workout
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="dashboard-right-column">
+                        <!-- Progress Overview -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    <i class="fas fa-chart-line"></i>
+                                    Progress Overview
+                                </h3>
+                            </div>
+                            <div class="card-content">
+                                <div id="progress-overview">
+                                    <!-- Progress content will be loaded dynamically -->
+                                    <div class="progress-summary">
+                                        <div class="progress-item">
+                                            <div class="progress-label">Weekly Goal</div>
+                                            <div class="progress-bar">
+                                                <div class="progress-fill" style="width: 65%;"></div>
+                                            </div>
+                                            <div class="progress-value">65%</div>
+                                        </div>
+                                        <div class="progress-item">
+                                            <div class="progress-label">Monthly Streak</div>
+                                            <div class="progress-bar">
+                                                <div class="progress-fill" style="width: 80%;"></div>
+                                            </div>
+                                            <div class="progress-value">24 days</div>
+                                        </div>
+                                        <div class="progress-item">
+                                            <div class="progress-label">Fitness Score</div>
+                                            <div class="progress-bar">
+                                                <div class="progress-fill" style="width: 72%;"></div>
+                                            </div>
+                                            <div class="progress-value">720</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Planner Tab -->
+            <div id="planner" class="tab-content">
+                <div class="dashboard-grid">
+                    <!-- Calendar Section -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-calendar-alt"></i>
+                                Monthly Calendar
+                            </h3>
+                            <div class="calendar-controls">
+                                <button class="btn btn-outline btn-sm" id="prev-month">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <span id="current-month-year" class="month-year-display">January 2024</span>
+                                <button class="btn btn-outline btn-sm" id="next-month">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="monthly-calendar-container">
+                                <div class="calendar-header">
+                                    <div class="day-header">Sun</div>
+                                    <div class="day-header">Mon</div>
+                                    <div class="day-header">Tue</div>
+                                    <div class="day-header">Wed</div>
+                                    <div class="day-header">Thu</div>
+                                    <div class="day-header">Fri</div>
+                                    <div class="day-header">Sat</div>
+                                </div>
+                                <div class="calendar-grid" id="calendar-grid">
+                                    <!-- Calendar days will be generated dynamically -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Selected Day Workouts -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-dumbbell"></i>
+                                <span id="selected-day-title">Select a Date</span>
+                            </h3>
+                            <button class="btn btn-primary" id="add-workout-btn">
+                                <i class="fas fa-plus"></i>
+                                Add Workout
+                            </button>
+                        </div>
+                        <div class="card-content">
+                            <div id="day-workouts" class="day-workouts-container">
+                                <div class="empty-day-message">
+                                    <i class="fas fa-calendar-plus"></i>
+                                    <p>Click on a date in the calendar to view or add workouts</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Workout Details Modal -->
+                <div class="modal" id="workout-details-modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 id="workout-modal-title">Workout Details</h3>
+                            <button class="close-btn" id="close-workout-modal">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="workout-exercises">
+                                <!-- Workout exercises will be loaded here -->
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-outline" id="edit-workout-btn">
+                                <i class="fas fa-edit"></i>
+                                Edit Workout
+                            </button>
+                            <button class="btn btn-primary" id="start-workout-btn">
+                                <i class="fas fa-play"></i>
+                                Start Workout
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add Workout Modal -->
+                <div class="modal" id="add-workout-modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 id="add-workout-modal-title">Add New Workout</h3>
+                            <button class="close-btn" id="close-add-workout-modal">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="add-workout-form">
+                                <div class="form-group">
+                                    <label class="form-label" for="workout-name">Workout Name</label>
+                                    <input type="text" id="workout-name" class="form-input" placeholder="e.g., Morning Cardio" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label" for="workout-time">Time</label>
+                                    <input type="time" id="workout-time" class="form-input" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label" for="workout-duration">Duration (minutes)</label>
+                                    <input type="number" id="workout-duration" class="form-input" placeholder="30" min="5" max="300" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label" for="workout-type">Workout Type</label>
+                                    <select id="workout-type" class="form-input" required>
+                                        <option value="">Select workout type</option>
+                                        <option value="cardio">Cardio</option>
+                                        <option value="strength">Strength Training</option>
+                                        <option value="yoga">Yoga</option>
+                                        <option value="hiit">HIIT</option>
+                                        <option value="flexibility">Flexibility</option>
+                                        <option value="custom">Custom</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label" for="workout-notes">Notes (Optional)</label>
+                                    <textarea id="workout-notes" class="form-textarea" placeholder="Any additional notes about this workout..."></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Exercises</label>
+                                    <div id="exercises-container">
+                                        <div class="exercise-input-group">
+                                            <input type="text" class="form-input exercise-name" placeholder="Exercise name" required>
+                                            <input type="text" class="form-input exercise-sets" placeholder="Sets" required>
+                                            <input type="text" class="form-input exercise-reps" placeholder="Reps/Duration" required>
+                                            <button type="button" class="btn btn-outline btn-sm remove-exercise">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-outline btn-sm" id="add-exercise-btn">
+                                        <i class="fas fa-plus"></i>
+                                        Add Exercise
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-outline" id="cancel-add-workout">
+                                Cancel
+                            </button>
+                            <button class="btn btn-primary" id="save-workout-btn">
+                                <i class="fas fa-save"></i>
+                                Save Workout
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Train Tab -->
+            <div id="train" class="tab-content">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-dumbbell"></i>
+                            Training Center
+                        </h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="training-modes" id="training-modes">
+                            <div class="training-modes-container" id="training-modes-container">
+                                <!-- Training modes will be loaded dynamically -->
+                            </div>
+                            <button class="training-modes-scroll-left" id="scroll-left">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="training-modes-scroll-right" id="scroll-right">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="content-grid">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="exercise-library-header">
+                                        <h4 class="card-title">
+                                            <i class="fas fa-list"></i>
+                                            Exercise Library
+                                        </h4>
+                                        <div class="exercise-filters">
+                                            <!-- Search Bar -->
+                                            <div class="search-container">
+                                                <input type="text" id="exercise-search" class="form-input" placeholder="Search exercises...">
+                                                <i class="fas fa-search search-icon"></i>
+                                            </div>
+                                            
+                                            <!-- Filter Dropdowns -->
+                                            <div class="filter-dropdowns">
+                                                <!-- Body Parts Filter -->
+                                                <div class="filter-dropdown">
+                                                    <button class="filter-toggle" data-filter="bodypart">
+                                                        <span>Body Parts</span>
+                                                        <i class="fas fa-chevron-down"></i>
+                                                    </button>
+                                                    <div class="filter-options" id="bodypart-options">
+                                                        <div class="filter-loading">
+                                                            <i class="fas fa-spinner fa-spin"></i>
+                                                            Loading...
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <!-- Muscle Groups Filter -->
+                                                <div class="filter-dropdown">
+                                                    <button class="filter-toggle" data-filter="muscle">
+                                                        <span>Muscle Groups</span>
+                                                        <i class="fas fa-chevron-down"></i>
+                                                    </button>
+                                                    <div class="filter-options" id="muscle-options">
+                                                        <div class="filter-loading">
+                                                            <i class="fas fa-spinner fa-spin"></i>
+                                                            Loading...
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <!-- Equipment Filter -->
+                                                <div class="filter-dropdown">
+                                                    <button class="filter-toggle" data-filter="equipment">
+                                                        <span>Equipment</span>
+                                                        <i class="fas fa-chevron-down"></i>
+                                                    </button>
+                                                    <div class="filter-options" id="equipment-options">
+                                                        <div class="filter-loading">
+                                                            <i class="fas fa-spinner fa-spin"></i>
+                                                            Loading...
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <!-- Body Part Specific Equipment Filters -->
+                                                <div class="bodypart-equipment-filters" id="bodypart-equipment-filters" style="display: none;">
+                                                    <!-- Chest Equipment -->
+                                                    <div class="filter-dropdown bodypart-equipment" data-bodypart="chest" style="display: none;">
+                                                        <button class="filter-toggle" data-filter="chest-equipment">
+                                                            <span>Chest Equipment</span>
+                                                            <i class="fas fa-chevron-down"></i>
+                                                        </button>
+                                                        <div class="filter-options" id="chest-equipment-options">
+                                                            <div class="filter-loading">
+                                                                <i class="fas fa-spinner fa-spin"></i>
+                                                                Loading...
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Upper Arms Equipment -->
+                                                    <div class="filter-dropdown bodypart-equipment" data-bodypart="upper arms" style="display: none;">
+                                                        <button class="filter-toggle" data-filter="upper-arms-equipment">
+                                                            <span>Arms Equipment</span>
+                                                            <i class="fas fa-chevron-down"></i>
+                                                        </button>
+                                                        <div class="filter-options" id="upper-arms-equipment-options">
+                                                            <div class="filter-loading">
+                                                                <i class="fas fa-spinner fa-spin"></i>
+                                                                Loading...
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Shoulders Equipment -->
+                                                    <div class="filter-dropdown bodypart-equipment" data-bodypart="shoulders" style="display: none;">
+                                                        <button class="filter-toggle" data-filter="shoulders-equipment">
+                                                            <span>Shoulders Equipment</span>
+                                                            <i class="fas fa-chevron-down"></i>
+                                                        </button>
+                                                        <div class="filter-options" id="shoulders-equipment-options">
+                                                            <div class="filter-loading">
+                                                                <i class="fas fa-spinner fa-spin"></i>
+                                                                Loading...
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Back Equipment -->
+                                                    <div class="filter-dropdown bodypart-equipment" data-bodypart="back" style="display: none;">
+                                                        <button class="filter-toggle" data-filter="back-equipment">
+                                                            <span>Back Equipment</span>
+                                                            <i class="fas fa-chevron-down"></i>
+                                                        </button>
+                                                        <div class="filter-options" id="back-equipment-options">
+                                                            <div class="filter-loading">
+                                                                <i class="fas fa-spinner fa-spin"></i>
+                                                                Loading...
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Upper Legs Equipment -->
+                                                    <div class="filter-dropdown bodypart-equipment" data-bodypart="upper legs" style="display: none;">
+                                                        <button class="filter-toggle" data-filter="upper-legs-equipment">
+                                                            <span>Legs Equipment</span>
+                                                            <i class="fas fa-chevron-down"></i>
+                                                        </button>
+                                                        <div class="filter-options" id="upper-legs-equipment-options">
+                                                            <div class="filter-loading">
+                                                                <i class="fas fa-spinner fa-spin"></i>
+                                                                Loading...
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Lower Legs Equipment -->
+                                                    <div class="filter-dropdown bodypart-equipment" data-bodypart="lower legs" style="display: none;">
+                                                        <button class="filter-toggle" data-filter="lower-legs-equipment">
+                                                            <span>Calves Equipment</span>
+                                                            <i class="fas fa-chevron-down"></i>
+                                                        </button>
+                                                        <div class="filter-options" id="lower-legs-equipment-options">
+                                                            <div class="filter-loading">
+                                                                <i class="fas fa-spinner fa-spin"></i>
+                                                                Loading...
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Waist Equipment -->
+                                                    <div class="filter-dropdown bodypart-equipment" data-bodypart="waist" style="display: none;">
+                                                        <button class="filter-toggle" data-filter="waist-equipment">
+                                                            <span>Core Equipment</span>
+                                                            <i class="fas fa-chevron-down"></i>
+                                                        </button>
+                                                        <div class="filter-options" id="waist-equipment-options">
+                                                            <div class="filter-loading">
+                                                                <i class="fas fa-spinner fa-spin"></i>
+                                                                Loading...
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Filter Status -->
+                                            <div class="filter-status" id="filter-status" style="display: none;">
+                                                <span class="filter-badge">
+                                                    <i class="fas fa-filter"></i>
+                                                    <span id="active-filters-count">0</span> active
+                                                </span>
+                                                <button class="clear-filters-btn" onclick="clearAllFilters()">
+                                                    <i class="fas fa-times"></i>
+                                                    Clear
+                                                </button>
+                                            </div>
+                                            
+                                            <!-- Load All Button -->
+                                            <button class="btn btn-outline btn-sm" onclick="populateAllExercises()" title="Load all exercises from API">
+                                                <i class="fas fa-sync-alt"></i>
+                                                Load All
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <div id="exercise-library">
+                                        <!-- Exercises will be loaded dynamically -->
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">
+                                        <i class="fas fa-plus"></i>
+                                        Routine Builder
+                                    </h4>
+                                </div>
+                                <div class="card-content">
+                                    <div id="routine-builder">
+                                        <!-- Routine builder will be loaded dynamically -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Tab -->
+            <div id="progress" class="tab-content">
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-chart-line"></i>
+                                Strength Progress
+                            </h3>
+                            <div class="chart-controls">
+                                <select id="body-part-select" class="form-select">
+                                    <option value="">Overall Progress</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <canvas id="strength-chart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-weight"></i>
+                                Body Measurements
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <canvas id="body-chart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-camera"></i>
+                                Progress Photos
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="progress-photos">
+                                <!-- Progress photos will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nutrition Tab -->
+            <div id="nutrition" class="tab-content">
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-bullseye"></i>
+                                Macro Targets
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="macro-tracking">
+                                <!-- Macro tracking will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-utensils"></i>
+                                Today's Meals
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="daily-meals">
+                                <!-- Daily meals will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-clock"></i>
+                                Intermittent Fasting
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="fasting-tracker">
+                                <!-- Fasting tracker will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coach Tab -->
+            <div id="coach" class="tab-content">
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-user-tie"></i>
+                                Your Trainer
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="trainer-profile">
+                                <!-- Trainer profile will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-clipboard-list"></i>
+                                Workout Plans
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="workout-plans">
+                                <!-- Workout plans will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-comments"></i>
+                                Messages
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="coach-messages">
+                                <!-- Messages will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wellness Tab -->
+            <div id="wellness" class="tab-content">
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-smile"></i>
+                                Mood Tracking
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="mood-tracker">
+                                <!-- Mood tracker will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-bed"></i>
+                                Sleep Analytics
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="sleep-tracker">
+                                <!-- Sleep tracker will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-heartbeat"></i>
+                                HRV Monitoring
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="hrv-tracker">
+                                <!-- HRV tracker will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-lotus-position"></i>
+                                Mindfulness
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="mindfulness-activities">
+                                <!-- Mindfulness activities will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Tab -->
+            <div id="profile" class="tab-content">
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-user"></i>
+                                Profile Information
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="profile-info">
+                                <!-- Profile info will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-trophy"></i>
+                                Achievements
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="achievements-list">
+                                <!-- Achievements will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-level-up-alt"></i>
+                                Level Progress
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="level-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="level-fill" style="width: 65%;"></div>
+                                </div>
+                                <span id="level-text">2,450 / 3,000 XP to Level 13</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-cog"></i>
+                                Settings
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="settings-panel">
+                                <!-- Settings will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GIF Tab -->
+            <div id="gif" class="tab-content">
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-images"></i>
+                                GIF Gallery
+                            </h3>
+                            <button class="btn btn-outline btn-sm" id="refresh-gif">
+                                <i class="fas fa-sync-alt"></i>
+                                Refresh
+                            </button>
+                        </div>
+                        <div class="card-content">
+                            <div class="gif-gallery">
+                                <div class="gif-item">
+                                    <img src="https://media.giphy.com/media/3o7abKhOpu0NwenH3O/giphy.gif" alt="Fitness Motivation" class="gif-image">
+                                    <div class="gif-overlay">
+                                        <div class="gif-title">Fitness Motivation</div>
+                                        <button class="btn btn-primary btn-sm" onclick="downloadGif(this)">
+                                            <i class="fas fa-download"></i>
+                                            Download
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="gif-item">
+                                    <img src="https://media.giphy.com/media/26ufcVAUeH0nzLvIs/giphy.gif" alt="Workout Routine" class="gif-image">
+                                    <div class="gif-overlay">
+                                        <div class="gif-title">Workout Routine</div>
+                                        <button class="btn btn-primary btn-sm" onclick="downloadGif(this)">
+                                            <i class="fas fa-download"></i>
+                                            Download
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="gif-item">
+                                    <img src="https://media.giphy.com/media/l2Je66jG6mAAZxgqI/giphy.gif" alt="Yoga Flow" class="gif-image">
+                                    <div class="gif-overlay">
+                                        <div class="gif-title">Yoga Flow</div>
+                                        <button class="btn btn-primary btn-sm" onclick="downloadGif(this)">
+                                            <i class="fas fa-download"></i>
+                                            Download
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="gif-item">
+                                    <img src="https://media.giphy.com/media/3o7abKhOpu0NwenH3O/giphy.gif" alt="Running Motivation" class="gif-image">
+                                    <div class="gif-overlay">
+                                        <div class="gif-title">Running Motivation</div>
+                                        <button class="btn btn-primary btn-sm" onclick="downloadGif(this)">
+                                            <i class="fas fa-download"></i>
+                                            Download
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="gif-item">
+                                    <img src="https://media.giphy.com/media/26ufcVAUeH0nzLvIs/giphy.gif" alt="Strength Training" class="gif-image">
+                                    <div class="gif-overlay">
+                                        <div class="gif-title">Strength Training</div>
+                                        <button class="btn btn-primary btn-sm" onclick="downloadGif(this)">
+                                            <i class="fas fa-download"></i>
+                                            Download
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="gif-item">
+                                    <img src="https://media.giphy.com/media/l2Je66jG6mAAZxgqI/giphy.gif" alt="Meditation" class="gif-image">
+                                    <div class="gif-overlay">
+                                        <div class="gif-title">Meditation</div>
+                                        <button class="btn btn-primary btn-sm" onclick="downloadGif(this)">
+                                            <i class="fas fa-download"></i>
+                                            Download
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-upload"></i>
+                                Upload Your GIF
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="upload-section">
+                                <div class="upload-area" id="upload-area">
+                                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                                    <p>Drag and drop your GIF here or click to browse</p>
+                                    <input type="file" id="gif-upload" accept=".gif,image/gif" style="display: none;">
+                                </div>
+                                <div class="upload-preview" id="upload-preview" style="display: none;">
+                                    <img id="preview-image" alt="Preview">
+                                    <div class="preview-actions">
+                                        <button class="btn btn-primary btn-sm" id="save-gif">
+                                            <i class="fas fa-save"></i>
+                                            Save GIF
+                                        </button>
+                                        <button class="btn btn-outline btn-sm" id="cancel-upload">
+                                            <i class="fas fa-times"></i>
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Loading Overlay (will be added dynamically) -->
+    
+    <!-- Exercise Details Bottom Sheet -->
+    <div class="bottom-sheet" id="exercise-details-sheet">
+        <div class="bottom-sheet-overlay" id="bottom-sheet-overlay"></div>
+        <div class="bottom-sheet-content">
+            <div class="bottom-sheet-header">
+                <div class="bottom-sheet-handle"></div>
+                <h3 id="exercise-detail-title">Exercise Details</h3>
+                <div class="bottom-sheet-actions">
+                    <button class="btn btn-primary btn-sm" id="add-to-playlist-btn">
+                        <i class="fas fa-plus"></i>
+                        Add to Playlist
+                    </button>
+                    <button class="close-bottom-sheet" id="close-bottom-sheet">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="bottom-sheet-body">
+                <div id="exercise-detail-content">
+                    <!-- Exercise details will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html> 

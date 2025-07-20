@@ -1,0 +1,109 @@
+{
+  "name": "Light Theme",
+  "id": "light",
+  "primaryThemeColors": {
+    "background": "#ffffff",
+    "foreground": "#0a0a0a",
+    "primary": "#4693c6",
+    "primaryForeground": "#ffffff"
+  },
+  "secondaryAccentColors": {
+    "secondary": "#f1f5f9",
+    "secondaryForeground": "#0f172a",
+    "accent": "#f1f5f9",
+    "accentForeground": "#0f172a"
+  },
+  "uiComponentColors": {
+    "card": "#ffffff",
+    "cardForeground": "#0a0a0a",
+    "popover": "#ffffff",
+    "popoverForeground": "#0a0a0a",
+    "muted": "#f1f5f9",
+    "mutedForeground": "#64748b"
+  },
+  "utilityFormColors": {
+    "border": "#e2e8f0",
+    "input": "#ffffff",
+    "ring": "#4693c6",
+    "radius": "1.3rem"
+  },
+  "statusFeedbackColors": {
+    "destructive": "#ef4444",
+    "destructiveForeground": "#ffffff"
+  },
+  "chartVisualizationColors": {
+    "chart1": "#4894c7",
+    "chart2": "#25936e",
+    "chart3": "#cea851",
+    "chart4": "#399d66",
+    "chart5": "#ba456c"
+  },
+  "sidebarNavigationColors": {
+    "sidebarBackground": "#f8fafc",
+    "sidebarForeground": "#334155",
+    "sidebarPrimary": "#4693c6",
+    "sidebarPrimaryForeground": "#ffffff",
+    "sidebarAccent": "#f1f5f9",
+    "sidebarAccentForeground": "#0f172a",
+    "sidebarBorder": "#e2e8f0",
+    "sidebarRing": "#4693c6"
+  },
+  "gradients": {
+    "primary": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+    "secondary": "linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%)",
+    "accent": "linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)",
+    "card": "linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)"
+  },
+  "shadows": {
+    "small": "0 1px 3px rgba(0, 0, 0, 0.1)",
+    "medium": "0 4px 6px rgba(0, 0, 0, 0.1)",
+    "large": "0 10px 15px rgba(0, 0, 0, 0.1)",
+    "xlarge": "0 25px 50px rgba(0, 0, 0, 0.15)"
+  },
+  "spacing": {
+    "xs": "0.25rem",
+    "sm": "0.5rem",
+    "md": "1rem",
+    "lg": "1.5rem",
+    "xl": "2rem",
+    "xxl": "3rem",
+    "xxxl": "4rem"
+  },
+  "borderRadius": {
+    "sm": "0.25rem",
+    "md": "0.5rem",
+    "lg": "0.75rem",
+    "xl": "1rem",
+    "xxl": "1.5rem",
+    "full": "9999px"
+  },
+  "typography": {
+    "fontFamily": {
+      "primary": "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+      "mono": "'JetBrains Mono', 'Fira Code', Consolas, monospace"
+    },
+    "fontSize": {
+      "xs": "0.75rem",
+      "sm": "0.875rem",
+      "base": "1rem",
+      "lg": "1.125rem",
+      "xl": "1.25rem",
+      "xxl": "1.5rem",
+      "xxxl": "2rem",
+      "display": "3rem"
+    },
+    "fontWeight": {
+      "light": "300",
+      "normal": "400",
+      "medium": "500",
+      "semibold": "600",
+      "bold": "700"
+    }
+  },
+  "animations": {
+    "fast": "150ms",
+    "normal": "250ms",
+    "slow": "350ms",
+    "slower": "500ms"
+  }
+} 

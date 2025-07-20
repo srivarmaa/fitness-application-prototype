@@ -1,0 +1,268 @@
+{
+  "trainer": {
+    "id": "sarah_trainer",
+    "name": "Sarah Johnson",
+    "title": "Certified Personal Trainer",
+    "avatar": "https://via.placeholder.com/60",
+    "credentials": [
+      "NASM-CPT",
+      "ACSM-EP",
+      "Nutrition Specialist"
+    ],
+    "specialties": [
+      "Strength Training",
+      "Weight Loss",
+      "Functional Movement",
+      "Injury Prevention"
+    ],
+    "experience": 8,
+    "rating": 4.9,
+    "clientCount": 47,
+    "bio": "Passionate about helping people achieve their fitness goals through sustainable, science-based training methods.",
+    "contact": {
+      "email": "sarah@fitcoach.com",
+      "phone": "+1-555-0123",
+      "timezone": "EST"
+    },
+    "availability": {
+      "monday": {"start": "06:00", "end": "20:00"},
+      "tuesday": {"start": "06:00", "end": "20:00"},
+      "wednesday": {"start": "06:00", "end": "20:00"},
+      "thursday": {"start": "06:00", "end": "20:00"},
+      "friday": {"start": "06:00", "end": "18:00"},
+      "saturday": {"start": "08:00", "end": "16:00"},
+      "sunday": {"start": "10:00", "end": "14:00"}
+    }
+  },
+  "connection": {
+    "status": "connected",
+    "since": "2024-02-15",
+    "package": "premium_coaching",
+    "sessionsRemaining": 8,
+    "nextSession": {
+      "date": "2024-03-22",
+      "time": "09:00",
+      "type": "virtual",
+      "duration": 60,
+      "focus": "Upper Body Strength Assessment"
+    }
+  },
+  "sharedWorkspace": {
+    "activeTab": "workout_plans",
+    "lastEdited": "2024-03-20T14:30:00Z",
+    "collaborators": [
+      {
+        "userId": "sarah_trainer",
+        "name": "Sarah Johnson",
+        "role": "trainer",
+        "online": true
+      },
+      {
+        "userId": "current_user",
+        "name": "Alex Johnson",
+        "role": "client",
+        "online": true
+      }
+    ]
+  },
+  "workoutPlans": [
+    {
+      "id": "current_week",
+      "name": "Week of March 18-24, 2024",
+      "status": "active",
+      "createdBy": "sarah_trainer",
+      "lastModified": "2024-03-20T10:15:00Z",
+      "schedule": {
+        "monday": {
+          "workout": "Upper Body Strength",
+          "duration": 45,
+          "notes": "Focus on progressive overload",
+          "completed": true
+        },
+        "tuesday": {
+          "workout": "HIIT Cardio",
+          "duration": 30,
+          "notes": "Monitor heart rate zones",
+          "completed": false
+        },
+        "wednesday": {
+          "workout": "Lower Body Strength",
+          "duration": 50,
+          "notes": "Emphasis on form over weight",
+          "completed": false
+        },
+        "friday": {
+          "workout": "Full Body Circuit",
+          "duration": 40,
+          "notes": "Active recovery focus",
+          "completed": false
+        }
+      }
+    },
+    {
+      "id": "next_week",
+      "name": "Week of March 25-31, 2024",
+      "status": "draft",
+      "createdBy": "sarah_trainer",
+      "lastModified": "2024-03-19T16:45:00Z",
+      "schedule": {
+        "monday": {
+          "workout": "Push Day - Chest & Triceps",
+          "duration": 45,
+          "notes": "Increase bench press weight"
+        },
+        "wednesday": {
+          "workout": "Pull Day - Back & Biceps",
+          "duration": 45,
+          "notes": "Focus on lat development"
+        },
+        "friday": {
+          "workout": "Leg Day",
+          "duration": 50,
+          "notes": "Add plyometric exercises"
+        }
+      }
+    }
+  ],
+  "dietSchedule": {
+    "currentPlan": "Balanced Muscle Building",
+    "startDate": "2024-03-01",
+    "duration": 30,
+    "goals": {
+      "dailyCalories": 2200,
+      "protein": 165,
+      "carbs": 220,
+      "fat": 73
+    },
+    "mealTiming": {
+      "preworkout": "30-60 minutes before training",
+      "postworkout": "Within 30 minutes after training",
+      "meals": [
+        {"time": "07:00", "type": "breakfast", "calories": 500},
+        {"time": "10:00", "type": "snack", "calories": 200},
+        {"time": "13:00", "type": "lunch", "calories": 600},
+        {"time": "16:00", "type": "snack", "calories": 250},
+        {"time": "19:00", "type": "dinner", "calories": 650}
+      ]
+    },
+    "supplements": [
+      {
+        "name": "Whey Protein",
+        "timing": "Post-workout",
+        "amount": "25g",
+        "notes": "Mix with water or milk"
+      },
+      {
+        "name": "Creatine",
+        "timing": "Daily",
+        "amount": "5g",
+        "notes": "Take consistently, timing doesn't matter"
+      }
+    ]
+  },
+  "goals": [
+    {
+      "id": "strength_goal",
+      "title": "Increase Bench Press to 200 lbs",
+      "type": "strength",
+      "current": 165,
+      "target": 200,
+      "deadline": "2024-07-15",
+      "status": "on_track",
+      "milestones": [
+        {"weight": 170, "target_date": "2024-04-01", "status": "upcoming"},
+        {"weight": 180, "target_date": "2024-05-01", "status": "pending"},
+        {"weight": 190, "target_date": "2024-06-01", "status": "pending"},
+        {"weight": 200, "target_date": "2024-07-15", "status": "pending"}
+      ],
+      "notes": "Progressive overload strategy in place. Form looking excellent."
+    },
+    {
+      "id": "body_comp_goal",
+      "title": "Reduce Body Fat to 12%",
+      "type": "body_composition",
+      "current": 16.5,
+      "target": 12.0,
+      "deadline": "2024-06-01",
+      "status": "on_track",
+      "progress": [
+        {"date": "2024-03-01", "value": 18.2},
+        {"date": "2024-03-15", "value": 16.5}
+      ],
+      "notes": "Great progress! Nutrition compliance has been excellent."
+    }
+  ],
+  "messages": [
+    {
+      "id": "msg_001",
+      "from": "sarah_trainer",
+      "to": "current_user",
+      "timestamp": "2024-03-20T14:45:00Z",
+      "message": "Great job on today's workout! Your form on the bench press is really improving. Let's aim for 170 lbs next week.",
+      "read": false,
+      "type": "feedback"
+    },
+    {
+      "id": "msg_002",
+      "from": "current_user",
+      "to": "sarah_trainer",
+      "timestamp": "2024-03-20T13:30:00Z",
+      "message": "Thanks for adjusting the program. The new rep scheme feels much better for my recovery.",
+      "read": true,
+      "type": "general"
+    },
+    {
+      "id": "msg_003",
+      "from": "sarah_trainer",
+      "to": "current_user",
+      "timestamp": "2024-03-19T09:15:00Z",
+      "message": "Don't forget to track your sleep this week. Recovery is just as important as the workouts!",
+      "read": true,
+      "type": "reminder"
+    }
+  ],
+  "assessments": [
+    {
+      "id": "initial_assessment",
+      "date": "2024-02-15",
+      "type": "comprehensive",
+      "metrics": {
+        "weight": 175,
+        "body_fat": 18.2,
+        "muscle_mass": 143.1,
+        "bench_press": 135,
+        "squat": 185,
+        "deadlift": 225
+      },
+      "notes": "Solid foundation. Focus areas: upper body strength, core stability."
+    },
+    {
+      "id": "month_1_assessment",
+      "date": "2024-03-15",
+      "type": "progress_check",
+      "metrics": {
+        "weight": 173,
+        "body_fat": 16.5,
+        "muscle_mass": 144.7,
+        "bench_press": 155,
+        "squat": 205,
+        "deadlift": 245
+      },
+      "notes": "Excellent progress! Strength gains across all lifts. Body composition improving."
+    }
+  ],
+  "payments": {
+    "package": "Premium Coaching",
+    "monthlyFee": 149,
+    "nextBilling": "2024-04-01",
+    "sessionsIncluded": 8,
+    "sessionsUsed": 4,
+    "addOnServices": [
+      {
+        "name": "Nutrition Consultation",
+        "price": 75,
+        "frequency": "monthly"
+      }
+    ]
+  }
+} 

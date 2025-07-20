@@ -1,0 +1,187 @@
+{
+  "currentWeek": {
+    "weekStart": "2024-03-18",
+    "weekEnd": "2024-03-24",
+    "title": "Week of March 18-24, 2024"
+  },
+  "scheduledWorkouts": {
+    "monday": [
+      {
+        "id": "workout_mon_001",
+        "time": "07:00",
+        "name": "Morning Yoga",
+        "duration": 30,
+        "type": "yoga",
+        "completed": true,
+        "calories": 120
+      }
+    ],
+    "tuesday": [
+      {
+        "id": "workout_tue_001",
+        "time": "18:00",
+        "name": "Strength Training",
+        "duration": 60,
+        "type": "gym",
+        "completed": false,
+        "calories": 285
+      }
+    ],
+    "wednesday": [],
+    "thursday": [
+      {
+        "id": "workout_thu_001",
+        "time": "07:30",
+        "name": "HIIT Cardio",
+        "duration": 30,
+        "type": "hiit",
+        "completed": false,
+        "calories": 195
+      }
+    ],
+    "friday": [],
+    "saturday": [
+      {
+        "id": "workout_sat_001",
+        "time": "10:00",
+        "name": "Full Body",
+        "duration": 90,
+        "type": "gym",
+        "completed": false,
+        "calories": 425
+      }
+    ],
+    "sunday": []
+  },
+  "workoutTemplates": [
+    {
+      "id": "upper_body_strength",
+      "name": "Upper Body Strength",
+      "duration": 45,
+      "type": "gym",
+      "exercises": ["bench_press", "rows", "overhead_press", "pull_ups"]
+    },
+    {
+      "id": "lower_body_strength",
+      "name": "Lower Body Strength",
+      "duration": 50,
+      "type": "gym",
+      "exercises": ["squats", "deadlifts", "lunges", "calf_raises"]
+    },
+    {
+      "id": "full_body_hiit",
+      "name": "Full Body HIIT",
+      "duration": 20,
+      "type": "hiit",
+      "exercises": ["burpees", "mountain_climbers", "jump_squats", "push_ups"]
+    },
+    {
+      "id": "cardio_session",
+      "name": "Cardio Session",
+      "duration": 35,
+      "type": "aerobics",
+      "exercises": ["running", "cycling", "rowing"]
+    },
+    {
+      "id": "yoga_flow",
+      "name": "Yoga Flow",
+      "duration": 45,
+      "type": "yoga",
+      "exercises": ["sun_salutation", "warrior_poses", "balance_poses"]
+    },
+    {
+      "id": "stretching",
+      "name": "Stretching",
+      "duration": 20,
+      "type": "stretching",
+      "exercises": ["hamstring_stretch", "hip_flexor_stretch", "shoulder_stretch"]
+    },
+    {
+      "id": "core_training",
+      "name": "Core Training",
+      "duration": 25,
+      "type": "calisthenics",
+      "exercises": ["planks", "russian_twists", "bicycle_crunches", "leg_raises"]
+    },
+    {
+      "id": "calisthenics",
+      "name": "Calisthenics",
+      "duration": 40,
+      "type": "calisthenics",
+      "exercises": ["push_ups", "pull_ups", "dips", "squats"]
+    }
+  ],
+  "weeklyGoals": {
+    "totalWorkouts": 4,
+    "totalDuration": 180,
+    "targetCalories": 800,
+    "restDays": 2,
+    "focusArea": "strength"
+  },
+  "progress": {
+    "completedWorkouts": 1,
+    "totalDuration": 30,
+    "caloriesBurned": 120,
+    "restDaysTaken": 0
+  },
+  "recommendations": [
+    {
+      "type": "schedule",
+      "priority": "high",
+      "message": "You have no workouts scheduled for Wednesday and Friday. Consider adding a lower body session.",
+      "action": "add_workout",
+      "day": "wednesday"
+    },
+    {
+      "type": "recovery",
+      "priority": "medium",
+      "message": "Great job on Monday's yoga! Make sure to get adequate sleep before Tuesday's strength session.",
+      "action": "track_sleep"
+    },
+    {
+      "type": "balance",
+      "priority": "medium",
+      "message": "This week focuses heavily on strength. Consider adding more cardio next week.",
+      "action": "plan_cardio"
+    }
+  ],
+  "habits": [
+    {
+      "id": "morning_workout",
+      "name": "Morning Workout",
+      "target": 3,
+      "completed": 1,
+      "streak": 5
+    },
+    {
+      "id": "pre_workout_nutrition",
+      "name": "Pre-workout Meal",
+      "target": 4,
+      "completed": 1,
+      "streak": 12
+    },
+    {
+      "id": "post_workout_stretch",
+      "name": "Post-workout Stretch",
+      "target": 4,
+      "completed": 1,
+      "streak": 8
+    }
+  ],
+  "upcomingWeeks": [
+    {
+      "weekStart": "2024-03-25",
+      "weekEnd": "2024-03-31",
+      "title": "Week of March 25-31, 2024",
+      "theme": "Strength Focus",
+      "plannedWorkouts": 5
+    },
+    {
+      "weekStart": "2024-04-01",
+      "weekEnd": "2024-04-07",
+      "title": "Week of April 1-7, 2024",
+      "theme": "Cardio & Endurance",
+      "plannedWorkouts": 4
+    }
+  ]
+} 

@@ -1,0 +1,2148 @@
+{
+  "chest": {
+    "parts": [
+      "upper chest",
+      "mid chest",
+      "lower chest"
+    ],
+    "exercises": [
+      {
+        "name": "Chest Exercise 1",
+        "activated": [
+          "upper chest"
+        ],
+        "images": [
+          "chest_ex_1_1.jpg",
+          "chest_ex_1_2.jpg"
+        ],
+        "description": "This is a detailed description for Chest Exercise 1.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Chest Exercise 1.",
+            "media": "chest_mistake_1.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Chest Exercise 2",
+        "activated": [
+          "upper chest"
+        ],
+        "images": [
+          "chest_ex_2_1.jpg",
+          "chest_ex_2_2.jpg"
+        ],
+        "description": "This is a detailed description for Chest Exercise 2.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Chest Exercise 2.",
+            "media": "chest_mistake_2.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Chest Exercise 3",
+        "activated": [
+          "upper chest"
+        ],
+        "images": [
+          "chest_ex_3_1.jpg",
+          "chest_ex_3_2.jpg"
+        ],
+        "description": "This is a detailed description for Chest Exercise 3.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Chest Exercise 3.",
+            "media": "chest_mistake_3.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Chest Exercise 4",
+        "activated": [
+          "upper chest"
+        ],
+        "images": [
+          "chest_ex_4_1.jpg",
+          "chest_ex_4_2.jpg"
+        ],
+        "description": "This is a detailed description for Chest Exercise 4.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Chest Exercise 4.",
+            "media": "chest_mistake_4.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Chest Exercise 5",
+        "activated": [
+          "upper chest"
+        ],
+        "images": [
+          "chest_ex_5_1.jpg",
+          "chest_ex_5_2.jpg"
+        ],
+        "description": "This is a detailed description for Chest Exercise 5.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Chest Exercise 5.",
+            "media": "chest_mistake_5.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Chest Exercise 6",
+        "activated": [
+          "upper chest"
+        ],
+        "images": [
+          "chest_ex_6_1.jpg",
+          "chest_ex_6_2.jpg"
+        ],
+        "description": "This is a detailed description for Chest Exercise 6.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Chest Exercise 6.",
+            "media": "chest_mistake_6.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Chest Exercise 7",
+        "activated": [
+          "upper chest"
+        ],
+        "images": [
+          "chest_ex_7_1.jpg",
+          "chest_ex_7_2.jpg"
+        ],
+        "description": "This is a detailed description for Chest Exercise 7.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Chest Exercise 7.",
+            "media": "chest_mistake_7.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Chest Exercise 8",
+        "activated": [
+          "mid chest"
+        ],
+        "images": [
+          "chest_ex_8_1.jpg",
+          "chest_ex_8_2.jpg"
+        ],
+        "description": "This is a detailed description for Chest Exercise 8.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Chest Exercise 8.",
+            "media": "chest_mistake_8.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Chest Exercise 9",
+        "activated": [
+          "mid chest"
+        ],
+        "images": [
+          "chest_ex_9_1.jpg",
+          "chest_ex_9_2.jpg"
+        ],
+        "description": "This is a detailed description for Chest Exercise 9.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Chest Exercise 9.",
+            "media": "chest_mistake_9.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Chest Exercise 10",
+        "activated": [
+          "mid chest"
+        ],
+        "images": [
+          "chest_ex_10_1.jpg",
+          "chest_ex_10_2.jpg"
+        ],
+        "description": "This is a detailed description for Chest Exercise 10.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Chest Exercise 10.",
+            "media": "chest_mistake_10.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Chest Exercise 11",
+        "activated": [
+          "mid chest"
+        ],
+        "images": [
+          "chest_ex_11_1.jpg",
+          "chest_ex_11_2.jpg"
+        ],
+        "description": "This is a detailed description for Chest Exercise 11.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Chest Exercise 11.",
+            "media": "chest_mistake_11.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Chest Exercise 12",
+        "activated": [
+          "mid chest"
+        ],
+        "images": [
+          "chest_ex_12_1.jpg",
+          "chest_ex_12_2.jpg"
+        ],
+        "description": "This is a detailed description for Chest Exercise 12.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Chest Exercise 12.",
+            "media": "chest_mistake_12.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Chest Exercise 13",
+        "activated": [
+          "mid chest"
+        ],
+        "images": [
+          "chest_ex_13_1.jpg",
+          "chest_ex_13_2.jpg"
+        ],
+        "description": "This is a detailed description for Chest Exercise 13.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Chest Exercise 13.",
+            "media": "chest_mistake_13.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Chest Exercise 14",
+        "activated": [
+          "mid chest"
+        ],
+        "images": [
+          "chest_ex_14_1.jpg",
+          "chest_ex_14_2.jpg"
+        ],
+        "description": "This is a detailed description for Chest Exercise 14.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Chest Exercise 14.",
+            "media": "chest_mistake_14.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Chest Exercise 15",
+        "activated": [
+          "lower chest"
+        ],
+        "images": [
+          "chest_ex_15_1.jpg",
+          "chest_ex_15_2.jpg"
+        ],
+        "description": "This is a detailed description for Chest Exercise 15.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Chest Exercise 15.",
+            "media": "chest_mistake_15.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Chest Exercise 16",
+        "activated": [
+          "lower chest"
+        ],
+        "images": [
+          "chest_ex_16_1.jpg",
+          "chest_ex_16_2.jpg"
+        ],
+        "description": "This is a detailed description for Chest Exercise 16.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Chest Exercise 16.",
+            "media": "chest_mistake_16.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Chest Exercise 17",
+        "activated": [
+          "lower chest"
+        ],
+        "images": [
+          "chest_ex_17_1.jpg",
+          "chest_ex_17_2.jpg"
+        ],
+        "description": "This is a detailed description for Chest Exercise 17.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Chest Exercise 17.",
+            "media": "chest_mistake_17.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Chest Exercise 18",
+        "activated": [
+          "lower chest"
+        ],
+        "images": [
+          "chest_ex_18_1.jpg",
+          "chest_ex_18_2.jpg"
+        ],
+        "description": "This is a detailed description for Chest Exercise 18.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Chest Exercise 18.",
+            "media": "chest_mistake_18.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Chest Exercise 19",
+        "activated": [
+          "lower chest"
+        ],
+        "images": [
+          "chest_ex_19_1.jpg",
+          "chest_ex_19_2.jpg"
+        ],
+        "description": "This is a detailed description for Chest Exercise 19.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Chest Exercise 19.",
+            "media": "chest_mistake_19.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Chest Exercise 20",
+        "activated": [
+          "lower chest"
+        ],
+        "images": [
+          "chest_ex_20_1.jpg",
+          "chest_ex_20_2.jpg"
+        ],
+        "description": "This is a detailed description for Chest Exercise 20.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Chest Exercise 20.",
+            "media": "chest_mistake_20.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      }
+    ]
+  },
+  "shoulders": {
+    "parts": [
+      "front deltoid",
+      "lateral deltoid",
+      "rear deltoid"
+    ],
+    "exercises": [
+      {
+        "name": "Shoulder Exercise 1",
+        "activated": [
+          "front deltoid"
+        ],
+        "images": [
+          "shoulder_ex_1_1.jpg",
+          "shoulder_ex_1_2.jpg"
+        ],
+        "description": "This is a detailed description for Shoulder Exercise 1.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Shoulder Exercise 1.",
+            "media": "shoulder_mistake_1.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Shoulder Exercise 2",
+        "activated": [
+          "front deltoid"
+        ],
+        "images": [
+          "shoulder_ex_2_1.jpg",
+          "shoulder_ex_2_2.jpg"
+        ],
+        "description": "This is a detailed description for Shoulder Exercise 2.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Shoulder Exercise 2.",
+            "media": "shoulder_mistake_2.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Shoulder Exercise 3",
+        "activated": [
+          "front deltoid"
+        ],
+        "images": [
+          "shoulder_ex_3_1.jpg",
+          "shoulder_ex_3_2.jpg"
+        ],
+        "description": "This is a detailed description for Shoulder Exercise 3.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Shoulder Exercise 3.",
+            "media": "shoulder_mistake_3.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Shoulder Exercise 4",
+        "activated": [
+          "front deltoid"
+        ],
+        "images": [
+          "shoulder_ex_4_1.jpg",
+          "shoulder_ex_4_2.jpg"
+        ],
+        "description": "This is a detailed description for Shoulder Exercise 4.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Shoulder Exercise 4.",
+            "media": "shoulder_mistake_4.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Shoulder Exercise 5",
+        "activated": [
+          "front deltoid"
+        ],
+        "images": [
+          "shoulder_ex_5_1.jpg",
+          "shoulder_ex_5_2.jpg"
+        ],
+        "description": "This is a detailed description for Shoulder Exercise 5.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Shoulder Exercise 5.",
+            "media": "shoulder_mistake_5.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Shoulder Exercise 6",
+        "activated": [
+          "front deltoid"
+        ],
+        "images": [
+          "shoulder_ex_6_1.jpg",
+          "shoulder_ex_6_2.jpg"
+        ],
+        "description": "This is a detailed description for Shoulder Exercise 6.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Shoulder Exercise 6.",
+            "media": "shoulder_mistake_6.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Shoulder Exercise 7",
+        "activated": [
+          "front deltoid"
+        ],
+        "images": [
+          "shoulder_ex_7_1.jpg",
+          "shoulder_ex_7_2.jpg"
+        ],
+        "description": "This is a detailed description for Shoulder Exercise 7.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Shoulder Exercise 7.",
+            "media": "shoulder_mistake_7.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Shoulder Exercise 8",
+        "activated": [
+          "lateral deltoid"
+        ],
+        "images": [
+          "shoulder_ex_8_1.jpg",
+          "shoulder_ex_8_2.jpg"
+        ],
+        "description": "This is a detailed description for Shoulder Exercise 8.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Shoulder Exercise 8.",
+            "media": "shoulder_mistake_8.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Shoulder Exercise 9",
+        "activated": [
+          "lateral deltoid"
+        ],
+        "images": [
+          "shoulder_ex_9_1.jpg",
+          "shoulder_ex_9_2.jpg"
+        ],
+        "description": "This is a detailed description for Shoulder Exercise 9.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Shoulder Exercise 9.",
+            "media": "shoulder_mistake_9.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Shoulder Exercise 10",
+        "activated": [
+          "lateral deltoid"
+        ],
+        "images": [
+          "shoulder_ex_10_1.jpg",
+          "shoulder_ex_10_2.jpg"
+        ],
+        "description": "This is a detailed description for Shoulder Exercise 10.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Shoulder Exercise 10.",
+            "media": "shoulder_mistake_10.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Shoulder Exercise 11",
+        "activated": [
+          "lateral deltoid"
+        ],
+        "images": [
+          "shoulder_ex_11_1.jpg",
+          "shoulder_ex_11_2.jpg"
+        ],
+        "description": "This is a detailed description for Shoulder Exercise 11.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Shoulder Exercise 11.",
+            "media": "shoulder_mistake_11.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Shoulder Exercise 12",
+        "activated": [
+          "lateral deltoid"
+        ],
+        "images": [
+          "shoulder_ex_12_1.jpg",
+          "shoulder_ex_12_2.jpg"
+        ],
+        "description": "This is a detailed description for Shoulder Exercise 12.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Shoulder Exercise 12.",
+            "media": "shoulder_mistake_12.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Shoulder Exercise 13",
+        "activated": [
+          "lateral deltoid"
+        ],
+        "images": [
+          "shoulder_ex_13_1.jpg",
+          "shoulder_ex_13_2.jpg"
+        ],
+        "description": "This is a detailed description for Shoulder Exercise 13.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Shoulder Exercise 13.",
+            "media": "shoulder_mistake_13.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Shoulder Exercise 14",
+        "activated": [
+          "lateral deltoid"
+        ],
+        "images": [
+          "shoulder_ex_14_1.jpg",
+          "shoulder_ex_14_2.jpg"
+        ],
+        "description": "This is a detailed description for Shoulder Exercise 14.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Shoulder Exercise 14.",
+            "media": "shoulder_mistake_14.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Shoulder Exercise 15",
+        "activated": [
+          "rear deltoid"
+        ],
+        "images": [
+          "shoulder_ex_15_1.jpg",
+          "shoulder_ex_15_2.jpg"
+        ],
+        "description": "This is a detailed description for Shoulder Exercise 15.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Shoulder Exercise 15.",
+            "media": "shoulder_mistake_15.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Shoulder Exercise 16",
+        "activated": [
+          "rear deltoid"
+        ],
+        "images": [
+          "shoulder_ex_16_1.jpg",
+          "shoulder_ex_16_2.jpg"
+        ],
+        "description": "This is a detailed description for Shoulder Exercise 16.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Shoulder Exercise 16.",
+            "media": "shoulder_mistake_16.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Shoulder Exercise 17",
+        "activated": [
+          "rear deltoid"
+        ],
+        "images": [
+          "shoulder_ex_17_1.jpg",
+          "shoulder_ex_17_2.jpg"
+        ],
+        "description": "This is a detailed description for Shoulder Exercise 17.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Shoulder Exercise 17.",
+            "media": "shoulder_mistake_17.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Shoulder Exercise 18",
+        "activated": [
+          "rear deltoid"
+        ],
+        "images": [
+          "shoulder_ex_18_1.jpg",
+          "shoulder_ex_18_2.jpg"
+        ],
+        "description": "This is a detailed description for Shoulder Exercise 18.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Shoulder Exercise 18.",
+            "media": "shoulder_mistake_18.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Shoulder Exercise 19",
+        "activated": [
+          "rear deltoid"
+        ],
+        "images": [
+          "shoulder_ex_19_1.jpg",
+          "shoulder_ex_19_2.jpg"
+        ],
+        "description": "This is a detailed description for Shoulder Exercise 19.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Shoulder Exercise 19.",
+            "media": "shoulder_mistake_19.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Shoulder Exercise 20",
+        "activated": [
+          "rear deltoid"
+        ],
+        "images": [
+          "shoulder_ex_20_1.jpg",
+          "shoulder_ex_20_2.jpg"
+        ],
+        "description": "This is a detailed description for Shoulder Exercise 20.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Shoulder Exercise 20.",
+            "media": "shoulder_mistake_20.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      }
+    ]
+  },
+  "legs": {
+    "parts": [
+      "quadriceps",
+      "hamstrings",
+      "glutes",
+      "calves"
+    ],
+    "exercises": [
+      {
+        "name": "Leg Exercise 1",
+        "activated": [
+          "quadriceps"
+        ],
+        "images": [
+          "leg_ex_1_1.jpg",
+          "leg_ex_1_2.jpg"
+        ],
+        "description": "This is a detailed description for Leg Exercise 1.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Leg Exercise 1.",
+            "media": "leg_mistake_1.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Leg Exercise 2",
+        "activated": [
+          "quadriceps"
+        ],
+        "images": [
+          "leg_ex_2_1.jpg",
+          "leg_ex_2_2.jpg"
+        ],
+        "description": "This is a detailed description for Leg Exercise 2.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Leg Exercise 2.",
+            "media": "leg_mistake_2.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Leg Exercise 3",
+        "activated": [
+          "quadriceps"
+        ],
+        "images": [
+          "leg_ex_3_1.jpg",
+          "leg_ex_3_2.jpg"
+        ],
+        "description": "This is a detailed description for Leg Exercise 3.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Leg Exercise 3.",
+            "media": "leg_mistake_3.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Leg Exercise 4",
+        "activated": [
+          "quadriceps"
+        ],
+        "images": [
+          "leg_ex_4_1.jpg",
+          "leg_ex_4_2.jpg"
+        ],
+        "description": "This is a detailed description for Leg Exercise 4.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Leg Exercise 4.",
+            "media": "leg_mistake_4.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Leg Exercise 5",
+        "activated": [
+          "quadriceps"
+        ],
+        "images": [
+          "leg_ex_5_1.jpg",
+          "leg_ex_5_2.jpg"
+        ],
+        "description": "This is a detailed description for Leg Exercise 5.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Leg Exercise 5.",
+            "media": "leg_mistake_5.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Leg Exercise 6",
+        "activated": [
+          "hamstrings"
+        ],
+        "images": [
+          "leg_ex_6_1.jpg",
+          "leg_ex_6_2.jpg"
+        ],
+        "description": "This is a detailed description for Leg Exercise 6.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Leg Exercise 6.",
+            "media": "leg_mistake_6.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Leg Exercise 7",
+        "activated": [
+          "hamstrings"
+        ],
+        "images": [
+          "leg_ex_7_1.jpg",
+          "leg_ex_7_2.jpg"
+        ],
+        "description": "This is a detailed description for Leg Exercise 7.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Leg Exercise 7.",
+            "media": "leg_mistake_7.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Leg Exercise 8",
+        "activated": [
+          "hamstrings"
+        ],
+        "images": [
+          "leg_ex_8_1.jpg",
+          "leg_ex_8_2.jpg"
+        ],
+        "description": "This is a detailed description for Leg Exercise 8.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Leg Exercise 8.",
+            "media": "leg_mistake_8.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Leg Exercise 9",
+        "activated": [
+          "hamstrings"
+        ],
+        "images": [
+          "leg_ex_9_1.jpg",
+          "leg_ex_9_2.jpg"
+        ],
+        "description": "This is a detailed description for Leg Exercise 9.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Leg Exercise 9.",
+            "media": "leg_mistake_9.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Leg Exercise 10",
+        "activated": [
+          "hamstrings"
+        ],
+        "images": [
+          "leg_ex_10_1.jpg",
+          "leg_ex_10_2.jpg"
+        ],
+        "description": "This is a detailed description for Leg Exercise 10.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Leg Exercise 10.",
+            "media": "leg_mistake_10.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Leg Exercise 11",
+        "activated": [
+          "glutes"
+        ],
+        "images": [
+          "leg_ex_11_1.jpg",
+          "leg_ex_11_2.jpg"
+        ],
+        "description": "This is a detailed description for Leg Exercise 11.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Leg Exercise 11.",
+            "media": "leg_mistake_11.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Leg Exercise 12",
+        "activated": [
+          "glutes"
+        ],
+        "images": [
+          "leg_ex_12_1.jpg",
+          "leg_ex_12_2.jpg"
+        ],
+        "description": "This is a detailed description for Leg Exercise 12.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Leg Exercise 12.",
+            "media": "leg_mistake_12.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Leg Exercise 13",
+        "activated": [
+          "glutes"
+        ],
+        "images": [
+          "leg_ex_13_1.jpg",
+          "leg_ex_13_2.jpg"
+        ],
+        "description": "This is a detailed description for Leg Exercise 13.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Leg Exercise 13.",
+            "media": "leg_mistake_13.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Leg Exercise 14",
+        "activated": [
+          "glutes"
+        ],
+        "images": [
+          "leg_ex_14_1.jpg",
+          "leg_ex_14_2.jpg"
+        ],
+        "description": "This is a detailed description for Leg Exercise 14.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Leg Exercise 14.",
+            "media": "leg_mistake_14.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Leg Exercise 15",
+        "activated": [
+          "glutes"
+        ],
+        "images": [
+          "leg_ex_15_1.jpg",
+          "leg_ex_15_2.jpg"
+        ],
+        "description": "This is a detailed description for Leg Exercise 15.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Leg Exercise 15.",
+            "media": "leg_mistake_15.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Leg Exercise 16",
+        "activated": [
+          "calves"
+        ],
+        "images": [
+          "leg_ex_16_1.jpg",
+          "leg_ex_16_2.jpg"
+        ],
+        "description": "This is a detailed description for Leg Exercise 16.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Leg Exercise 16.",
+            "media": "leg_mistake_16.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Leg Exercise 17",
+        "activated": [
+          "calves"
+        ],
+        "images": [
+          "leg_ex_17_1.jpg",
+          "leg_ex_17_2.jpg"
+        ],
+        "description": "This is a detailed description for Leg Exercise 17.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Leg Exercise 17.",
+            "media": "leg_mistake_17.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Leg Exercise 18",
+        "activated": [
+          "calves"
+        ],
+        "images": [
+          "leg_ex_18_1.jpg",
+          "leg_ex_18_2.jpg"
+        ],
+        "description": "This is a detailed description for Leg Exercise 18.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Leg Exercise 18.",
+            "media": "leg_mistake_18.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Leg Exercise 19",
+        "activated": [
+          "calves"
+        ],
+        "images": [
+          "leg_ex_19_1.jpg",
+          "leg_ex_19_2.jpg"
+        ],
+        "description": "This is a detailed description for Leg Exercise 19.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Leg Exercise 19.",
+            "media": "leg_mistake_19.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Leg Exercise 20",
+        "activated": [
+          "calves"
+        ],
+        "images": [
+          "leg_ex_20_1.jpg",
+          "leg_ex_20_2.jpg"
+        ],
+        "description": "This is a detailed description for Leg Exercise 20.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Leg Exercise 20.",
+            "media": "leg_mistake_20.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      }
+    ]
+  },
+  "biceps": {
+    "parts": [
+      "long head",
+      "short head",
+      "brachioradialis"
+    ],
+    "exercises": [
+      {
+        "name": "Biceps Exercise 1",
+        "activated": [
+          "long head"
+        ],
+        "images": [
+          "biceps_ex_1_1.jpg",
+          "biceps_ex_1_2.jpg"
+        ],
+        "description": "This is a detailed description for Biceps Exercise 1.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Biceps Exercise 1.",
+            "media": "biceps_mistake_1.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Biceps Exercise 2",
+        "activated": [
+          "long head"
+        ],
+        "images": [
+          "biceps_ex_2_1.jpg",
+          "biceps_ex_2_2.jpg"
+        ],
+        "description": "This is a detailed description for Biceps Exercise 2.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Biceps Exercise 2.",
+            "media": "biceps_mistake_2.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Biceps Exercise 3",
+        "activated": [
+          "long head"
+        ],
+        "images": [
+          "biceps_ex_3_1.jpg",
+          "biceps_ex_3_2.jpg"
+        ],
+        "description": "This is a detailed description for Biceps Exercise 3.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Biceps Exercise 3.",
+            "media": "biceps_mistake_3.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Biceps Exercise 4",
+        "activated": [
+          "long head"
+        ],
+        "images": [
+          "biceps_ex_4_1.jpg",
+          "biceps_ex_4_2.jpg"
+        ],
+        "description": "This is a detailed description for Biceps Exercise 4.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Biceps Exercise 4.",
+            "media": "biceps_mistake_4.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Biceps Exercise 5",
+        "activated": [
+          "long head"
+        ],
+        "images": [
+          "biceps_ex_5_1.jpg",
+          "biceps_ex_5_2.jpg"
+        ],
+        "description": "This is a detailed description for Biceps Exercise 5.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Biceps Exercise 5.",
+            "media": "biceps_mistake_5.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Biceps Exercise 6",
+        "activated": [
+          "long head"
+        ],
+        "images": [
+          "biceps_ex_6_1.jpg",
+          "biceps_ex_6_2.jpg"
+        ],
+        "description": "This is a detailed description for Biceps Exercise 6.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Biceps Exercise 6.",
+            "media": "biceps_mistake_6.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Biceps Exercise 7",
+        "activated": [
+          "long head"
+        ],
+        "images": [
+          "biceps_ex_7_1.jpg",
+          "biceps_ex_7_2.jpg"
+        ],
+        "description": "This is a detailed description for Biceps Exercise 7.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Biceps Exercise 7.",
+            "media": "biceps_mistake_7.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Biceps Exercise 8",
+        "activated": [
+          "short head"
+        ],
+        "images": [
+          "biceps_ex_8_1.jpg",
+          "biceps_ex_8_2.jpg"
+        ],
+        "description": "This is a detailed description for Biceps Exercise 8.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Biceps Exercise 8.",
+            "media": "biceps_mistake_8.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Biceps Exercise 9",
+        "activated": [
+          "short head"
+        ],
+        "images": [
+          "biceps_ex_9_1.jpg",
+          "biceps_ex_9_2.jpg"
+        ],
+        "description": "This is a detailed description for Biceps Exercise 9.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Biceps Exercise 9.",
+            "media": "biceps_mistake_9.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Biceps Exercise 10",
+        "activated": [
+          "short head"
+        ],
+        "images": [
+          "biceps_ex_10_1.jpg",
+          "biceps_ex_10_2.jpg"
+        ],
+        "description": "This is a detailed description for Biceps Exercise 10.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Biceps Exercise 10.",
+            "media": "biceps_mistake_10.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Biceps Exercise 11",
+        "activated": [
+          "short head"
+        ],
+        "images": [
+          "biceps_ex_11_1.jpg",
+          "biceps_ex_11_2.jpg"
+        ],
+        "description": "This is a detailed description for Biceps Exercise 11.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Biceps Exercise 11.",
+            "media": "biceps_mistake_11.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Biceps Exercise 12",
+        "activated": [
+          "short head"
+        ],
+        "images": [
+          "biceps_ex_12_1.jpg",
+          "biceps_ex_12_2.jpg"
+        ],
+        "description": "This is a detailed description for Biceps Exercise 12.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Biceps Exercise 12.",
+            "media": "biceps_mistake_12.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Biceps Exercise 13",
+        "activated": [
+          "short head"
+        ],
+        "images": [
+          "biceps_ex_13_1.jpg",
+          "biceps_ex_13_2.jpg"
+        ],
+        "description": "This is a detailed description for Biceps Exercise 13.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Biceps Exercise 13.",
+            "media": "biceps_mistake_13.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Biceps Exercise 14",
+        "activated": [
+          "short head"
+        ],
+        "images": [
+          "biceps_ex_14_1.jpg",
+          "biceps_ex_14_2.jpg"
+        ],
+        "description": "This is a detailed description for Biceps Exercise 14.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Biceps Exercise 14.",
+            "media": "biceps_mistake_14.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Biceps Exercise 15",
+        "activated": [
+          "brachioradialis"
+        ],
+        "images": [
+          "biceps_ex_15_1.jpg",
+          "biceps_ex_15_2.jpg"
+        ],
+        "description": "This is a detailed description for Biceps Exercise 15.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Biceps Exercise 15.",
+            "media": "biceps_mistake_15.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Biceps Exercise 16",
+        "activated": [
+          "brachioradialis"
+        ],
+        "images": [
+          "biceps_ex_16_1.jpg",
+          "biceps_ex_16_2.jpg"
+        ],
+        "description": "This is a detailed description for Biceps Exercise 16.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Biceps Exercise 16.",
+            "media": "biceps_mistake_16.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Biceps Exercise 17",
+        "activated": [
+          "brachioradialis"
+        ],
+        "images": [
+          "biceps_ex_17_1.jpg",
+          "biceps_ex_17_2.jpg"
+        ],
+        "description": "This is a detailed description for Biceps Exercise 17.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Biceps Exercise 17.",
+            "media": "biceps_mistake_17.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Biceps Exercise 18",
+        "activated": [
+          "brachioradialis"
+        ],
+        "images": [
+          "biceps_ex_18_1.jpg",
+          "biceps_ex_18_2.jpg"
+        ],
+        "description": "This is a detailed description for Biceps Exercise 18.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Biceps Exercise 18.",
+            "media": "biceps_mistake_18.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Biceps Exercise 19",
+        "activated": [
+          "brachioradialis"
+        ],
+        "images": [
+          "biceps_ex_19_1.jpg",
+          "biceps_ex_19_2.jpg"
+        ],
+        "description": "This is a detailed description for Biceps Exercise 19.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Biceps Exercise 19.",
+            "media": "biceps_mistake_19.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Biceps Exercise 20",
+        "activated": [
+          "brachioradialis"
+        ],
+        "images": [
+          "biceps_ex_20_1.jpg",
+          "biceps_ex_20_2.jpg"
+        ],
+        "description": "This is a detailed description for Biceps Exercise 20.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Biceps Exercise 20.",
+            "media": "biceps_mistake_20.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      }
+    ]
+  },
+  "triceps": {
+    "parts": [
+      "lateral head",
+      "medial head",
+      "long head"
+    ],
+    "exercises": [
+      {
+        "name": "Triceps Exercise 1",
+        "activated": [
+          "lateral head"
+        ],
+        "images": [
+          "triceps_ex_1_1.jpg",
+          "triceps_ex_1_2.jpg"
+        ],
+        "description": "This is a detailed description for Triceps Exercise 1.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Triceps Exercise 1.",
+            "media": "triceps_mistake_1.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Triceps Exercise 2",
+        "activated": [
+          "lateral head"
+        ],
+        "images": [
+          "triceps_ex_2_1.jpg",
+          "triceps_ex_2_2.jpg"
+        ],
+        "description": "This is a detailed description for Triceps Exercise 2.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Triceps Exercise 2.",
+            "media": "triceps_mistake_2.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Triceps Exercise 3",
+        "activated": [
+          "lateral head"
+        ],
+        "images": [
+          "triceps_ex_3_1.jpg",
+          "triceps_ex_3_2.jpg"
+        ],
+        "description": "This is a detailed description for Triceps Exercise 3.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Triceps Exercise 3.",
+            "media": "triceps_mistake_3.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Triceps Exercise 4",
+        "activated": [
+          "lateral head"
+        ],
+        "images": [
+          "triceps_ex_4_1.jpg",
+          "triceps_ex_4_2.jpg"
+        ],
+        "description": "This is a detailed description for Triceps Exercise 4.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Triceps Exercise 4.",
+            "media": "triceps_mistake_4.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Triceps Exercise 5",
+        "activated": [
+          "lateral head"
+        ],
+        "images": [
+          "triceps_ex_5_1.jpg",
+          "triceps_ex_5_2.jpg"
+        ],
+        "description": "This is a detailed description for Triceps Exercise 5.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Triceps Exercise 5.",
+            "media": "triceps_mistake_5.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Triceps Exercise 6",
+        "activated": [
+          "lateral head"
+        ],
+        "images": [
+          "triceps_ex_6_1.jpg",
+          "triceps_ex_6_2.jpg"
+        ],
+        "description": "This is a detailed description for Triceps Exercise 6.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Triceps Exercise 6.",
+            "media": "triceps_mistake_6.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Triceps Exercise 7",
+        "activated": [
+          "lateral head"
+        ],
+        "images": [
+          "triceps_ex_7_1.jpg",
+          "triceps_ex_7_2.jpg"
+        ],
+        "description": "This is a detailed description for Triceps Exercise 7.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Triceps Exercise 7.",
+            "media": "triceps_mistake_7.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Triceps Exercise 8",
+        "activated": [
+          "medial head"
+        ],
+        "images": [
+          "triceps_ex_8_1.jpg",
+          "triceps_ex_8_2.jpg"
+        ],
+        "description": "This is a detailed description for Triceps Exercise 8.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Triceps Exercise 8.",
+            "media": "triceps_mistake_8.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Triceps Exercise 9",
+        "activated": [
+          "medial head"
+        ],
+        "images": [
+          "triceps_ex_9_1.jpg",
+          "triceps_ex_9_2.jpg"
+        ],
+        "description": "This is a detailed description for Triceps Exercise 9.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Triceps Exercise 9.",
+            "media": "triceps_mistake_9.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Triceps Exercise 10",
+        "activated": [
+          "medial head"
+        ],
+        "images": [
+          "triceps_ex_10_1.jpg",
+          "triceps_ex_10_2.jpg"
+        ],
+        "description": "This is a detailed description for Triceps Exercise 10.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Triceps Exercise 10.",
+            "media": "triceps_mistake_10.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Triceps Exercise 11",
+        "activated": [
+          "medial head"
+        ],
+        "images": [
+          "triceps_ex_11_1.jpg",
+          "triceps_ex_11_2.jpg"
+        ],
+        "description": "This is a detailed description for Triceps Exercise 11.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Triceps Exercise 11.",
+            "media": "triceps_mistake_11.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Triceps Exercise 12",
+        "activated": [
+          "medial head"
+        ],
+        "images": [
+          "triceps_ex_12_1.jpg",
+          "triceps_ex_12_2.jpg"
+        ],
+        "description": "This is a detailed description for Triceps Exercise 12.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Triceps Exercise 12.",
+            "media": "triceps_mistake_12.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Triceps Exercise 13",
+        "activated": [
+          "medial head"
+        ],
+        "images": [
+          "triceps_ex_13_1.jpg",
+          "triceps_ex_13_2.jpg"
+        ],
+        "description": "This is a detailed description for Triceps Exercise 13.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Triceps Exercise 13.",
+            "media": "triceps_mistake_13.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Triceps Exercise 14",
+        "activated": [
+          "medial head"
+        ],
+        "images": [
+          "triceps_ex_14_1.jpg",
+          "triceps_ex_14_2.jpg"
+        ],
+        "description": "This is a detailed description for Triceps Exercise 14.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Triceps Exercise 14.",
+            "media": "triceps_mistake_14.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Triceps Exercise 15",
+        "activated": [
+          "long head"
+        ],
+        "images": [
+          "triceps_ex_15_1.jpg",
+          "triceps_ex_15_2.jpg"
+        ],
+        "description": "This is a detailed description for Triceps Exercise 15.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Triceps Exercise 15.",
+            "media": "triceps_mistake_15.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Triceps Exercise 16",
+        "activated": [
+          "long head"
+        ],
+        "images": [
+          "triceps_ex_16_1.jpg",
+          "triceps_ex_16_2.jpg"
+        ],
+        "description": "This is a detailed description for Triceps Exercise 16.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Triceps Exercise 16.",
+            "media": "triceps_mistake_16.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Triceps Exercise 17",
+        "activated": [
+          "long head"
+        ],
+        "images": [
+          "triceps_ex_17_1.jpg",
+          "triceps_ex_17_2.jpg"
+        ],
+        "description": "This is a detailed description for Triceps Exercise 17.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Triceps Exercise 17.",
+            "media": "triceps_mistake_17.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Triceps Exercise 18",
+        "activated": [
+          "long head"
+        ],
+        "images": [
+          "triceps_ex_18_1.jpg",
+          "triceps_ex_18_2.jpg"
+        ],
+        "description": "This is a detailed description for Triceps Exercise 18.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Triceps Exercise 18.",
+            "media": "triceps_mistake_18.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Triceps Exercise 19",
+        "activated": [
+          "long head"
+        ],
+        "images": [
+          "triceps_ex_19_1.jpg",
+          "triceps_ex_19_2.jpg"
+        ],
+        "description": "This is a detailed description for Triceps Exercise 19.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Triceps Exercise 19.",
+            "media": "triceps_mistake_19.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      },
+      {
+        "name": "Triceps Exercise 20",
+        "activated": [
+          "long head"
+        ],
+        "images": [
+          "triceps_ex_20_1.jpg",
+          "triceps_ex_20_2.jpg"
+        ],
+        "description": "This is a detailed description for Triceps Exercise 20.",
+        "common_mistakes": [
+          {
+            "description": "Common mistake for Triceps Exercise 20.",
+            "media": "triceps_mistake_20.gif"
+          }
+        ],
+        "hasWeights": false,
+        "reps": 15,
+        "sets": 3,
+        "duration": 30
+      }
+    ]
+  }
+}
