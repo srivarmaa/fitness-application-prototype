@@ -5,10 +5,28 @@
     "email": "alex.johnson@email.com",
     "avatar": "https://via.placeholder.com/40",
     "joinDate": "2024-01-15",
+    "age": 28,
+    "height": 175,
+    "weight": 75,
+    "gender": "male",
+    "fitnessLevel": "intermediate",
+    "goals": ["weight_loss", "muscle_gain", "endurance"],
+    "activityLevel": "moderate",
+    "mealPreference": "non_veg",
+    "customMealPreference": "",
+    "medicalConditions": [],
+    "allergies": [],
+    "emergencyContact": {
+      "name": "Sarah Johnson",
+      "relationship": "Spouse",
+      "phone": "+1-555-0123"
+    },
     "preferences": {
-      "theme": "light",
+      "theme": "dark",
       "notifications": true,
-      "units": "metric"
+      "units": "metric",
+      "language": "en",
+      "timezone": "America/New_York"
     }
   },
   "stats": {

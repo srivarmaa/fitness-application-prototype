@@ -306,6 +306,9 @@ async function initializeApplication() {
         // Initialize exercise filters
         initializeExerciseFilters();
         
+        // Initialize saved routines
+        initializeSavedRoutines();
+        
         console.log('✅ Application initialized successfully');
         showNotification('Welcome to FitAI Pro! 💪', 'success');
         
@@ -427,9 +430,367 @@ function updateUserProfile() {
             levelText.textContent = `${stats.xp.toLocaleString()} / ${stats.xpToNextLevel.toLocaleString()} XP to Level ${stats.level + 1}`;
         }
 
+        // Update profile information section
+        updateProfileInformation();
+
         console.log('✅ User profile updated');
     } catch (error) {
         console.error('❌ Error updating user profile:', error);
+    }
+}
+
+// Update profile information with editable fields
+function updateProfileInformation() {
+    const profileInfo = document.getElementById('profile-info');
+    if (!profileInfo) return;
+
+    const profile = userData?.profile || {};
+    const units = profile.preferences?.units || 'metric';
+    
+    // Get unit labels
+    const weightUnit = units === 'metric' ? 'kg' : 'lbs';
+    const heightUnit = units === 'metric' ? 'cm' : 'ft';
+    
+    profileInfo.innerHTML = `
+        <div class="profile-form" id="profile-form">
+            <div class="profile-avatar-section">
+                <div class="avatar-container">
+                    <img src="${profile.avatar || 'https://via.placeholder.com/80'}" alt="Profile Avatar" class="profile-avatar">
+                    <button class="avatar-edit-btn" onclick="changeAvatar()">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                </div>
+                <div class="profile-actions">
+                    <button class="btn btn-primary btn-sm" id="edit-profile-btn" onclick="toggleProfileEdit()">
+                        <i class="fas fa-edit"></i>
+                        Edit Profile
+                    </button>
+                    <button class="btn btn-outline btn-sm" id="save-profile-btn" onclick="saveProfile()" style="display: none;">
+                        <i class="fas fa-save"></i>
+                        Save Changes
+                    </button>
+                    <button class="btn btn-outline btn-sm" id="cancel-profile-btn" onclick="cancelProfileEdit()" style="display: none;">
+                        <i class="fas fa-times"></i>
+                        Cancel
+                    </button>
+                </div>
+            </div>
+            
+            <div class="profile-fields">
+                <div class="field-group">
+                    <label class="field-label">Full Name</label>
+                    <input type="text" class="profile-input" id="profile-name" value="${profile.name || ''}" disabled>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Email Address</label>
+                    <input type="email" class="profile-input" id="profile-email" value="${profile.email || ''}" disabled>
+                </div>
+                
+                <div class="field-row">
+                    <div class="field-group">
+                        <label class="field-label">Age</label>
+                        <input type="number" class="profile-input" id="profile-age" value="${profile.age || ''}" min="13" max="120" disabled>
+                    </div>
+                    
+                    <div class="field-group">
+                        <label class="field-label">Gender</label>
+                        <select class="profile-input" id="profile-gender" disabled>
+                            <option value="male" ${profile.gender === 'male' ? 'selected' : ''}>Male</option>
+                            <option value="female" ${profile.gender === 'female' ? 'selected' : ''}>Female</option>
+                            <option value="other" ${profile.gender === 'other' ? 'selected' : ''}>Other</option>
+                            <option value="prefer_not_to_say" ${profile.gender === 'prefer_not_to_say' ? 'selected' : ''}>Prefer not to say</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="field-row">
+                    <div class="field-group">
+                        <label class="field-label">Height (${heightUnit})</label>
+                        <input type="number" class="profile-input" id="profile-height" value="${profile.height || ''}" min="100" max="250" disabled>
+                    </div>
+                    
+                    <div class="field-group">
+                        <label class="field-label">Weight (${weightUnit})</label>
+                        <input type="number" class="profile-input" id="profile-weight" value="${profile.weight || ''}" min="30" max="300" step="0.1" disabled>
+                    </div>
+                </div>
+                
+                <div class="field-row">
+                    <div class="field-group">
+                        <label class="field-label">Fitness Level</label>
+                        <select class="profile-input" id="profile-fitness-level" disabled>
+                            <option value="beginner" ${profile.fitnessLevel === 'beginner' ? 'selected' : ''}>Beginner</option>
+                            <option value="intermediate" ${profile.fitnessLevel === 'intermediate' ? 'selected' : ''}>Intermediate</option>
+                            <option value="advanced" ${profile.fitnessLevel === 'advanced' ? 'selected' : ''}>Advanced</option>
+                            <option value="expert" ${profile.fitnessLevel === 'expert' ? 'selected' : ''}>Expert</option>
+                        </select>
+                    </div>
+                    
+                    <div class="field-group">
+                        <label class="field-label">Activity Level</label>
+                        <select class="profile-input" id="profile-activity-level" disabled>
+                            <option value="sedentary" ${profile.activityLevel === 'sedentary' ? 'selected' : ''}>Sedentary</option>
+                            <option value="light" ${profile.activityLevel === 'light' ? 'selected' : ''}>Light</option>
+                            <option value="moderate" ${profile.activityLevel === 'moderate' ? 'selected' : ''}>Moderate</option>
+                            <option value="active" ${profile.activityLevel === 'active' ? 'selected' : ''}>Active</option>
+                            <option value="very_active" ${profile.activityLevel === 'very_active' ? 'selected' : ''}>Very Active</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Meal Preference</label>
+                    <select class="profile-input" id="profile-meal-preference" onchange="toggleCustomMealPreference()" disabled>
+                        <option value="veg" ${profile.mealPreference === 'veg' ? 'selected' : ''}>Vegetarian</option>
+                        <option value="non_veg" ${profile.mealPreference === 'non_veg' ? 'selected' : ''}>Non-Vegetarian</option>
+                        <option value="vegan" ${profile.mealPreference === 'vegan' ? 'selected' : ''}>Vegan</option>
+                        <option value="pescatarian" ${profile.mealPreference === 'pescatarian' ? 'selected' : ''}>Pescatarian</option>
+                        <option value="keto" ${profile.mealPreference === 'keto' ? 'selected' : ''}>Keto</option>
+                        <option value="paleo" ${profile.mealPreference === 'paleo' ? 'selected' : ''}>Paleo</option>
+                        <option value="mediterranean" ${profile.mealPreference === 'mediterranean' ? 'selected' : ''}>Mediterranean</option>
+                        <option value="gluten_free" ${profile.mealPreference === 'gluten_free' ? 'selected' : ''}>Gluten-Free</option>
+                        <option value="dairy_free" ${profile.mealPreference === 'dairy_free' ? 'selected' : ''}>Dairy-Free</option>
+                        <option value="low_carb" ${profile.mealPreference === 'low_carb' ? 'selected' : ''}>Low-Carb</option>
+                        <option value="other" ${profile.mealPreference === 'other' ? 'selected' : ''}>Other</option>
+                    </select>
+                    <div class="custom-meal-preference" id="custom-meal-preference" style="display: ${profile.mealPreference === 'other' ? 'block' : 'none'};">
+                        <input type="text" class="profile-input" id="profile-custom-meal" placeholder="Please specify your dietary preference..." value="${profile.customMealPreference || ''}" disabled>
+                    </div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Fitness Goals</label>
+                    <div class="goals-checkboxes" id="profile-goals">
+                        <label class="goal-checkbox">
+                            <input type="checkbox" value="weight_loss" ${profile.goals?.includes('weight_loss') ? 'checked' : ''} disabled>
+                            <span>Weight Loss</span>
+                        </label>
+                        <label class="goal-checkbox">
+                            <input type="checkbox" value="muscle_gain" ${profile.goals?.includes('muscle_gain') ? 'checked' : ''} disabled>
+                            <span>Muscle Gain</span>
+                        </label>
+                        <label class="goal-checkbox">
+                            <input type="checkbox" value="endurance" ${profile.goals?.includes('endurance') ? 'checked' : ''} disabled>
+                            <span>Endurance</span>
+                        </label>
+                        <label class="goal-checkbox">
+                            <input type="checkbox" value="flexibility" ${profile.goals?.includes('flexibility') ? 'checked' : ''} disabled>
+                            <span>Flexibility</span>
+                        </label>
+                        <label class="goal-checkbox">
+                            <input type="checkbox" value="strength" ${profile.goals?.includes('strength') ? 'checked' : ''} disabled>
+                            <span>Strength</span>
+                        </label>
+                        <label class="goal-checkbox">
+                            <input type="checkbox" value="general_health" ${profile.goals?.includes('general_health') ? 'checked' : ''} disabled>
+                            <span>General Health</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Medical Conditions (Optional)</label>
+                    <textarea class="profile-input" id="profile-medical" placeholder="List any medical conditions that might affect your workouts..." disabled>${profile.medicalConditions?.join(', ') || ''}</textarea>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Allergies (Optional)</label>
+                    <textarea class="profile-input" id="profile-allergies" placeholder="List any allergies..." disabled>${profile.allergies?.join(', ') || ''}</textarea>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Emergency Contact</label>
+                    <div class="emergency-contact-fields">
+                        <input type="text" class="profile-input" id="emergency-name" placeholder="Contact Name" value="${profile.emergencyContact?.name || ''}" disabled>
+                        <input type="text" class="profile-input" id="emergency-relationship" placeholder="Relationship" value="${profile.emergencyContact?.relationship || ''}" disabled>
+                        <input type="tel" class="profile-input" id="emergency-phone" placeholder="Phone Number" value="${profile.emergencyContact?.phone || ''}" disabled>
+                    </div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Member Since</label>
+                    <div class="join-date">
+                        <i class="fas fa-calendar-alt"></i>
+                        ${new Date(profile.joinDate || Date.now()).toLocaleDateString('en-US', { 
+                            year: 'numeric', 
+                            month: 'long', 
+                            day: 'numeric' 
+                        })}
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// Profile editing functions
+function toggleProfileEdit() {
+    const editBtn = document.getElementById('edit-profile-btn');
+    const saveBtn = document.getElementById('save-profile-btn');
+    const cancelBtn = document.getElementById('cancel-profile-btn');
+    const inputs = document.querySelectorAll('.profile-input');
+    const checkboxes = document.querySelectorAll('.goal-checkbox input');
+    
+    // Show/hide buttons
+    editBtn.style.display = 'none';
+    saveBtn.style.display = 'inline-flex';
+    cancelBtn.style.display = 'inline-flex';
+    
+    // Enable all inputs
+    inputs.forEach(input => {
+        input.disabled = false;
+        input.classList.add('editing');
+    });
+    
+    // Enable checkboxes
+    checkboxes.forEach(checkbox => {
+        checkbox.disabled = false;
+    });
+    
+    // Focus on first input
+    const firstInput = document.getElementById('profile-name');
+    if (firstInput) {
+        firstInput.focus();
+    }
+}
+
+function cancelProfileEdit() {
+    const editBtn = document.getElementById('edit-profile-btn');
+    const saveBtn = document.getElementById('save-profile-btn');
+    const cancelBtn = document.getElementById('cancel-profile-btn');
+    const inputs = document.querySelectorAll('.profile-input');
+    const checkboxes = document.querySelectorAll('.goal-checkbox input');
+    
+    // Show/hide buttons
+    editBtn.style.display = 'inline-flex';
+    saveBtn.style.display = 'none';
+    cancelBtn.style.display = 'none';
+    
+    // Disable all inputs
+    inputs.forEach(input => {
+        input.disabled = true;
+        input.classList.remove('editing');
+    });
+    
+    // Disable checkboxes
+    checkboxes.forEach(checkbox => {
+        checkbox.disabled = true;
+    });
+    
+    // Reload profile data to reset any changes
+    updateProfileInformation();
+}
+
+function saveProfile() {
+    try {
+        // Collect all form data
+        const profileData = {
+            name: document.getElementById('profile-name').value,
+            email: document.getElementById('profile-email').value,
+            age: parseInt(document.getElementById('profile-age').value) || null,
+            gender: document.getElementById('profile-gender').value,
+            height: parseFloat(document.getElementById('profile-height').value) || null,
+            weight: parseFloat(document.getElementById('profile-weight').value) || null,
+            fitnessLevel: document.getElementById('profile-fitness-level').value,
+            activityLevel: document.getElementById('profile-activity-level').value,
+            mealPreference: document.getElementById('profile-meal-preference').value,
+            customMealPreference: document.getElementById('profile-meal-preference').value === 'other' ? document.getElementById('profile-custom-meal').value : '',
+            goals: Array.from(document.querySelectorAll('.goal-checkbox input:checked')).map(cb => cb.value),
+            medicalConditions: document.getElementById('profile-medical').value.split(',').map(s => s.trim()).filter(s => s),
+            allergies: document.getElementById('profile-allergies').value.split(',').map(s => s.trim()).filter(s => s),
+            emergencyContact: {
+                name: document.getElementById('emergency-name').value,
+                relationship: document.getElementById('emergency-relationship').value,
+                phone: document.getElementById('emergency-phone').value
+            }
+        };
+        
+        // Validate required fields
+        if (!profileData.name || !profileData.email) {
+            showNotification('Name and email are required fields', 'error');
+            return;
+        }
+        
+        // Update user data
+        if (!userData) userData = {};
+        if (!userData.profile) userData.profile = {};
+        
+        Object.assign(userData.profile, profileData);
+        
+        // Save to localStorage (in a real app, this would be an API call)
+        localStorage.setItem('fitai-user-data', JSON.stringify(userData));
+        
+        // Exit edit mode
+        cancelProfileEdit();
+        
+        // Show success message
+        showNotification('Profile updated successfully!', 'success');
+        
+        console.log('✅ Profile saved:', profileData);
+        
+    } catch (error) {
+        console.error('❌ Error saving profile:', error);
+        showNotification('Failed to save profile. Please try again.', 'error');
+    }
+}
+
+function changeAvatar() {
+    // Create file input for avatar upload
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'image/*';
+    fileInput.style.display = 'none';
+    
+    fileInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const avatarImg = document.querySelector('.profile-avatar');
+                if (avatarImg) {
+                    avatarImg.src = e.target.result;
+                }
+                
+                // Update user data
+                if (!userData) userData = {};
+                if (!userData.profile) userData.profile = {};
+                userData.profile.avatar = e.target.result;
+                
+                // Save to localStorage
+                localStorage.setItem('fitai-user-data', JSON.stringify(userData));
+                
+                showNotification('Avatar updated successfully!', 'success');
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+    
+    document.body.appendChild(fileInput);
+    fileInput.click();
+    document.body.removeChild(fileInput);
+}
+
+// Toggle custom meal preference input field
+function toggleCustomMealPreference() {
+    const mealPreferenceSelect = document.getElementById('profile-meal-preference');
+    const customMealDiv = document.getElementById('custom-meal-preference');
+    const customMealInput = document.getElementById('profile-custom-meal');
+    
+    if (mealPreferenceSelect.value === 'other') {
+        customMealDiv.style.display = 'block';
+        if (customMealInput) {
+            customMealInput.disabled = false;
+            customMealInput.classList.add('editing');
+            customMealInput.focus();
+        }
+    } else {
+        customMealDiv.style.display = 'none';
+        if (customMealInput) {
+            customMealInput.disabled = true;
+            customMealInput.classList.remove('editing');
+            customMealInput.value = '';
+        }
     }
 }
 
@@ -445,7 +806,8 @@ function updateTrainingModes() {
             { id: 'hiit', name: 'HIIT', description: 'High-intensity intervals', icon: 'fas fa-bolt', color: '#cea851' },
             { id: 'aerobics', name: 'Aerobics', description: 'Cardio workouts', icon: 'fas fa-heart', color: '#ba456c' },
             { id: 'yoga', name: 'Yoga', description: 'Flexibility & mindfulness', icon: 'fas fa-leaf', color: '#399d66' },
-            { id: 'stretching', name: 'Stretching', description: 'Recovery & mobility', icon: 'fas fa-expand-arrows-alt', color: '#4894c7' }
+            { id: 'stretching', name: 'Stretching', description: 'Recovery & mobility', icon: 'fas fa-expand-arrows-alt', color: '#4894c7' },
+            { id: 'saved-routines', name: 'Saved Routines', description: 'Your custom routines', icon: 'fas fa-bookmark', color: '#ffd700' }
         ];
 
         const modes = workoutData?.trainingModes || defaultModes;
@@ -687,6 +1049,7 @@ function updatePlanner() {
         setupMonthlyCalendarControls();
         setupWorkoutModal();
         setupAddWorkoutButton();
+        addClearPlannerButton();
         console.log('✅ Planner updated');
     } catch (error) {
         console.error('❌ Error updating planner:', error);
@@ -843,28 +1206,54 @@ function loadDayWorkouts(date) {
             <div class="empty-day-message">
                 <i class="fas fa-calendar-plus"></i>
                 <p>No workouts scheduled for this day</p>
-                <button class="btn btn-primary add-workout-day-btn" data-date="${dateString}">
-                    <i class="fas fa-plus"></i>
-                    Add Workout
-                </button>
+                <div class="day-actions">
+                    <button class="btn btn-primary add-workout-day-btn" data-date="${dateString}">
+                        <i class="fas fa-plus"></i>
+                        Add Workout
+                    </button>
+                    <button class="btn btn-outline add-routine-day-btn" data-date="${dateString}">
+                        <i class="fas fa-calendar-plus"></i>
+                        Add Saved Routine
+                    </button>
+                </div>
             </div>
         `;
         
-        // Add event listener to the button
+        // Add event listener to the add workout button
         const addBtn = dayWorkoutsContainer.querySelector('.add-workout-day-btn');
         if (addBtn) {
             addBtn.addEventListener('click', () => {
                 addWorkoutToDate(dateString);
             });
         }
+        
+        // Add event listener to the add routine button
+        const addRoutineBtn = dayWorkoutsContainer.querySelector('.add-routine-day-btn');
+        if (addRoutineBtn) {
+            addRoutineBtn.addEventListener('click', () => {
+                showRoutineSelectionModal(dateString);
+            });
+        }
     } else {
-        dayWorkoutsContainer.innerHTML = dayWorkouts.map(workout => `
-            <div class="workout-item" data-workout-id="${workout.id}">
-                <div class="workout-time">${workout.time}</div>
-                <div class="workout-name">${workout.name}</div>
-                <div class="workout-duration">${workout.duration}</div>
+        dayWorkoutsContainer.innerHTML = `
+            ${dayWorkouts.map(workout => `
+                <div class="workout-item" data-workout-id="${workout.id}">
+                    <div class="workout-time">${workout.time}</div>
+                    <div class="workout-name">${workout.name}</div>
+                    <div class="workout-duration">${workout.duration}</div>
+                </div>
+            `).join('')}
+            <div class="day-actions">
+                <button class="btn btn-outline add-routine-day-btn" data-date="${dateString}">
+                    <i class="fas fa-calendar-plus"></i>
+                    Add Another Routine
+                </button>
+                <button class="btn btn-destructive clear-day-btn" data-date="${dateString}">
+                    <i class="fas fa-trash"></i>
+                    Clear Day
+                </button>
             </div>
-        `).join('');
+        `;
         
         // Add click listeners to workout items
         dayWorkoutsContainer.querySelectorAll('.workout-item').forEach(item => {
@@ -873,6 +1262,22 @@ function loadDayWorkouts(date) {
                 showWorkoutDetails(workoutId);
             });
         });
+        
+        // Add event listener to the add routine button
+        const addRoutineBtn = dayWorkoutsContainer.querySelector('.add-routine-day-btn');
+        if (addRoutineBtn) {
+            addRoutineBtn.addEventListener('click', () => {
+                showRoutineSelectionModal(dateString);
+            });
+        }
+        
+        // Add event listener to the clear day button
+        const clearDayBtn = dayWorkoutsContainer.querySelector('.clear-day-btn');
+        if (clearDayBtn) {
+            clearDayBtn.addEventListener('click', () => {
+                showClearDayConfirmation(dateString);
+            });
+        }
     }
 }
 
@@ -922,45 +1327,16 @@ function getWorkoutsForDate(date) {
         allWorkouts.push(workout);
     });
     
-    // If no workouts found, return sample data for demonstration
-    if (allWorkouts.length === 0) {
-        const dayOfWeek = date.getDay();
-        const dayOfMonth = date.getDate();
-        
-        const sampleWorkouts = [
-            { id: '1', name: 'Morning Cardio', time: '07:00 AM', duration: '30 min', exercises: [
-                { name: 'Running', sets: '1', reps: '30 min', notes: 'Moderate pace' },
-                { name: 'Jump Rope', sets: '3', reps: '5 min', notes: 'High intensity intervals' }
-            ]},
-            { id: '2', name: 'Strength Training', time: '06:00 PM', duration: '45 min', exercises: [
-                { name: 'Bench Press', sets: '3', reps: '8-10', notes: 'Focus on form' },
-                { name: 'Squats', sets: '4', reps: '12', notes: 'Full depth' },
-                { name: 'Deadlifts', sets: '3', reps: '6-8', notes: 'Heavy weight' }
-            ]},
-            { id: '3', name: 'Yoga Session', time: '08:00 AM', duration: '60 min', exercises: [
-                { name: 'Sun Salutation', sets: '3', reps: '5 rounds', notes: 'Flow sequence' },
-                { name: 'Balance Poses', sets: '1', reps: '20 min', notes: 'Tree, warrior poses' },
-                { name: 'Meditation', sets: '1', reps: '10 min', notes: 'Mindfulness practice' }
-            ]}
-        ];
-        
-        // Create patterns: Monday/Wednesday/Friday workouts, plus some weekend sessions
-        const hasWorkout = (dayOfWeek === 1 || dayOfWeek === 3 || dayOfWeek === 5) || 
-                          (dayOfWeek === 0 && dayOfMonth % 7 === 0) || // Every 7th day of month on Sunday
-                          (dayOfWeek === 6 && dayOfMonth % 5 === 0);   // Every 5th day of month on Saturday
-        
-        if (hasWorkout) {
-            const workoutIndex = dayOfMonth % sampleWorkouts.length;
-            return [sampleWorkouts[workoutIndex]];
-        }
-    }
+
     
     return allWorkouts;
 }
 
 function checkDayHasWorkouts(date) {
     const workouts = getWorkoutsForDate(date);
-    return workouts.length > 0;
+    const hasWorkouts = workouts.length > 0;
+    console.log(`🔍 checkDayHasWorkouts(${date.toISOString().split('T')[0]}):`, hasWorkouts, workouts);
+    return hasWorkouts;
 }
 
 function updateMonthYearDisplay() {
@@ -1395,10 +1771,14 @@ function saveWorkoutToDate(dateString, workoutData) {
 
 // Update getWorkoutsForDate to include localStorage data
 function getWorkoutsForDate(date) {
+    const dateString = date.toISOString().split('T')[0]; // Format: YYYY-MM-DD
     const dayName = date.toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase();
     
-    // Get workouts from localStorage
-    const savedWorkouts = JSON.parse(localStorage.getItem(`workouts_${dayName}`) || '[]');
+    // Get workouts from localStorage using date string
+    const savedWorkouts = JSON.parse(localStorage.getItem(`workouts_${dateString}`) || '[]');
+    
+    // Debug: Log what we found
+    console.log(`🔍 getWorkoutsForDate(${dateString}):`, savedWorkouts);
     
     // If we have saved workouts, return them
     if (savedWorkouts.length > 0) {
@@ -1416,37 +1796,7 @@ function getWorkoutsForDate(date) {
         }));
     }
     
-    // Otherwise, return sample data
-    const dayOfWeek = date.getDay();
-    const dayOfMonth = date.getDate();
-    
-    const sampleWorkouts = [
-        { id: '1', name: 'Morning Cardio', time: '07:00 AM', duration: '30 min', exercises: [
-            { name: 'Running', sets: '1', reps: '30 min', notes: 'Moderate pace' },
-            { name: 'Jump Rope', sets: '3', reps: '5 min', notes: 'High intensity intervals' }
-        ]},
-        { id: '2', name: 'Strength Training', time: '06:00 PM', duration: '45 min', exercises: [
-            { name: 'Bench Press', sets: '3', reps: '8-10', notes: 'Focus on form' },
-            { name: 'Squats', sets: '4', reps: '12', notes: 'Full depth' },
-            { name: 'Deadlifts', sets: '3', reps: '6-8', notes: 'Heavy weight' }
-        ]},
-        { id: '3', name: 'Yoga Session', time: '08:00 AM', duration: '60 min', exercises: [
-            { name: 'Sun Salutation', sets: '3', reps: '5 rounds', notes: 'Flow sequence' },
-            { name: 'Balance Poses', sets: '1', reps: '20 min', notes: 'Tree, warrior poses' },
-            { name: 'Meditation', sets: '1', reps: '10 min', notes: 'Mindfulness practice' }
-        ]}
-    ];
-    
-    // Create patterns: Monday/Wednesday/Friday workouts, plus some weekend sessions
-    const hasWorkout = (dayOfWeek === 1 || dayOfWeek === 3 || dayOfWeek === 5) || 
-                      (dayOfWeek === 0 && dayOfMonth % 7 === 0) || // Every 7th day of month on Sunday
-                      (dayOfWeek === 6 && dayOfMonth % 5 === 0);   // Every 5th day of month on Saturday
-    
-    if (hasWorkout) {
-        const workoutIndex = dayOfMonth % sampleWorkouts.length;
-        return [sampleWorkouts[workoutIndex]];
-    }
-    
+    // Return empty array if no workouts found
     return [];
 }
 
@@ -1481,6 +1831,14 @@ async function selectMode(modeId) {
         const selectedCard = document.querySelector(`[data-mode="${modeId}"]`);
         if (selectedCard) {
             selectedCard.classList.add('selected');
+        }
+
+        // Special handling for saved routines
+        if (modeId === 'saved-routines') {
+            openSavedRoutinesModal();
+            console.log(`✅ Opened saved routines modal`);
+            showNotification(`Opened saved routines`, 'info');
+            return;
         }
 
         // Update exercise library for selected mode
@@ -1620,6 +1978,7 @@ function renderExerciseTree(tree, container, totalCount = null) {
                 
                 // Drag event
                 exItem.addEventListener('dragstart', e => {
+                    console.log('🎯 Starting drag for exercise:', ex.id, ex.name);
                     e.dataTransfer.setData('text/plain', ex.id);
                     exItem.classList.add('dragging');
                 });
@@ -1881,6 +2240,10 @@ async function updateExerciseLibrary(selectedMode = null) {
         // Display total exercise count
         displayTotalExerciseCount(exercises.length, window.totalExercisesAvailable);
         
+        // Setup drag and drop after rendering
+        setupExerciseDragAndDrop();
+        setupExerciseClickHandlers();
+        
         console.log(`✅ Exercise library updated with ${exercises.length} exercises for ${selectedMode}`);
     } catch (error) {
         console.error('❌ Error updating exercise library:', error);
@@ -1961,6 +2324,10 @@ async function populateAllExercises() {
         const tree = groupExercisesTree(transformedExercises);
         console.log('🌳 Tree structure created:', tree);
         renderExerciseTree(tree, exerciseLibrary, totalExercises);
+        
+        // Setup drag and drop after rendering
+        setupExerciseDragAndDrop();
+        setupExerciseClickHandlers();
         
         console.log(`✅ Exercise library populated with ${transformedExercises.length} exercises (Total available: ${totalExercises})`);
         showNotification(`Loaded ${transformedExercises.length} exercises (Total: ${totalExercises})`, 'success');
@@ -2761,18 +3128,30 @@ let currentRoutine = [];
 let currentApiExercises = []; // Store current API exercises for lookup
 
 function setupExerciseDragAndDrop() {
-    const exerciseItems = document.querySelectorAll('.exercise-item[draggable="true"]');
+    // Look for both exercise-item and tree-exercise-item classes
+    const exerciseItems = document.querySelectorAll('.exercise-item[draggable="true"], .tree-exercise-item[draggable="true"]');
     
     exerciseItems.forEach(item => {
-        item.addEventListener('dragstart', (e) => {
+        // Remove existing event listeners to prevent duplicates
+        item.removeEventListener('dragstart', item._dragStartHandler);
+        item.removeEventListener('dragend', item._dragEndHandler);
+        
+        // Create new event handlers
+        item._dragStartHandler = (e) => {
             e.dataTransfer.setData('text/plain', item.dataset.exerciseId);
             item.classList.add('dragging');
-        });
+        };
         
-        item.addEventListener('dragend', (e) => {
+        item._dragEndHandler = (e) => {
             item.classList.remove('dragging');
-        });
+        };
+        
+        // Add event listeners
+        item.addEventListener('dragstart', item._dragStartHandler);
+        item.addEventListener('dragend', item._dragEndHandler);
     });
+    
+    console.log(`🔧 Setup drag and drop for ${exerciseItems.length} exercise items`);
 }
 
 function setupExerciseClickHandlers() {
@@ -3100,11 +3479,13 @@ function setupRoutineBuilder() {
     routineCanvas.addEventListener('dragover', (e) => {
         e.preventDefault();
         routineCanvas.classList.add('drag-over');
+        console.log('🎯 Drag over routine canvas');
     });
 
     routineCanvas.addEventListener('dragleave', (e) => {
         e.preventDefault();
         routineCanvas.classList.remove('drag-over');
+        console.log('🚪 Drag leave routine canvas');
     });
 
     routineCanvas.addEventListener('drop', async (e) => {
@@ -3112,16 +3493,19 @@ function setupRoutineBuilder() {
         routineCanvas.classList.remove('drag-over');
         
         const exerciseId = e.dataTransfer.getData('text/plain');
+        console.log('📥 Drop on routine canvas, exercise ID:', exerciseId);
         
         // Check if this exercise is already in the routine (reordering)
         const existingIndex = currentRoutine.findIndex(ex => ex.id === exerciseId);
         if (existingIndex !== -1) {
+            console.log('🔄 Exercise already in routine, skipping add');
             // This is a reorder operation, not adding a new exercise
             // The reordering is handled by the individual exercise drag events
             return;
         }
         
         // This is a new exercise being added
+        console.log('➕ Adding new exercise to routine:', exerciseId);
         await addExerciseToRoutine(exerciseId);
     });
 
@@ -3539,10 +3923,14 @@ function showSaveRoutineModal() {
     // Create modal HTML
     const modalHTML = `
         <div class="modal" id="save-routine-modal">
+            <div class="modal-overlay" onclick="closeSaveRoutineModal()"></div>
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3>Save Routine</h3>
-                    <button class="close-btn" onclick="closeSaveRoutineModal()">
+                    <h3 class="modal-title">
+                        <i class="fas fa-save"></i>
+                        Save Routine
+                    </h3>
+                    <button class="modal-close" onclick="closeSaveRoutineModal()">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
@@ -3640,7 +4028,7 @@ function showSaveRoutineModal() {
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-actions">
                     <button class="btn btn-outline" onclick="closeSaveRoutineModal()">
                         Cancel
                     </button>
@@ -3658,7 +4046,7 @@ function showSaveRoutineModal() {
     
     // Show modal
     const modal = document.getElementById('save-routine-modal');
-    modal.style.display = 'flex';
+    modal.classList.add('active');
     
     // Focus on input
     setTimeout(() => {
@@ -3723,13 +4111,20 @@ function confirmSaveRoutine() {
             betweenCircuits: restBetweenCircuits
         },
         createdAt: new Date().toISOString(),
-        trainingMode: document.querySelector('.mode-card.selected')?.dataset.mode || 'gym'
+        lastModified: new Date().toISOString(),
+        favorite: false,
+        category: document.querySelector('.mode-card.selected')?.dataset.mode || 'Strength',
+        totalSets: currentRoutine.reduce((sum, ex) => sum + (ex.sets || 3), 0)
     };
 
-    // Save to localStorage
-    const savedRoutines = JSON.parse(localStorage.getItem('savedRoutines') || '[]');
+    // Add to global savedRoutines array
     savedRoutines.push(routineData);
-    localStorage.setItem('savedRoutines', JSON.stringify(savedRoutines));
+    
+    // Save to storage using the correct system
+    saveRoutinesToStorage();
+    
+    // Update the saved routines preview
+    updateSavedRoutinesPreview();
 
     console.log('✅ Routine saved:', routineData);
     showNotification(`Routine "${routineName}" saved successfully!`, 'success');
@@ -4191,88 +4586,11 @@ async function updateStrengthProgressChart(selectedBodyPart) {
     }
 }
 
-// Demo function to show sample charts for all body parts
-function showAllBodyPartSamples() {
-    const bodyParts = [
-        'chest', 'back', 'shoulders', 'upper arms', 'lower arms', 
-        'upper legs', 'lower legs', 'waist', 'cardio', 'neck'
-    ];
-    
-    console.log('📊 Sample Charts for All Body Parts:');
-    bodyParts.forEach(bodyPart => {
-        const sampleData = getBodyPartSampleData(bodyPart);
-        console.log(`\n${bodyPart.toUpperCase()}:`);
-        sampleData.exercises.forEach((exercise, index) => {
-            const finalWeight = Math.round(exercise.baseWeight * (1 + (5 * exercise.improvementRate)));
-            console.log(`  ${index + 1}. ${exercise.name}: ${exercise.baseWeight} → ${finalWeight} ${getYAxisLabel(bodyPart).split(' ')[1] || 'lbs'}`);
-        });
-    });
-}
 
-// Generate overall progress data for all body parts
-async function generateOverallProgressData() {
-    const labels = [];
-    const datasets = [];
-    
-    // Generate dates for the last 6 months
-    const today = new Date();
-    for (let i = 5; i >= 0; i--) {
-        const date = new Date(today.getFullYear(), today.getMonth() - i, 1);
-        labels.push(date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }));
-    }
 
-    // Get body parts from API or use fallback
-    let bodyParts = [];
-    try {
-        bodyParts = await exerciseDBService.getBodyParts();
-    } catch (error) {
-        console.error('Failed to get body parts for overall progress:', error);
-        // Fallback body parts
-        bodyParts = ['chest', 'back', 'shoulders', 'upper arms', 'lower arms', 'upper legs', 'lower legs', 'waist'];
-    }
 
-    // Create datasets for each body part (averaged across all exercises)
-    bodyParts.forEach((bodyPart, index) => {
-        const averageData = calculateAverageProgressForBodyPart(bodyPart, labels);
-        
-        datasets.push({
-            label: `${bodyPart.charAt(0).toUpperCase() + bodyPart.slice(1)} (Average)`,
-            data: averageData,
-            borderColor: getChartColor(index),
-            backgroundColor: getChartColor(index, 0.1),
-            borderWidth: 2,
-            fill: false,
-            tension: 0.4
-        });
-    });
 
-    return { labels, datasets };
-}
 
-// Calculate average progress for a specific body part
-function calculateAverageProgressForBodyPart(bodyPartName, labels) {
-    const bodyPartData = getBodyPartSampleData(bodyPartName.toLowerCase());
-    const allExercisesData = [];
-    
-    // Generate data for all exercises in this body part
-    bodyPartData.exercises.forEach(exercise => {
-        const exerciseData = labels.map((_, i) => {
-            const progress = i * exercise.improvementRate;
-            const variation = (Math.random() - 0.5) * 0.1; // ±5% variation
-            return Math.round(exercise.baseWeight * (1 + progress + variation));
-        });
-        allExercisesData.push(exerciseData);
-    });
-    
-    // Calculate average for each month
-    const averageData = labels.map((_, monthIndex) => {
-        const monthValues = allExercisesData.map(exerciseData => exerciseData[monthIndex]);
-        const sum = monthValues.reduce((acc, val) => acc + val, 0);
-        return Math.round(sum / monthValues.length);
-    });
-    
-    return averageData;
-}
 
 // Show detailed information for a specific muscle group
 function showMuscleGroupDetails(bodyPart, muscleGroupName) {
@@ -4894,132 +5212,7 @@ function generateMuscleGroupProgress(muscleGroup, labels) {
     });
 }
 
-// Generate sample progress data for exercises (kept for reference)
-function generateSampleProgressData(exercises, bodyPart) {
-    const labels = [];
-    const datasets = [];
-    
-    // Generate dates for the last 6 months
-    const today = new Date();
-    for (let i = 5; i >= 0; i--) {
-        const date = new Date(today.getFullYear(), today.getMonth() - i, 1);
-        labels.push(date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }));
-    }
 
-    // Get body part specific sample data
-    const bodyPartData = getBodyPartSampleData(bodyPart);
-    
-    // Create datasets for each exercise
-    exercises.slice(0, 3).forEach((exercise, index) => {
-        const exerciseData = bodyPartData.exercises[index] || bodyPartData.exercises[0];
-        const baseWeight = exerciseData.baseWeight;
-        const improvementRate = exerciseData.improvementRate;
-        
-        const data = labels.map((_, i) => {
-            // Simulate progressive overload with realistic variations
-            const progress = i * improvementRate;
-            const variation = (Math.random() - 0.5) * 0.1; // ±5% variation
-            return Math.round(baseWeight * (1 + progress + variation));
-        });
-
-        datasets.push({
-            label: exercise.name || exercise.exercise_name || exerciseData.name,
-            data: data,
-            borderColor: getChartColor(index),
-            backgroundColor: getChartColor(index, 0.1),
-            borderWidth: 2,
-            fill: false,
-            tension: 0.4
-        });
-    });
-
-    return { labels, datasets };
-}
-
-// Get realistic sample data for each body part
-function getBodyPartSampleData(bodyPart) {
-    const sampleData = {
-        'chest': {
-            exercises: [
-                { name: 'Bench Press', baseWeight: 135, improvementRate: 0.12 },
-                { name: 'Incline Dumbbell Press', baseWeight: 45, improvementRate: 0.10 },
-                { name: 'Push-Ups', baseWeight: 15, improvementRate: 0.08 }
-            ]
-        },
-        'back': {
-            exercises: [
-                { name: 'Deadlift', baseWeight: 185, improvementRate: 0.15 },
-                { name: 'Barbell Rows', baseWeight: 95, improvementRate: 0.11 },
-                { name: 'Pull-Ups', baseWeight: 8, improvementRate: 0.09 }
-            ]
-        },
-        'shoulders': {
-            exercises: [
-                { name: 'Overhead Press', baseWeight: 85, improvementRate: 0.10 },
-                { name: 'Lateral Raises', baseWeight: 15, improvementRate: 0.08 },
-                { name: 'Rear Delt Flyes', baseWeight: 12, improvementRate: 0.07 }
-            ]
-        },
-        'upper arms': {
-            exercises: [
-                { name: 'Barbell Curls', baseWeight: 45, improvementRate: 0.09 },
-                { name: 'Tricep Dips', baseWeight: 20, improvementRate: 0.08 },
-                { name: 'Hammer Curls', baseWeight: 25, improvementRate: 0.07 }
-            ]
-        },
-        'lower arms': {
-            exercises: [
-                { name: 'Wrist Curls', baseWeight: 30, improvementRate: 0.06 },
-                { name: 'Reverse Wrist Curls', baseWeight: 25, improvementRate: 0.06 },
-                { name: 'Farmer\'s Walks', baseWeight: 40, improvementRate: 0.05 }
-            ]
-        },
-        'upper legs': {
-            exercises: [
-                { name: 'Squats', baseWeight: 155, improvementRate: 0.13 },
-                { name: 'Leg Press', baseWeight: 225, improvementRate: 0.12 },
-                { name: 'Lunges', baseWeight: 65, improvementRate: 0.10 }
-            ]
-        },
-        'lower legs': {
-            exercises: [
-                { name: 'Calf Raises', baseWeight: 135, improvementRate: 0.08 },
-                { name: 'Seated Calf Raises', baseWeight: 90, improvementRate: 0.07 },
-                { name: 'Standing Calf Raises', baseWeight: 185, improvementRate: 0.06 }
-            ]
-        },
-        'waist': {
-            exercises: [
-                { name: 'Planks', baseWeight: 60, improvementRate: 0.05 }, // Duration in seconds
-                { name: 'Russian Twists', baseWeight: 25, improvementRate: 0.08 },
-                { name: 'Leg Raises', baseWeight: 15, improvementRate: 0.07 }
-            ]
-        },
-        'cardio': {
-            exercises: [
-                { name: 'Running (5K)', baseWeight: 25, improvementRate: 0.10 }, // Minutes
-                { name: 'Cycling', baseWeight: 45, improvementRate: 0.08 }, // Minutes
-                { name: 'Rowing', baseWeight: 20, improvementRate: 0.09 } // Minutes
-            ]
-        },
-        'neck': {
-            exercises: [
-                { name: 'Neck Flexion', baseWeight: 15, improvementRate: 0.06 },
-                { name: 'Neck Extension', baseWeight: 12, improvementRate: 0.06 },
-                { name: 'Neck Rotation', baseWeight: 10, improvementRate: 0.05 }
-            ]
-        }
-    };
-
-    // Return default data if body part not found
-    return sampleData[bodyPart.toLowerCase()] || {
-        exercises: [
-            { name: 'General Exercise', baseWeight: 50, improvementRate: 0.10 },
-            { name: 'Strength Training', baseWeight: 75, improvementRate: 0.09 },
-            { name: 'Functional Movement', baseWeight: 35, improvementRate: 0.08 }
-        ]
-    };
-}
 
 // Get appropriate Y-axis label based on body part
 function getYAxisLabel(bodyPart) {
@@ -5756,52 +5949,12 @@ function loadUserGifs() {
 
 // Display total exercise count in the UI
 function displayTotalExerciseCount(currentCount, totalCount) {
-    // Find or create exercise count display
-    let countDisplay = document.querySelector('.exercise-count-display');
-    
-    if (!countDisplay) {
-        countDisplay = document.createElement('div');
-        countDisplay.className = 'exercise-count-display';
-        countDisplay.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--card-bg, #2a2a2a);
-            color: var(--text, #fff);
-            padding: 10px 15px;
-            border-radius: 8px;
-            font-size: 14px;
-            z-index: 1000;
-            border: 1px solid var(--border, #333);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        `;
-        document.body.appendChild(countDisplay);
+    // Remove any existing exercise count display
+    const existingDisplay = document.querySelector('.exercise-count-display');
+    if (existingDisplay) {
+        existingDisplay.remove();
     }
-    
-    if (totalCount && totalCount > currentCount) {
-        countDisplay.innerHTML = `
-            <div style="display: flex; align-items: center; gap: 8px;">
-                <i class="fas fa-dumbbell" style="color: var(--primary, #4693c6);"></i>
-                <span>Showing ${currentCount} of ${totalCount} exercises</span>
-                <button onclick="loadAllExercises()" style="
-                    background: var(--primary, #4693c6);
-                    color: white;
-                    border: none;
-                    padding: 4px 8px;
-                    border-radius: 4px;
-                    font-size: 12px;
-                    cursor: pointer;
-                ">Load All</button>
-            </div>
-        `;
-    } else {
-        countDisplay.innerHTML = `
-            <div style="display: flex; align-items: center; gap: 8px;">
-                <i class="fas fa-dumbbell" style="color: var(--primary, #4693c6);"></i>
-                <span>${currentCount} exercises loaded</span>
-            </div>
-        `;
-    }
+    // Function disabled - no longer showing exercise count display
 }
 
 // Load all exercises function
@@ -5872,3 +6025,1510 @@ window.FitAI = {
     startWorkout,
     openAddWorkoutModal
 }; 
+
+// ===== SAVED ROUTINES FUNCTIONALITY =====
+
+// Global variables for saved routines
+let savedRoutines = [];
+let currentFilter = 'all';
+let uploadedRoutineData = null;
+let editingRoutine = null; // For editing existing routines
+
+// Initialize saved routines functionality
+function initializeSavedRoutines() {
+    loadSavedRoutines();
+    updateSavedRoutinesPreview();
+    setupSavedRoutinesEventHandlers();
+}
+
+// Load saved routines from localStorage
+function loadSavedRoutines() {
+    const stored = localStorage.getItem('fitai-saved-routines');
+    savedRoutines = stored ? JSON.parse(stored) : [];
+}
+
+
+
+// Save routines to localStorage
+function saveRoutinesToStorage() {
+    localStorage.setItem('fitai-saved-routines', JSON.stringify(savedRoutines));
+}
+
+// Update saved routines preview
+function updateSavedRoutinesPreview() {
+    const container = document.getElementById('saved-routines-preview');
+    if (!container) return;
+
+    const recentRoutines = savedRoutines
+        .sort((a, b) => new Date(b.lastModified) - new Date(a.lastModified))
+        .slice(0, 3);
+
+    if (recentRoutines.length === 0) {
+        container.innerHTML = `
+            <div class="empty-state">
+                <div class="empty-state-icon">
+                    <i class="fas fa-bookmark"></i>
+                </div>
+                <h4>No Saved Routines</h4>
+                <p>Create your first routine to get started!</p>
+            </div>
+        `;
+        return;
+    }
+
+    container.innerHTML = recentRoutines.map(routine => `
+        <div class="routines-preview-item" onclick="openSavedRoutinesModal()">
+            <div class="routine-info">
+                <div class="routine-icon">
+                    <i class="fas ${getRoutineIcon(routine.category)}"></i>
+                </div>
+                <div class="routine-details">
+                    <h5>${routine.name}</h5>
+                    <p>${routine.exercises.length} exercises • ${routine.totalSets} sets</p>
+                </div>
+            </div>
+            <div class="routine-actions-preview">
+                <button class="btn btn-outline btn-sm" onclick="event.stopPropagation(); toggleRoutineFavorite('${routine.id}')" title="${routine.favorite ? 'Remove from favorites' : 'Add to favorites'}">
+                    <i class="fas fa-star ${routine.favorite ? 'active' : ''}"></i>
+                </button>
+                <button class="btn btn-outline btn-sm" onclick="event.stopPropagation(); addRoutineToPlanner('${routine.id}')" title="Add to planner">
+                    <i class="fas fa-calendar-plus"></i>
+                </button>
+                <button class="btn btn-outline btn-sm" onclick="event.stopPropagation(); downloadRoutine('${routine.id}')" title="Download routine">
+                    <i class="fas fa-download"></i>
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Get routine icon based on category
+function getRoutineIcon(category) {
+    const icons = {
+        'Strength': 'fa-dumbbell',
+        'Cardio': 'fa-heartbeat',
+        'Flexibility': 'fa-leaf',
+        'HIIT': 'fa-bolt',
+        'Yoga': 'fa-pray',
+        'Stretching': 'fa-arrows-alt'
+    };
+    return icons[category] || 'fa-dumbbell';
+}
+
+// Setup event handlers for saved routines
+function setupSavedRoutinesEventHandlers() {
+    // Search functionality
+    const searchInput = document.getElementById('routine-search');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            filterRoutines(e.target.value);
+        });
+    }
+
+    // Filter buttons
+    const filterButtons = document.querySelectorAll('.filter-buttons .btn');
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            currentFilter = button.dataset.filter;
+            renderSavedRoutinesList();
+        });
+    });
+
+    // Upload functionality
+    setupRoutineUpload();
+}
+
+// Open saved routines modal
+function openSavedRoutinesModal() {
+    const modal = document.getElementById('saved-routines-modal');
+    if (modal) {
+        modal.classList.add('active');
+        renderSavedRoutinesList();
+    }
+}
+
+// Close saved routines modal
+function closeSavedRoutinesModal() {
+    const modal = document.getElementById('saved-routines-modal');
+    if (modal) {
+        modal.classList.remove('active');
+    }
+}
+
+// Render saved routines list
+function renderSavedRoutinesList() {
+    const container = document.getElementById('saved-routines-list');
+    if (!container) return;
+
+    let filteredRoutines = [...savedRoutines];
+
+    // Apply filters
+    switch (currentFilter) {
+        case 'favorites':
+            filteredRoutines = filteredRoutines.filter(routine => routine.favorite);
+            break;
+        case 'recent':
+            filteredRoutines = filteredRoutines
+                .sort((a, b) => new Date(b.lastModified) - new Date(a.lastModified))
+                .slice(0, 10);
+            break;
+    }
+
+    if (filteredRoutines.length === 0) {
+        container.innerHTML = `
+            <div class="empty-state">
+                <div class="empty-state-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h4>No routines found</h4>
+                <p>Try adjusting your search or filters</p>
+            </div>
+        `;
+        return;
+    }
+
+    container.innerHTML = filteredRoutines.map(routine => `
+        <div class="routine-card ${routine.favorite ? 'favorite' : ''}" data-routine-id="${routine.id}">
+            <div class="routine-card-header">
+                <div class="routine-card-title">
+                    <div class="routine-card-icon">
+                        <i class="fas ${getRoutineIcon(routine.category)}"></i>
+                    </div>
+                    <div class="routine-card-info">
+                        <h4>${routine.name}</h4>
+                        <p>${routine.description}</p>
+                    </div>
+                </div>
+                <div class="routine-card-actions">
+                    <button class="favorite-btn ${routine.favorite ? 'active' : ''}" onclick="toggleRoutineFavorite('${routine.id}')" title="${routine.favorite ? 'Remove from favorites' : 'Add to favorites'}">
+                        <i class="fas fa-star"></i>
+                    </button>
+                    <button class="btn btn-outline btn-sm" onclick="addRoutineToPlanner('${routine.id}')" title="Add to planner">
+                        <i class="fas fa-calendar-plus"></i>
+                    </button>
+                    <button class="btn btn-outline btn-sm" onclick="editRoutine('${routine.id}')" title="Edit routine">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="btn btn-outline btn-sm" onclick="downloadRoutine('${routine.id}')" title="Download routine">
+                        <i class="fas fa-download"></i>
+                    </button>
+                    <button class="btn btn-outline btn-sm" onclick="deleteRoutine('${routine.id}')" title="Delete routine">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="routine-card-content">
+                <div class="routine-stat">
+                    <div class="routine-stat-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <div class="routine-stat-info">
+                        <h6>${routine.exercises.length}</h6>
+                        <p>Exercises</p>
+                    </div>
+                </div>
+                <div class="routine-stat">
+                    <div class="routine-stat-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <div class="routine-stat-info">
+                        <h6>${routine.totalSets}</h6>
+                        <p>Total Sets</p>
+                    </div>
+                </div>
+                <div class="routine-stat">
+                    <div class="routine-stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="routine-stat-info">
+                        <h6>${routine.estimatedTime}</h6>
+                        <p>Duration</p>
+                    </div>
+                </div>
+                <div class="routine-stat">
+                    <div class="routine-stat-icon">
+                        <i class="fas fa-signal"></i>
+                    </div>
+                    <div class="routine-stat-info">
+                        <h6>${routine.difficulty}</h6>
+                        <p>Level</p>
+                    </div>
+                </div>
+            </div>
+            <div class="routine-exercises">
+                ${routine.exercises.slice(0, 5).map(exercise => `
+                    <span class="routine-exercise-tag">${exercise.name}</span>
+                `).join('')}
+                ${routine.exercises.length > 5 ? `<span class="routine-exercise-tag">+${routine.exercises.length - 5} more</span>` : ''}
+            </div>
+        </div>
+    `).join('');
+}
+
+// Filter routines by search term
+function filterRoutines(searchTerm) {
+    const container = document.getElementById('saved-routines-list');
+    if (!container) return;
+
+    let filteredRoutines = savedRoutines.filter(routine => {
+        const searchLower = searchTerm.toLowerCase();
+        return routine.name.toLowerCase().includes(searchLower) ||
+               routine.description.toLowerCase().includes(searchLower) ||
+               routine.category.toLowerCase().includes(searchLower) ||
+               routine.exercises.some(exercise => exercise.name.toLowerCase().includes(searchLower));
+    });
+
+    // Apply current filter
+    switch (currentFilter) {
+        case 'favorites':
+            filteredRoutines = filteredRoutines.filter(routine => routine.favorite);
+            break;
+        case 'recent':
+            filteredRoutines = filteredRoutines
+                .sort((a, b) => new Date(b.lastModified) - new Date(a.lastModified))
+                .slice(0, 10);
+            break;
+    }
+
+    if (filteredRoutines.length === 0) {
+        container.innerHTML = `
+            <div class="empty-state">
+                <div class="empty-state-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h4>No routines found</h4>
+                <p>Try adjusting your search or filters</p>
+            </div>
+        `;
+        return;
+    }
+
+    // Re-render with filtered results
+    container.innerHTML = filteredRoutines.map(routine => `
+        <div class="routine-card ${routine.favorite ? 'favorite' : ''}" data-routine-id="${routine.id}">
+            <div class="routine-card-header">
+                <div class="routine-card-title">
+                    <div class="routine-card-icon">
+                        <i class="fas ${getRoutineIcon(routine.category)}"></i>
+                    </div>
+                    <div class="routine-card-info">
+                        <h4>${routine.name}</h4>
+                        <p>${routine.description}</p>
+                    </div>
+                </div>
+                <div class="routine-card-actions">
+                    <button class="favorite-btn ${routine.favorite ? 'active' : ''}" onclick="toggleRoutineFavorite('${routine.id}')" title="${routine.favorite ? 'Remove from favorites' : 'Add to favorites'}">
+                        <i class="fas fa-star"></i>
+                    </button>
+                    <button class="btn btn-outline btn-sm" onclick="addRoutineToPlanner('${routine.id}')" title="Add to planner">
+                        <i class="fas fa-calendar-plus"></i>
+                    </button>
+                    <button class="btn btn-outline btn-sm" onclick="editRoutine('${routine.id}')" title="Edit routine">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="btn btn-outline btn-sm" onclick="downloadRoutine('${routine.id}')" title="Download routine">
+                        <i class="fas fa-download"></i>
+                    </button>
+                    <button class="btn btn-outline btn-sm" onclick="deleteRoutine('${routine.id}')" title="Delete routine">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="routine-card-content">
+                <div class="routine-stat">
+                    <div class="routine-stat-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <div class="routine-stat-info">
+                        <h6>${routine.exercises.length}</h6>
+                        <p>Exercises</p>
+                    </div>
+                </div>
+                <div class="routine-stat">
+                    <div class="routine-stat-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <div class="routine-stat-info">
+                        <h6>${routine.totalSets}</h6>
+                        <p>Total Sets</p>
+                    </div>
+                </div>
+                <div class="routine-stat">
+                    <div class="routine-stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="routine-stat-info">
+                        <h6>${routine.estimatedTime}</h6>
+                        <p>Duration</p>
+                    </div>
+                </div>
+                <div class="routine-stat">
+                    <div class="routine-stat-icon">
+                        <i class="fas fa-signal"></i>
+                    </div>
+                    <div class="routine-stat-info">
+                        <h6>${routine.difficulty}</h6>
+                        <p>Level</p>
+                    </div>
+                </div>
+            </div>
+            <div class="routine-exercises">
+                ${routine.exercises.slice(0, 5).map(exercise => `
+                    <span class="routine-exercise-tag">${exercise.name}</span>
+                `).join('')}
+                ${routine.exercises.length > 5 ? `<span class="routine-exercise-tag">+${routine.exercises.length - 5} more</span>` : ''}
+            </div>
+        </div>
+    `).join('');
+}
+
+// Toggle routine favorite status
+function toggleRoutineFavorite(routineId) {
+    const routine = savedRoutines.find(r => r.id === routineId);
+    if (routine) {
+        routine.favorite = !routine.favorite;
+        routine.lastModified = new Date().toISOString();
+        saveRoutinesToStorage();
+        updateSavedRoutinesPreview();
+        renderSavedRoutinesList();
+        showNotification(`Routine ${routine.favorite ? 'added to' : 'removed from'} favorites`, 'success');
+    }
+}
+
+// Edit routine
+function editRoutine(routineId) {
+    const routine = savedRoutines.find(r => r.id === routineId);
+    if (routine) {
+        // Store the routine being edited
+        editingRoutine = { ...routine }; // Create a copy for editing
+        openEditableRoutinePreviewModal();
+    }
+}
+
+// Add routine to planner
+function addRoutineToPlanner(routineId) {
+    const routine = savedRoutines.find(r => r.id === routineId);
+    if (!routine) {
+        showNotification('Routine not found', 'error');
+        return;
+    }
+
+    // Show date selection modal
+    showDateSelectionModal(routine);
+}
+
+// Show date selection modal for adding routine to planner
+function showDateSelectionModal(routine) {
+    const modalHTML = `
+        <div class="modal" id="date-selection-modal">
+            <div class="modal-overlay" onclick="closeDateSelectionModal()"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fas fa-calendar-plus"></i>
+                        Add to Planner
+                    </h3>
+                    <button class="modal-close" onclick="closeDateSelectionModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="routine-summary">
+                        <h4>${routine.name}</h4>
+                        <p>${routine.exercises.length} exercises • ${routine.totalSets} sets</p>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="workout-date">Select Date</label>
+                        <input type="date" id="workout-date" class="form-input" value="${new Date().toISOString().split('T')[0]}">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="workout-time">Time</label>
+                        <input type="time" id="workout-time" class="form-input" value="09:00">
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-secondary" onclick="closeDateSelectionModal()">Cancel</button>
+                    <button class="btn btn-primary" onclick="confirmAddToPlanner('${routine.id}')">
+                        <i class="fas fa-calendar-plus"></i>
+                        Add to Planner
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Add modal to body
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    
+    // Show modal
+    const modal = document.getElementById('date-selection-modal');
+    modal.classList.add('active');
+}
+
+// Close date selection modal
+function closeDateSelectionModal() {
+    const modal = document.getElementById('date-selection-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        setTimeout(() => modal.remove(), 300);
+    }
+}
+
+// Show routine selection modal for a specific date
+function showRoutineSelectionModal(dateString) {
+    if (savedRoutines.length === 0) {
+        showNotification('No saved routines available. Create a routine first!', 'warning');
+        return;
+    }
+
+    const modalHTML = `
+        <div class="modal" id="routine-selection-modal">
+            <div class="modal-overlay" onclick="closeRoutineSelectionModal()"></div>
+            <div class="modal-content large">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fas fa-calendar-plus"></i>
+                        Add Routine to ${new Date(dateString).toLocaleDateString()}
+                    </h3>
+                    <button class="modal-close" onclick="closeRoutineSelectionModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="routine-selection-list">
+                        ${savedRoutines.map(routine => `
+                            <div class="routine-selection-item" onclick="selectRoutineForDate('${routine.id}', '${dateString}')">
+                                <div class="routine-selection-icon">
+                                    <i class="fas ${getRoutineIcon(routine.category)}"></i>
+                                </div>
+                                <div class="routine-selection-info">
+                                    <h4>${routine.name}</h4>
+                                    <p>${routine.exercises.length} exercises • ${routine.totalSets} sets • ${routine.estimatedTime}</p>
+                                </div>
+                                <div class="routine-selection-arrow">
+                                    <i class="fas fa-chevron-right"></i>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-secondary" onclick="closeRoutineSelectionModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Add modal to body
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    
+    // Show modal
+    const modal = document.getElementById('routine-selection-modal');
+    modal.classList.add('active');
+}
+
+// Close routine selection modal
+function closeRoutineSelectionModal() {
+    const modal = document.getElementById('routine-selection-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        setTimeout(() => modal.remove(), 300);
+    }
+}
+
+// Select routine for specific date
+function selectRoutineForDate(routineId, dateString) {
+    const routine = savedRoutines.find(r => r.id === routineId);
+    if (!routine) {
+        showNotification('Routine not found', 'error');
+        return;
+    }
+
+    // Show time selection modal
+    showTimeSelectionModal(routine, dateString);
+}
+
+// Show time selection modal
+function showTimeSelectionModal(routine, dateString) {
+    const modalHTML = `
+        <div class="modal" id="time-selection-modal">
+            <div class="modal-overlay" onclick="closeTimeSelectionModal()"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fas fa-clock"></i>
+                        Set Time for ${routine.name}
+                    </h3>
+                    <button class="modal-close" onclick="closeTimeSelectionModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="routine-summary">
+                        <h4>${routine.name}</h4>
+                        <p>${routine.exercises.length} exercises • ${routine.totalSets} sets</p>
+                        <p><strong>Date:</strong> ${new Date(dateString).toLocaleDateString()}</p>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="workout-time">Time</label>
+                        <input type="time" id="workout-time" class="form-input" value="09:00">
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-secondary" onclick="closeTimeSelectionModal()">Cancel</button>
+                    <button class="btn btn-primary" onclick="confirmAddRoutineToDate('${routine.id}', '${dateString}')">
+                        <i class="fas fa-calendar-plus"></i>
+                        Add to Planner
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Add modal to body
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    
+    // Show modal
+    const modal = document.getElementById('time-selection-modal');
+    modal.classList.add('active');
+}
+
+// Close time selection modal
+function closeTimeSelectionModal() {
+    const modal = document.getElementById('time-selection-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        setTimeout(() => modal.remove(), 300);
+    }
+}
+
+// Add clear planner button to planner header
+function addClearPlannerButton() {
+    const plannerHeader = document.querySelector('.planner-header');
+    if (!plannerHeader) return;
+    
+    // Check if clear button already exists
+    if (document.getElementById('clear-planner-btn')) return;
+    
+    const clearButton = document.createElement('button');
+    clearButton.id = 'clear-planner-btn';
+    clearButton.className = 'btn btn-destructive btn-sm';
+    clearButton.innerHTML = '<i class="fas fa-trash"></i> Clear All Data';
+    clearButton.addEventListener('click', showClearPlannerConfirmation);
+    
+    // Add to planner header
+    plannerHeader.appendChild(clearButton);
+}
+
+// Show clear day confirmation modal
+function showClearDayConfirmation(dateString) {
+    const date = new Date(dateString);
+    const dateFormatted = date.toLocaleDateString('en-US', { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    });
+    
+    const modalHTML = `
+        <div class="modal" id="clear-day-modal">
+            <div class="modal-overlay" onclick="closeClearDayModal()"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Clear Day
+                    </h3>
+                    <button class="modal-close" onclick="closeClearDayModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to clear all workouts for <strong>${dateFormatted}</strong>?</p>
+                    <p class="text-muted">This action cannot be undone.</p>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-secondary" onclick="closeClearDayModal()">Cancel</button>
+                    <button class="btn btn-destructive" onclick="confirmClearDay('${dateString}')">
+                        <i class="fas fa-trash"></i>
+                        Clear Day
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    const modal = document.getElementById('clear-day-modal');
+    modal.classList.add('active');
+}
+
+// Close clear day modal
+function closeClearDayModal() {
+    const modal = document.getElementById('clear-day-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        setTimeout(() => modal.remove(), 300);
+    }
+}
+
+// Confirm clear day
+function confirmClearDay(dateString) {
+    // Remove workouts for this specific date
+    localStorage.removeItem(`workouts_${dateString}`);
+    
+    // Close modal
+    closeClearDayModal();
+    
+    // Show success message
+    const date = new Date(dateString);
+    showNotification(`Cleared all workouts for ${date.toLocaleDateString()}`, 'success');
+    
+    // Refresh planner
+    updatePlanner();
+    renderMonthlyCalendar();
+    if (selectedDate && selectedDate.toISOString().split('T')[0] === dateString) {
+        loadDayWorkouts(selectedDate);
+    }
+}
+
+// Show clear planner confirmation modal
+function showClearPlannerConfirmation() {
+    const modalHTML = `
+        <div class="modal" id="clear-planner-modal">
+            <div class="modal-overlay" onclick="closeClearPlannerModal()"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Clear All Data
+                    </h3>
+                    <button class="modal-close" onclick="closeClearPlannerModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Warning:</strong> This will clear ALL data from your application including:</p>
+                    <ul class="clear-data-list">
+                        <li>• All planned workouts</li>
+                        <li>• Saved routines</li>
+                        <li>• User preferences</li>
+                        <li>• Progress data</li>
+                        <li>• All other saved information</li>
+                    </ul>
+                    <p class="text-muted">This action cannot be undone.</p>
+                    <div class="clear-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="confirm-clear" required>
+                            <span class="checkmark"></span>
+                            I understand this will delete ALL my data permanently
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-secondary" onclick="closeClearPlannerModal()">Cancel</button>
+                    <button class="btn btn-destructive" onclick="confirmClearPlanner()" disabled>
+                        <i class="fas fa-trash"></i>
+                        Clear All Data
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    const modal = document.getElementById('clear-planner-modal');
+    modal.classList.add('active');
+    
+    // Setup checkbox functionality
+    const checkbox = document.getElementById('confirm-clear');
+    const confirmBtn = modal.querySelector('.btn-destructive');
+    
+    checkbox.addEventListener('change', () => {
+        confirmBtn.disabled = !checkbox.checked;
+    });
+}
+
+// Close clear planner modal
+function closeClearPlannerModal() {
+    const modal = document.getElementById('clear-planner-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        setTimeout(() => modal.remove(), 300);
+    }
+}
+
+// Confirm clear entire planner
+function confirmClearPlanner() {
+    // Clear ALL localStorage data
+    localStorage.clear();
+    
+    // Close modal
+    closeClearPlannerModal();
+    
+    // Show success message
+    showNotification('All data cleared successfully', 'success');
+    
+    // Refresh the entire application
+    setTimeout(() => {
+        window.location.reload();
+    }, 1000);
+}
+
+// Confirm adding routine to specific date
+function confirmAddRoutineToDate(routineId, dateString) {
+    const routine = savedRoutines.find(r => r.id === routineId);
+    if (!routine) {
+        showNotification('Routine not found', 'error');
+        return;
+    }
+
+    const time = document.getElementById('workout-time').value;
+
+    // Convert routine to workout format
+    const workoutData = {
+        id: `workout-${Date.now()}`,
+        name: routine.name,
+        time: time,
+        duration: routine.estimatedTime || '45 min',
+        type: 'routine',
+        routineId: routine.id,
+        exercises: routine.exercises.map(exercise => ({
+            name: exercise.name,
+            sets: exercise.sets || 3,
+            reps: exercise.reps || '8-12',
+            weight: exercise.weight || 'Bodyweight',
+            notes: ''
+        })),
+        restTimes: routine.restBetweenSets ? {
+            betweenSets: routine.restBetweenSets,
+            betweenExercises: routine.restBetweenExercises
+        } : null
+    };
+
+    // Save to planner
+    saveWorkoutToDate(dateString, workoutData);
+    
+    // Close modals
+    closeTimeSelectionModal();
+    closeRoutineSelectionModal();
+    
+    // Show success message
+    showNotification(`"${routine.name}" added to planner for ${new Date(dateString).toLocaleDateString()}`, 'success');
+    
+    // Update planner if it's currently visible
+    if (document.getElementById('planner-tab')?.classList.contains('active')) {
+        // Force complete planner refresh
+        setTimeout(() => {
+            updatePlanner();
+            renderMonthlyCalendar();
+            if (selectedDate) {
+                loadDayWorkouts(selectedDate);
+            }
+            // Also refresh the current day if it's the same as the selected date
+            const currentDateString = new Date().toISOString().split('T')[0];
+            if (selectedDate && selectedDate.toISOString().split('T')[0] === currentDateString) {
+                loadDayWorkouts(selectedDate);
+            }
+        }, 200);
+    }
+    
+    // Debug: Check if workout was saved
+    console.log(`🔍 Checking localStorage for ${dateString}:`, localStorage.getItem(`workouts_${dateString}`));
+}
+
+// Confirm adding routine to planner
+function confirmAddToPlanner(routineId) {
+    const routine = savedRoutines.find(r => r.id === routineId);
+    if (!routine) {
+        showNotification('Routine not found', 'error');
+        return;
+    }
+
+    const date = document.getElementById('workout-date').value;
+    const time = document.getElementById('workout-time').value;
+
+    if (!date) {
+        showNotification('Please select a date', 'warning');
+        return;
+    }
+
+    // Convert routine to workout format
+    const workoutData = {
+        id: `workout-${Date.now()}`,
+        name: routine.name,
+        time: time,
+        duration: routine.estimatedTime || '45 min',
+        type: 'routine',
+        routineId: routine.id,
+        exercises: routine.exercises.map(exercise => ({
+            name: exercise.name,
+            sets: exercise.sets || 3,
+            reps: exercise.reps || '8-12',
+            weight: exercise.weight || 'Bodyweight',
+            notes: ''
+        })),
+        restTimes: routine.restBetweenSets ? {
+            betweenSets: routine.restBetweenSets,
+            betweenExercises: routine.restBetweenExercises
+        } : null
+    };
+
+    // Save to planner
+    saveWorkoutToDate(date, workoutData);
+    
+    // Close modal
+    closeDateSelectionModal();
+    
+    // Show success message
+    showNotification(`"${routine.name}" added to planner for ${new Date(date).toLocaleDateString()}`, 'success');
+    
+    // Update planner if it's currently visible
+    if (document.getElementById('planner-tab')?.classList.contains('active')) {
+        // Force complete planner refresh
+        setTimeout(() => {
+            updatePlanner();
+            renderMonthlyCalendar();
+            if (selectedDate) {
+                loadDayWorkouts(selectedDate);
+            }
+            // Also refresh the current day if it's the same as the selected date
+            const currentDateString = new Date().toISOString().split('T')[0];
+            if (selectedDate && selectedDate.toISOString().split('T')[0] === currentDateString) {
+                loadDayWorkouts(selectedDate);
+            }
+        }, 200);
+    }
+    
+    // Debug: Check if workout was saved
+    console.log(`🔍 Checking localStorage for ${date}:`, localStorage.getItem(`workouts_${date}`));
+    
+    // Add a test button to manually check the planner
+    setTimeout(() => {
+        const plannerTab = document.getElementById('planner-tab');
+        if (plannerTab && plannerTab.classList.contains('active')) {
+            // Add a temporary debug button
+            const debugBtn = document.createElement('button');
+            debugBtn.textContent = '🔍 Debug: Check Planner';
+            debugBtn.className = 'btn btn-outline btn-sm';
+            debugBtn.style.position = 'fixed';
+            debugBtn.style.top = '10px';
+            debugBtn.style.right = '10px';
+            debugBtn.style.zIndex = '9999';
+            debugBtn.onclick = () => {
+                console.log('🔍 All localStorage workout keys:');
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i);
+                    if (key && key.startsWith('workouts_')) {
+                        console.log(`${key}:`, JSON.parse(localStorage.getItem(key)));
+                    }
+                }
+                debugBtn.remove();
+            };
+            document.body.appendChild(debugBtn);
+            setTimeout(() => debugBtn.remove(), 10000); // Remove after 10 seconds
+        }
+    }, 500);
+}
+
+// Download routine as JSON
+function downloadRoutine(routineId) {
+    const routine = savedRoutines.find(r => r.id === routineId);
+    if (routine) {
+        const dataStr = JSON.stringify(routine, null, 2);
+        const dataBlob = new Blob([dataStr], { type: 'application/json' });
+        const url = URL.createObjectURL(dataBlob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `${routine.name.replace(/\s+/g, '_')}_routine.json`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+        showNotification('Routine downloaded successfully!', 'success');
+    }
+}
+
+// Delete routine
+function deleteRoutine(routineId) {
+    if (confirm('Are you sure you want to delete this routine? This action cannot be undone.')) {
+        savedRoutines = savedRoutines.filter(r => r.id !== routineId);
+        saveRoutinesToStorage();
+        updateSavedRoutinesPreview();
+        renderSavedRoutinesList();
+        showNotification('Routine deleted successfully!', 'success');
+    }
+}
+
+// Upload routine functionality
+function setupRoutineUpload() {
+    const uploadArea = document.getElementById('routine-upload-area');
+    const fileInput = document.getElementById('routine-file-input');
+    
+    if (uploadArea && fileInput) {
+        // Click to upload
+        uploadArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        // Drag and drop
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleRoutineFile(files[0]);
+            }
+        });
+
+        // File input change
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                handleRoutineFile(e.target.files[0]);
+            }
+        });
+    }
+}
+
+// Handle routine file upload
+function handleRoutineFile(file) {
+    if (file.type !== 'application/json' && !file.name.endsWith('.json')) {
+        showNotification('Please select a valid JSON file', 'error');
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        try {
+            const routineData = JSON.parse(e.target.result);
+            uploadedRoutineData = routineData;
+            openRoutinePreviewModal();
+        } catch (error) {
+            showNotification('Invalid JSON file format', 'error');
+        }
+    };
+    reader.readAsText(file);
+}
+
+// Open upload routine modal
+function openUploadRoutineModal() {
+    const modal = document.getElementById('upload-routine-modal');
+    if (modal) {
+        modal.classList.add('active');
+    }
+}
+
+// Close upload routine modal
+function closeUploadRoutineModal() {
+    const modal = document.getElementById('upload-routine-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        // Reset file input
+        const fileInput = document.getElementById('routine-file-input');
+        if (fileInput) {
+            fileInput.value = '';
+        }
+    }
+}
+
+// Open routine preview modal
+function openRoutinePreviewModal() {
+    const modal = document.getElementById('routine-preview-modal');
+    if (modal && uploadedRoutineData) {
+        modal.classList.add('active');
+        renderRoutinePreview();
+        closeUploadRoutineModal();
+    }
+}
+
+// Open editable routine preview modal
+function openEditableRoutinePreviewModal() {
+    const modal = document.getElementById('routine-preview-modal');
+    if (modal && editingRoutine) {
+        modal.classList.add('active');
+        renderEditableRoutinePreview();
+    }
+}
+
+// Close routine preview modal
+function closeRoutinePreviewModal() {
+    const modal = document.getElementById('routine-preview-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        uploadedRoutineData = null;
+        editingRoutine = null; // Clear editing routine when closing
+    }
+}
+
+// Render routine preview
+function renderRoutinePreview() {
+    const container = document.getElementById('routine-preview-content');
+    if (!container || !uploadedRoutineData) return;
+
+    const routine = uploadedRoutineData;
+    const totalSets = routine.exercises ? routine.exercises.reduce((sum, ex) => sum + (ex.sets || 0), 0) : 0;
+
+    container.innerHTML = `
+        <div class="routine-preview-header">
+            <div class="routine-preview-icon">
+                <i class="fas ${getRoutineIcon(routine.category || 'Strength')}"></i>
+            </div>
+            <div class="routine-preview-info">
+                <h3>${routine.name || 'Untitled Routine'}</h3>
+                <p>${routine.description || 'No description provided'}</p>
+            </div>
+        </div>
+        
+        <div class="routine-preview-stats">
+            <div class="routine-preview-stat">
+                <div class="routine-preview-stat-icon">
+                    <i class="fas fa-dumbbell"></i>
+                </div>
+                <div class="routine-preview-stat-value">${routine.exercises ? routine.exercises.length : 0}</div>
+                <div class="routine-preview-stat-label">Exercises</div>
+            </div>
+            <div class="routine-preview-stat">
+                <div class="routine-preview-stat-icon">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+                <div class="routine-preview-stat-value">${totalSets}</div>
+                <div class="routine-preview-stat-label">Total Sets</div>
+            </div>
+            <div class="routine-preview-stat">
+                <div class="routine-preview-stat-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="routine-preview-stat-value">${routine.estimatedTime || 'N/A'}</div>
+                <div class="routine-preview-stat-label">Duration</div>
+            </div>
+            <div class="routine-preview-stat">
+                <div class="routine-preview-stat-icon">
+                    <i class="fas fa-signal"></i>
+                </div>
+                <div class="routine-preview-stat-value">${routine.difficulty || 'N/A'}</div>
+                <div class="routine-preview-stat-label">Level</div>
+            </div>
+        </div>
+        
+        <div class="routine-preview-exercises">
+            <h4>Exercises</h4>
+            <div class="routine-exercise-list">
+                ${routine.exercises ? routine.exercises.map(exercise => `
+                    <div class="routine-exercise-item">
+                        <div class="routine-exercise-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <div class="routine-exercise-info">
+                            <div class="routine-exercise-name">${exercise.name}</div>
+                            <div class="routine-exercise-details">${exercise.reps} • ${exercise.weight || 'Bodyweight'}</div>
+                        </div>
+                        <div class="routine-exercise-sets">${exercise.sets} sets</div>
+                    </div>
+                `).join('') : '<p>No exercises found in this routine</p>'}
+            </div>
+        </div>
+    `;
+}
+
+// Render editable routine preview
+function renderEditableRoutinePreview() {
+    const container = document.getElementById('routine-preview-content');
+    if (!container || !editingRoutine) return;
+
+    const routine = editingRoutine;
+    const totalSets = routine.exercises ? routine.exercises.reduce((sum, ex) => sum + (ex.sets || 0), 0) : 0;
+
+    container.innerHTML = `
+        <div class="routine-preview-header">
+            <div class="routine-preview-icon">
+                <i class="fas ${getRoutineIcon(routine.category || 'Strength')}"></i>
+            </div>
+            <div class="routine-preview-info">
+                <input type="text" class="routine-name-input" value="${routine.name || 'Untitled Routine'}" placeholder="Routine Name">
+                <input type="text" class="routine-description-input" value="${routine.description || ''}" placeholder="Routine Description">
+            </div>
+        </div>
+        
+        <div class="routine-preview-stats">
+            <div class="routine-preview-stat">
+                <div class="routine-preview-stat-icon">
+                    <i class="fas fa-dumbbell"></i>
+                </div>
+                <div class="routine-preview-stat-value">${routine.exercises ? routine.exercises.length : 0}</div>
+                <div class="routine-preview-stat-label">Exercises</div>
+            </div>
+            <div class="routine-preview-stat">
+                <div class="routine-preview-stat-icon">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+                <div class="routine-preview-stat-value">${totalSets}</div>
+                <div class="routine-preview-stat-label">Total Sets</div>
+            </div>
+            <div class="routine-preview-stat">
+                <div class="routine-preview-stat-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="routine-preview-stat-value">
+                    <input type="text" class="routine-duration-input" value="${routine.estimatedTime || ''}" placeholder="45-60 min">
+                </div>
+                <div class="routine-preview-stat-label">Duration</div>
+            </div>
+            <div class="routine-preview-stat">
+                <div class="routine-preview-stat-icon">
+                    <i class="fas fa-signal"></i>
+                </div>
+                <div class="routine-preview-stat-value">
+                    <select class="routine-difficulty-select">
+                        <option value="Beginner" ${routine.difficulty === 'Beginner' ? 'selected' : ''}>Beginner</option>
+                        <option value="Intermediate" ${routine.difficulty === 'Intermediate' ? 'selected' : ''}>Intermediate</option>
+                        <option value="Advanced" ${routine.difficulty === 'Advanced' ? 'selected' : ''}>Advanced</option>
+                    </select>
+                </div>
+                <div class="routine-preview-stat-label">Level</div>
+            </div>
+        </div>
+        
+        <div class="routine-preview-exercises">
+            <div class="exercises-header">
+                <h4>Exercises</h4>
+                <button class="btn btn-primary btn-sm" onclick="addExerciseToEditableRoutine()">
+                    <i class="fas fa-plus"></i> Add Exercise
+                </button>
+            </div>
+            
+            <!-- Rest Time Settings -->
+            <div class="rest-time-settings">
+                <h5>Rest Time Settings</h5>
+                <div class="rest-time-grid">
+                    <div class="rest-time-input">
+                        <label>Rest Between Sets (sec)</label>
+                        <input type="number" class="rest-between-sets-input" value="${routine.restBetweenSets || 60}" min="10" max="600" step="5">
+                    </div>
+                    <div class="rest-time-input">
+                        <label>Rest Between Exercises (sec)</label>
+                        <input type="number" class="rest-between-exercises-input" value="${routine.restBetweenExercises || 90}" min="30" max="1200" step="10">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="routine-exercise-list" id="editable-exercise-list">
+                ${routine.exercises ? routine.exercises.map((exercise, index) => `
+                    <div class="routine-exercise-item editable" data-index="${index}" draggable="true">
+                        <div class="exercise-drag-handle" title="Drag to reorder">
+                            <i class="fas fa-grip-vertical"></i>
+                        </div>
+                        <div class="routine-exercise-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <div class="routine-exercise-info">
+                            <input type="text" class="exercise-name-input" value="${exercise.name}" placeholder="Exercise Name">
+                            <div class="exercise-details-row">
+                                <input type="text" class="exercise-reps-input" value="${exercise.reps}" placeholder="8-12" style="width: 60px;">
+                                <span>•</span>
+                                <input type="text" class="exercise-weight-input" value="${exercise.weight || ''}" placeholder="Bodyweight" style="width: 100px;">
+                            </div>
+                        </div>
+                        <div class="routine-exercise-sets">
+                            <input type="number" class="exercise-sets-input" value="${exercise.sets}" min="1" max="10" style="width: 50px;">
+                            <span>sets</span>
+                        </div>
+                        <button class="btn btn-destructive btn-sm" onclick="removeExerciseFromRoutine(${index})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `).join('') : '<p>No exercises found in this routine</p>'}
+            </div>
+        </div>
+        
+        <div class="routine-preview-actions">
+            <button class="btn btn-secondary" onclick="cancelRoutineEdit()">Cancel</button>
+            <button class="btn btn-outline" onclick="addRoutineToPlanner('${editingRoutine.id}')">
+                <i class="fas fa-calendar-plus"></i>
+                Add to Planner
+            </button>
+            <button class="btn btn-primary" onclick="saveRoutineEdit()">Save Changes</button>
+        </div>
+    `;
+
+    // Setup event listeners for real-time updates
+    setupEditableRoutineEventListeners();
+    
+    // Setup drag and drop for exercise reordering
+    setupEditableExerciseDragAndDrop();
+}
+
+// Save uploaded routine
+function saveUploadedRoutine() {
+    if (!uploadedRoutineData) return;
+
+    // Generate new ID and timestamps
+    const newRoutine = {
+        ...uploadedRoutineData,
+        id: `routine-${Date.now()}`,
+        createdAt: new Date().toISOString(),
+        lastModified: new Date().toISOString(),
+        favorite: false
+    };
+
+    // Add to saved routines
+    savedRoutines.push(newRoutine);
+    saveRoutinesToStorage();
+    updateSavedRoutinesPreview();
+
+    // Close modal and show success message
+    closeRoutinePreviewModal();
+    showNotification('Routine saved successfully!', 'success');
+}
+
+// Setup event listeners for editable routine
+function setupEditableRoutineEventListeners() {
+    // Real-time updates for routine name and description
+    const nameInput = document.querySelector('.routine-name-input');
+    const descInput = document.querySelector('.routine-description-input');
+    const durationInput = document.querySelector('.routine-duration-input');
+    const difficultySelect = document.querySelector('.routine-difficulty-select');
+
+    if (nameInput) {
+        nameInput.addEventListener('input', (e) => {
+            editingRoutine.name = e.target.value;
+        });
+    }
+
+    if (descInput) {
+        descInput.addEventListener('input', (e) => {
+            editingRoutine.description = e.target.value;
+        });
+    }
+
+    if (durationInput) {
+        durationInput.addEventListener('input', (e) => {
+            editingRoutine.estimatedTime = e.target.value;
+        });
+    }
+
+    if (difficultySelect) {
+        difficultySelect.addEventListener('change', (e) => {
+            editingRoutine.difficulty = e.target.value;
+        });
+    }
+
+    // Real-time updates for exercise details
+    document.querySelectorAll('.exercise-name-input').forEach((input, index) => {
+        input.addEventListener('input', (e) => {
+            if (editingRoutine.exercises && editingRoutine.exercises[index]) {
+                editingRoutine.exercises[index].name = e.target.value;
+            }
+        });
+    });
+
+    document.querySelectorAll('.exercise-reps-input').forEach((input, index) => {
+        input.addEventListener('input', (e) => {
+            if (editingRoutine.exercises && editingRoutine.exercises[index]) {
+                editingRoutine.exercises[index].reps = e.target.value;
+            }
+        });
+    });
+
+    document.querySelectorAll('.exercise-weight-input').forEach((input, index) => {
+        input.addEventListener('input', (e) => {
+            if (editingRoutine.exercises && editingRoutine.exercises[index]) {
+                editingRoutine.exercises[index].weight = e.target.value;
+            }
+        });
+    });
+
+    document.querySelectorAll('.exercise-sets-input').forEach((input, index) => {
+        input.addEventListener('input', (e) => {
+            if (editingRoutine.exercises && editingRoutine.exercises[index]) {
+                editingRoutine.exercises[index].sets = parseInt(e.target.value) || 1;
+            }
+        });
+    });
+
+    // Rest time settings
+    const restBetweenSetsInput = document.querySelector('.rest-between-sets-input');
+    const restBetweenExercisesInput = document.querySelector('.rest-between-exercises-input');
+
+    if (restBetweenSetsInput) {
+        restBetweenSetsInput.addEventListener('input', (e) => {
+            editingRoutine.restBetweenSets = parseInt(e.target.value) || 60;
+        });
+    }
+
+    if (restBetweenExercisesInput) {
+        restBetweenExercisesInput.addEventListener('input', (e) => {
+            editingRoutine.restBetweenExercises = parseInt(e.target.value) || 90;
+        });
+    }
+}
+
+// Setup drag and drop for editable exercise list
+function setupEditableExerciseDragAndDrop() {
+    const exerciseList = document.getElementById('editable-exercise-list');
+    if (!exerciseList) return;
+
+    let draggedElement = null;
+    let draggedIndex = null;
+
+    // Add drag event listeners to all exercise items
+    const exerciseItems = exerciseList.querySelectorAll('.routine-exercise-item');
+    
+    exerciseItems.forEach((item, index) => {
+        // Remove existing listeners to prevent duplicates
+        item.removeEventListener('dragstart', item._dragStartHandler);
+        item.removeEventListener('dragend', item._dragEndHandler);
+        item.removeEventListener('dragover', item._dragOverHandler);
+        item.removeEventListener('dragleave', item._dragLeaveHandler);
+        item.removeEventListener('drop', item._dropHandler);
+
+        // Create new event handlers
+        item._dragStartHandler = (e) => {
+            draggedElement = item;
+            draggedIndex = parseInt(item.dataset.index);
+            item.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/html', item.outerHTML);
+        };
+
+        item._dragEndHandler = (e) => {
+            item.classList.remove('dragging');
+            draggedElement = null;
+            draggedIndex = null;
+        };
+
+        item._dragOverHandler = (e) => {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+            if (draggedElement && draggedElement !== item) {
+                item.classList.add('drag-over');
+            }
+        };
+
+        item._dragLeaveHandler = (e) => {
+            item.classList.remove('drag-over');
+        };
+
+        item._dropHandler = (e) => {
+            e.preventDefault();
+            item.classList.remove('drag-over');
+            
+            if (draggedElement && draggedIndex !== null) {
+                const dropIndex = parseInt(item.dataset.index);
+                
+                if (draggedIndex !== dropIndex) {
+                    // Reorder the exercises in editingRoutine
+                    const movedExercise = editingRoutine.exercises.splice(draggedIndex, 1)[0];
+                    editingRoutine.exercises.splice(dropIndex, 0, movedExercise);
+                    
+                    // Re-render the exercise list to update indices
+                    renderEditableRoutinePreview();
+                }
+            }
+        };
+
+        // Add event listeners
+        item.addEventListener('dragstart', item._dragStartHandler);
+        item.addEventListener('dragend', item._dragEndHandler);
+        item.addEventListener('dragover', item._dragOverHandler);
+        item.addEventListener('dragleave', item._dragLeaveHandler);
+        item.addEventListener('drop', item._dropHandler);
+    });
+}
+
+// Add exercise to editable routine
+function addExerciseToEditableRoutine() {
+    if (!editingRoutine.exercises) {
+        editingRoutine.exercises = [];
+    }
+    
+    editingRoutine.exercises.push({
+        name: 'New Exercise',
+        reps: '8-12',
+        weight: 'Bodyweight',
+        sets: 3
+    });
+    
+    renderEditableRoutinePreview();
+}
+
+// Remove exercise from routine
+function removeExerciseFromRoutine(index) {
+    if (editingRoutine.exercises && editingRoutine.exercises[index]) {
+        editingRoutine.exercises.splice(index, 1);
+        renderEditableRoutinePreview();
+    }
+}
+
+// Cancel routine edit
+function cancelRoutineEdit() {
+    editingRoutine = null;
+    closeRoutinePreviewModal();
+    showNotification('Changes cancelled', 'info');
+}
+
+// Save routine edit
+function saveRoutineEdit() {
+    if (!editingRoutine) return;
+
+    // Update the original routine in savedRoutines
+    const index = savedRoutines.findIndex(r => r.id === editingRoutine.id);
+    if (index !== -1) {
+        // Recalculate totalSets based on updated exercises
+        const totalSets = editingRoutine.exercises ? 
+            editingRoutine.exercises.reduce((sum, ex) => sum + (parseInt(ex.sets) || 0), 0) : 0;
+        
+        savedRoutines[index] = { 
+            ...editingRoutine,
+            totalSets: totalSets,
+            lastModified: new Date().toISOString()
+        };
+        
+        // Save to storage
+        saveRoutinesToStorage();
+        updateSavedRoutinesPreview();
+        renderSavedRoutinesList();
+        
+        // Close modal and show success message
+        editingRoutine = null;
+        closeRoutinePreviewModal();
+        showNotification('Routine updated successfully!', 'success');
+    }
+}
+
+// Initialize saved routines when the application loads
+document.addEventListener('DOMContentLoaded', () => {
+    // Add this to the existing initialization
+    initializeSavedRoutines();
+});
+
+// Close modals when clicking overlay
+document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('modal-overlay')) {
+        const modal = e.target.closest('.modal');
+        if (modal) {
+            modal.classList.remove('active');
+        }
+    }
+});
+
+// Close modals with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const activeModals = document.querySelectorAll('.modal.active');
+        activeModals.forEach(modal => {
+            modal.classList.remove('active');
+        });
+    }
+});
+   

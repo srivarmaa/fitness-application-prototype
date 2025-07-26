@@ -47,6 +47,14 @@
       "icon": "fas fa-expand-arrows-alt",
       "color": "#9370db",
       "equipment": ["none"]
+    },
+    {
+      "id": "saved-routines",
+      "name": "Saved Routines",
+      "description": "Your custom routines",
+      "icon": "fas fa-bookmark",
+      "color": "#ffd700",
+      "equipment": ["custom"]
     }
   ],
   "exercises": [

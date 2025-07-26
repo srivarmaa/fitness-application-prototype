@@ -653,6 +653,8 @@
                                     </div>
                                 </div>
                             </div>
+                            
+
                         </div>
                     </div>
                 </div>
@@ -1062,6 +1064,88 @@
             <div class="bottom-sheet-body">
                 <div id="exercise-detail-content">
                     <!-- Exercise details will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Saved Routines Modal -->
+    <div class="modal" id="saved-routines-modal">
+        <div class="modal-overlay" id="saved-routines-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-bookmark"></i>
+                    Your Saved Routines
+                </h3>
+                <button class="modal-close" onclick="closeSavedRoutinesModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="routines-toolbar">
+                    <div class="search-container">
+                        <input type="text" id="routine-search" class="form-input" placeholder="Search routines...">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    <div class="routines-actions">
+                        <button class="btn btn-outline btn-sm" onclick="openUploadRoutineModal()" title="Upload a routine file">
+                            <i class="fas fa-upload"></i>
+                            Upload
+                        </button>
+                        <div class="filter-buttons">
+                            <button class="btn btn-outline btn-sm active" data-filter="all">All</button>
+                            <button class="btn btn-outline btn-sm" data-filter="favorites">Favorites</button>
+                            <button class="btn btn-outline btn-sm" data-filter="recent">Recent</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="saved-routines-list">
+                    <!-- Saved routines will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Upload Routine Modal -->
+    <div class="modal" id="upload-routine-modal">
+        <div class="modal-overlay" id="upload-routine-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-upload"></i>
+                    Upload Routine
+                </h3>
+                <button class="modal-close" onclick="closeUploadRoutineModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="upload-area" id="routine-upload-area">
+                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                    <p>Drag and drop your routine JSON file here or click to browse</p>
+                    <input type="file" id="routine-file-input" accept=".json" style="display: none;">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Routine Preview Modal -->
+    <div class="modal" id="routine-preview-modal">
+        <div class="modal-overlay" id="routine-preview-overlay"></div>
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-eye"></i>
+                    Routine Preview
+                </h3>
+                <button class="modal-close" onclick="closeRoutinePreviewModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="routine-preview-content">
+                    <!-- Routine preview will be loaded here -->
                 </div>
             </div>
         </div>
