@@ -1,0 +1,314 @@
+{
+  "messages": [
+    {
+      "id": "msg_001",
+      "coachId": "coach_001",
+      "clientId": "user_005",
+      "type": "activity_log",
+      "content": "Started Upper Body Strength workout",
+      "timestamp": "2024-03-22T09:00:00Z",
+      "workoutId": "workout_001",
+      "duration": 45,
+      "status": "completed"
+    },
+    {
+      "id": "msg_002",
+      "coachId": "coach_001",
+      "clientId": "user_005",
+      "type": "message",
+      "content": "Great job on today's workout! Your form is improving significantly. Keep up the good work!",
+      "timestamp": "2024-03-22T10:30:00Z",
+      "from": "coach",
+      "status": "read"
+    },
+    {
+      "id": "msg_003",
+      "coachId": "coach_002",
+      "clientId": "user_006",
+      "type": "activity_log",
+      "content": "Completed HIIT Cardio Session",
+      "timestamp": "2024-03-23T07:30:00Z",
+      "workoutId": "workout_002",
+      "duration": 30,
+      "status": "completed"
+    },
+    {
+      "id": "msg_004",
+      "coachId": "coach_002",
+      "clientId": "user_006",
+      "type": "message",
+      "content": "Excellent endurance today! Your heart rate zones were perfect. Ready for the next challenge?",
+      "timestamp": "2024-03-23T08:15:00Z",
+      "from": "coach",
+      "status": "read"
+    },
+    {
+      "id": "msg_005",
+      "coachId": "coach_003",
+      "clientId": "user_007",
+      "type": "activity_log",
+      "content": "Completed Vinyasa Yoga Flow",
+      "timestamp": "2024-03-24T18:00:00Z",
+      "workoutId": "workout_003",
+      "duration": 60,
+      "status": "completed"
+    },
+    {
+      "id": "msg_006",
+      "coachId": "coach_003",
+      "clientId": "user_007",
+      "type": "message",
+      "content": "Your mindfulness practice is deepening beautifully. How are you feeling after today's session?",
+      "timestamp": "2024-03-24T19:30:00Z",
+      "from": "coach",
+      "status": "read"
+    },
+    {
+      "id": "msg_007",
+      "coachId": "coach_004",
+      "clientId": "user_008",
+      "type": "activity_log",
+      "content": "Completed Speed & Agility Training",
+      "timestamp": "2024-03-25T06:00:00Z",
+      "workoutId": "workout_004",
+      "duration": 75,
+      "status": "completed"
+    },
+    {
+      "id": "msg_008",
+      "coachId": "coach_004",
+      "clientId": "user_008",
+      "type": "message",
+      "content": "Outstanding performance today! Your reaction time improved by 15%. Keep pushing!",
+      "timestamp": "2024-03-25T07:30:00Z",
+      "from": "coach",
+      "status": "read"
+    },
+    {
+      "id": "msg_009",
+      "coachId": "coach_005",
+      "clientId": "user_009",
+      "type": "activity_log",
+      "content": "Completed Weight Loss Cardio Session",
+      "timestamp": "2024-03-26T17:00:00Z",
+      "workoutId": "workout_005",
+      "duration": 40,
+      "status": "completed"
+    },
+    {
+      "id": "msg_010",
+      "coachId": "coach_005",
+      "clientId": "user_009",
+      "type": "message",
+      "content": "Great progress! You've lost 5 pounds this month. Let's review your nutrition plan.",
+      "timestamp": "2024-03-26T18:15:00Z",
+      "from": "coach",
+      "status": "read"
+    },
+    {
+      "id": "msg_011",
+      "coachId": "coach_006",
+      "clientId": "user_010",
+      "type": "activity_log",
+      "content": "Completed Rehabilitation Exercises",
+      "timestamp": "2024-03-27T10:00:00Z",
+      "workoutId": "workout_006",
+      "duration": 35,
+      "status": "completed"
+    },
+    {
+      "id": "msg_012",
+      "coachId": "coach_006",
+      "clientId": "user_010",
+      "type": "message",
+      "content": "Your knee mobility is improving well. No pain during today's session - excellent!",
+      "timestamp": "2024-03-27T11:00:00Z",
+      "from": "coach",
+      "status": "read"
+    },
+    {
+      "id": "msg_013",
+      "coachId": "coach_007",
+      "clientId": "user_011",
+      "type": "activity_log",
+      "content": "Completed Powerlifting Training",
+      "timestamp": "2024-03-28T16:00:00Z",
+      "workoutId": "workout_007",
+      "duration": 90,
+      "status": "completed"
+    },
+    {
+      "id": "msg_014",
+      "coachId": "coach_007",
+      "clientId": "user_011",
+      "type": "message",
+      "content": "New personal record on deadlift! 315 lbs - you're ready for competition prep.",
+      "timestamp": "2024-03-28T17:30:00Z",
+      "from": "coach",
+      "status": "read"
+    },
+    {
+      "id": "msg_015",
+      "coachId": "coach_008",
+      "clientId": "user_012",
+      "type": "activity_log",
+      "content": "Completed Long Distance Run",
+      "timestamp": "2024-03-29T06:30:00Z",
+      "workoutId": "workout_008",
+      "duration": 120,
+      "status": "completed"
+    },
+    {
+      "id": "msg_016",
+      "coachId": "coach_008",
+      "clientId": "user_012",
+      "type": "message",
+      "content": "15 miles completed! Your marathon training is on track. Great pacing!",
+      "timestamp": "2024-03-29T08:00:00Z",
+      "from": "coach",
+      "status": "read"
+    },
+    {
+      "id": "msg_017",
+      "coachId": "coach_009",
+      "clientId": "user_013",
+      "type": "activity_log",
+      "content": "Completed Mindfulness Meditation",
+      "timestamp": "2024-03-30T20:00:00Z",
+      "workoutId": "workout_009",
+      "duration": 30,
+      "status": "completed"
+    },
+    {
+      "id": "msg_018",
+      "coachId": "coach_009",
+      "clientId": "user_013",
+      "type": "message",
+      "content": "Your stress levels have decreased by 25% this week. The mindfulness practice is working!",
+      "timestamp": "2024-03-30T21:00:00Z",
+      "from": "coach",
+      "status": "read"
+    },
+    {
+      "id": "msg_019",
+      "coachId": "coach_010",
+      "clientId": "user_014",
+      "type": "activity_log",
+      "content": "Completed Elite Performance Training",
+      "timestamp": "2024-03-31T05:00:00Z",
+      "workoutId": "workout_010",
+      "duration": 105,
+      "status": "completed"
+    },
+    {
+      "id": "msg_020",
+      "coachId": "coach_010",
+      "clientId": "user_014",
+      "type": "message",
+      "content": "Peak performance achieved! Your metrics are at elite level. Championship ready!",
+      "timestamp": "2024-03-31T06:30:00Z",
+      "from": "coach",
+      "status": "read"
+    },
+    {
+      "id": "msg_021",
+      "coachId": "coach_001",
+      "clientId": "user_005",
+      "type": "message",
+      "content": "Coach, I'm feeling stronger but my shoulder is a bit sore. Should I modify my routine?",
+      "timestamp": "2024-04-01T14:20:00Z",
+      "from": "client",
+      "status": "unread"
+    },
+    {
+      "id": "msg_022",
+      "coachId": "coach_002",
+      "clientId": "user_006",
+      "type": "message",
+      "content": "Can we increase the intensity next week? I'm ready for more challenging workouts!",
+      "timestamp": "2024-04-02T09:15:00Z",
+      "from": "client",
+      "status": "unread"
+    },
+    {
+      "id": "msg_023",
+      "coachId": "coach_003",
+      "clientId": "user_007",
+      "type": "message",
+      "content": "The meditation techniques are helping with my work stress. Thank you!",
+      "timestamp": "2024-04-03T19:45:00Z",
+      "from": "client",
+      "status": "unread"
+    },
+    {
+      "id": "msg_024",
+      "coachId": "coach_004",
+      "clientId": "user_008",
+      "type": "message",
+      "content": "My basketball coach noticed my improved speed! The training is working!",
+      "timestamp": "2024-04-04T16:30:00Z",
+      "from": "client",
+      "status": "unread"
+    },
+    {
+      "id": "msg_025",
+      "coachId": "coach_005",
+      "clientId": "user_009",
+      "type": "message",
+      "content": "I've been following the meal plan and feeling much better. Can we adjust my macros?",
+      "timestamp": "2024-04-05T12:00:00Z",
+      "from": "client",
+      "status": "unread"
+    },
+    {
+      "id": "msg_026",
+      "coachId": "coach_006",
+      "clientId": "user_010",
+      "type": "message",
+      "content": "The knee exercises are helping! I can walk without pain now.",
+      "timestamp": "2024-04-06T11:20:00Z",
+      "from": "client",
+      "status": "unread"
+    },
+    {
+      "id": "msg_027",
+      "coachId": "coach_007",
+      "clientId": "user_011",
+      "type": "message",
+      "content": "Ready for the powerlifting meet next month! Feeling confident!",
+      "timestamp": "2024-04-07T15:45:00Z",
+      "from": "client",
+      "status": "unread"
+    },
+    {
+      "id": "msg_028",
+      "coachId": "coach_008",
+      "clientId": "user_012",
+      "type": "message",
+      "content": "The marathon is in 3 weeks! Nervous but excited. Any last-minute tips?",
+      "timestamp": "2024-04-08T08:30:00Z",
+      "from": "client",
+      "status": "unread"
+    },
+    {
+      "id": "msg_029",
+      "coachId": "coach_009",
+      "clientId": "user_013",
+      "type": "message",
+      "content": "My boss noticed I'm more focused at work. The mindfulness is really helping!",
+      "timestamp": "2024-04-09T17:15:00Z",
+      "from": "client",
+      "status": "unread"
+    },
+    {
+      "id": "msg_030",
+      "coachId": "coach_010",
+      "clientId": "user_014",
+      "type": "message",
+      "content": "The championship is next week! Feeling prepared and confident. Thank you for everything!",
+      "timestamp": "2024-04-10T13:00:00Z",
+      "from": "client",
+      "status": "unread"
+    }
+  ]
+} 
