@@ -1,0 +1,304 @@
+/* Coach Dashboard Specific Styles */
+
+/* Login Screen */
+.login-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.login-container {
+    background: var(--card);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xxl);
+    box-shadow: var(--shadow-xlarge);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+}
+
+.login-header {
+    margin-bottom: var(--spacing-xl);
+}
+
+.login-header .logo {
+    font-size: var(--font-size-xxl);
+    font-weight: var(--font-weight-bold);
+    color: var(--primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.login-header h2 {
+    color: var(--foreground);
+    margin-bottom: var(--spacing-sm);
+}
+
+.login-header p {
+    color: var(--muted-foreground);
+    font-size: var(--font-size-sm);
+}
+
+.login-tabs {
+    display: flex;
+    background: var(--muted);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-xs);
+    margin-bottom: var(--spacing-lg);
+}
+
+.login-tab {
+    flex: 1;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: none;
+    border: none;
+    border-radius: var(--radius-sm);
+    color: var(--muted-foreground);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: var(--font-size-sm);
+}
+
+.login-tab.active {
+    background: var(--primary);
+    color: var(--primary-foreground);
+}
+
+.login-tab:hover:not(.active) {
+    background: var(--accent);
+    color: var(--accent-foreground);
+}
+
+.login-form {
+    display: none;
+    text-align: left;
+}
+
+.login-form.active {
+    display: block;
+}
+
+.btn-block {
+    width: 100%;
+    margin-top: var(--spacing-lg);
+}
+
+.login-footer {
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--border);
+}
+
+.login-footer p {
+    color: var(--muted-foreground);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+.demo-credentials {
+    text-align: left;
+    font-size: var(--font-size-xs);
+    color: var(--muted-foreground);
+}
+
+.demo-account {
+    margin-bottom: var(--spacing-xs);
+    padding: var(--spacing-xs);
+    background: var(--muted);
+    border-radius: var(--radius-sm);
+}
+
+/* Coach Dashboard Specific Elements */
+.current-user-info {
+    text-align: center;
+}
+
+.current-user-info span {
+    display: block;
+}
+
+.current-user-info .user-role {
+    font-size: var(--font-size-sm);
+    color: var(--muted-foreground);
+}
+
+.client-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.client-dashboard-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+/* Client List Styles */
+.client-card {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-md);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-sm);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.client-card:hover {
+    background: var(--accent);
+    border-color: var(--primary);
+}
+
+.client-card.active {
+    background: var(--primary);
+    color: var(--primary-foreground);
+}
+
+.client-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: var(--spacing-md);
+    font-weight: var(--font-weight-semibold);
+}
+
+.client-info {
+    flex: 1;
+}
+
+.client-name {
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--spacing-xs);
+}
+
+.client-status {
+    font-size: var(--font-size-sm);
+    color: var(--muted-foreground);
+}
+
+.client-activity {
+    font-size: var(--font-size-xs);
+    color: var(--chart-2);
+}
+
+/* Activity Feed */
+.activity-item {
+    display: flex;
+    align-items: flex-start;
+    padding: var(--spacing-sm);
+    border-bottom: 1px solid var(--border);
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+.activity-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+}
+
+.activity-content {
+    flex: 1;
+}
+
+.activity-text {
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-xs);
+}
+
+.activity-time {
+    font-size: var(--font-size-xs);
+    color: var(--muted-foreground);
+}
+
+/* Message Styles */
+.message-item {
+    display: flex;
+    align-items: flex-start;
+    padding: var(--spacing-sm);
+    border-bottom: 1px solid var(--border);
+}
+
+.message-item:last-child {
+    border-bottom: none;
+}
+
+.message-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--chart-1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: var(--spacing-sm);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+}
+
+.message-content {
+    flex: 1;
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-xs);
+}
+
+.message-sender {
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-sm);
+}
+
+.message-time {
+    font-size: var(--font-size-xs);
+    color: var(--muted-foreground);
+}
+
+.message-text {
+    font-size: var(--font-size-sm);
+    line-height: 1.4;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .login-container {
+        padding: var(--spacing-lg);
+        margin: var(--spacing-md);
+    }
+    
+    .client-actions,
+    .client-dashboard-actions {
+        flex-direction: column;
+    }
+    
+    .client-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .client-avatar {
+        margin-right: 0;
+        margin-bottom: var(--spacing-sm);
+    }
+} 
