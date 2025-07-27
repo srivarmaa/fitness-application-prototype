@@ -1,0 +1,21 @@
+{
+  "name": "Test Routine",
+  "description": "A simple test routine for debugging",
+  "category": "Strength",
+  "difficulty": "Beginner",
+  "estimatedTime": "30 minutes",
+  "exercises": [
+    {
+      "name": "Push-ups",
+      "reps": "10",
+      "sets": 3,
+      "weight": "Bodyweight"
+    },
+    {
+      "name": "Squats",
+      "reps": "15",
+      "sets": 3,
+      "weight": "Bodyweight"
+    }
+  ]
+} 
