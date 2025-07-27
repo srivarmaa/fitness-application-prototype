@@ -16,6 +16,7 @@
     "customMealPreference": "",
     "medicalConditions": [],
     "allergies": [],
+    "coachId": null,
     "emergencyContact": {
       "name": "Sarah Johnson",
       "relationship": "Spouse",
@@ -29,6 +30,218 @@
       "timezone": "America/New_York"
     }
   },
+  "clients": [
+    {
+      "id": "user_005",
+      "name": "Jennifer Davis",
+      "email": "jennifer.davis@email.com",
+      "avatar": "https://via.placeholder.com/40",
+      "joinDate": "2024-02-10",
+      "age": 32,
+      "height": 165,
+      "weight": 68,
+      "gender": "female",
+      "fitnessLevel": "beginner",
+      "goals": ["weight_loss", "muscle_gain"],
+      "activityLevel": "low",
+      "mealPreference": "vegetarian",
+      "coachId": "coach_001",
+      "emergencyContact": {
+        "name": "Michael Davis",
+        "relationship": "Spouse",
+        "phone": "+1-555-0201"
+      }
+    },
+    {
+      "id": "user_006",
+      "name": "Robert Wilson",
+      "email": "robert.wilson@email.com",
+      "avatar": "https://via.placeholder.com/40",
+      "joinDate": "2024-02-15",
+      "age": 35,
+      "height": 180,
+      "weight": 82,
+      "gender": "male",
+      "fitnessLevel": "intermediate",
+      "goals": ["endurance", "weight_loss"],
+      "activityLevel": "moderate",
+      "mealPreference": "non_veg",
+      "coachId": "coach_002",
+      "emergencyContact": {
+        "name": "Lisa Wilson",
+        "relationship": "Spouse",
+        "phone": "+1-555-0202"
+      }
+    },
+    {
+      "id": "user_007",
+      "name": "Maria Garcia",
+      "email": "maria.garcia@email.com",
+      "avatar": "https://via.placeholder.com/40",
+      "joinDate": "2024-02-20",
+      "age": 29,
+      "height": 160,
+      "weight": 55,
+      "gender": "female",
+      "fitnessLevel": "beginner",
+      "goals": ["stress_relief", "flexibility", "mindfulness"],
+      "activityLevel": "low",
+      "mealPreference": "vegan",
+      "coachId": "coach_003",
+      "emergencyContact": {
+        "name": "Carlos Garcia",
+        "relationship": "Spouse",
+        "phone": "+1-555-0203"
+      }
+    },
+    {
+      "id": "user_008",
+      "name": "Kevin Thompson",
+      "email": "kevin.thompson@email.com",
+      "avatar": "https://via.placeholder.com/40",
+      "joinDate": "2024-02-25",
+      "age": 22,
+      "height": 185,
+      "weight": 78,
+      "gender": "male",
+      "fitnessLevel": "advanced",
+      "goals": ["athletic_performance", "speed", "power"],
+      "activityLevel": "high",
+      "mealPreference": "non_veg",
+      "coachId": "coach_004",
+      "emergencyContact": {
+        "name": "Patricia Thompson",
+        "relationship": "Parent",
+        "phone": "+1-555-0204"
+      }
+    },
+    {
+      "id": "user_009",
+      "name": "Amanda Lee",
+      "email": "amanda.lee@email.com",
+      "avatar": "https://via.placeholder.com/40",
+      "joinDate": "2024-03-01",
+      "age": 38,
+      "height": 170,
+      "weight": 85,
+      "gender": "female",
+      "fitnessLevel": "beginner",
+      "goals": ["weight_loss", "healthy_eating", "lifestyle_change"],
+      "activityLevel": "low",
+      "mealPreference": "non_veg",
+      "coachId": "coach_005",
+      "emergencyContact": {
+        "name": "David Lee",
+        "relationship": "Spouse",
+        "phone": "+1-555-0205"
+      }
+    },
+    {
+      "id": "user_010",
+      "name": "Thomas Brown",
+      "email": "thomas.brown@email.com",
+      "avatar": "https://via.placeholder.com/40",
+      "joinDate": "2024-03-05",
+      "age": 45,
+      "height": 175,
+      "weight": 90,
+      "gender": "male",
+      "fitnessLevel": "beginner",
+      "goals": ["injury_recovery", "pain_management", "mobility"],
+      "activityLevel": "low",
+      "mealPreference": "non_veg",
+      "coachId": "coach_006",
+      "emergencyContact": {
+        "name": "Susan Brown",
+        "relationship": "Spouse",
+        "phone": "+1-555-0206"
+      }
+    },
+    {
+      "id": "user_011",
+      "name": "Jessica Martinez",
+      "email": "jessica.martinez@email.com",
+      "avatar": "https://via.placeholder.com/40",
+      "joinDate": "2024-03-10",
+      "age": 26,
+      "height": 168,
+      "weight": 65,
+      "gender": "female",
+      "fitnessLevel": "intermediate",
+      "goals": ["strength_building", "muscle_gain", "competition_prep"],
+      "activityLevel": "high",
+      "mealPreference": "non_veg",
+      "coachId": "coach_007",
+      "emergencyContact": {
+        "name": "Anthony Martinez",
+        "relationship": "Spouse",
+        "phone": "+1-555-0207"
+      }
+    },
+    {
+      "id": "user_012",
+      "name": "Daniel Clark",
+      "email": "daniel.clark@email.com",
+      "avatar": "https://via.placeholder.com/40",
+      "joinDate": "2024-03-15",
+      "age": 31,
+      "height": 178,
+      "weight": 72,
+      "gender": "male",
+      "fitnessLevel": "intermediate",
+      "goals": ["endurance", "marathon_training", "running"],
+      "activityLevel": "moderate",
+      "mealPreference": "vegetarian",
+      "coachId": "coach_008",
+      "emergencyContact": {
+        "name": "Rachel Clark",
+        "relationship": "Spouse",
+        "phone": "+1-555-0208"
+      }
+    },
+    {
+      "id": "user_013",
+      "name": "Sarah Taylor",
+      "email": "sarah.taylor@email.com",
+      "avatar": "https://via.placeholder.com/40",
+      "joinDate": "2024-03-20",
+      "age": 34,
+      "height": 162,
+      "weight": 58,
+      "gender": "female",
+      "fitnessLevel": "beginner",
+      "goals": ["stress_management", "mindfulness", "work_life_balance"],
+      "activityLevel": "low",
+      "mealPreference": "vegan",
+      "coachId": "coach_009",
+      "emergencyContact": {
+        "name": "James Taylor",
+        "relationship": "Spouse",
+        "phone": "+1-555-0209"
+      }
+    },
+    {
+      "id": "user_014",
+      "name": "Michael Anderson",
+      "email": "michael.anderson@email.com",
+      "avatar": "https://via.placeholder.com/40",
+      "joinDate": "2024-03-25",
+      "age": 24,
+      "height": 188,
+      "weight": 85,
+      "gender": "male",
+      "fitnessLevel": "expert",
+      "goals": ["peak_performance", "elite_training", "sports_psychology"],
+      "activityLevel": "very_high",
+      "mealPreference": "non_veg",
+      "coachId": "coach_010",
+      "emergencyContact": {
+        "name": "Emily Anderson",
+        "relationship": "Spouse",
+        "phone": "+1-555-0210"
+      }
+    }
+  ],
   "stats": {
     "level": 12,
     "xp": 2450,
@@ -99,11 +312,21 @@
     {
       "id": "bench_press",
       "type": "strength",
-      "title": "Bench Press 200 lbs",
-      "target": 200,
-      "current": 165,
+      "title": "Bench Press 225 lbs",
+      "target": 225,
+      "current": 185,
       "unit": "lbs",
-      "deadline": "2024-07-15",
+      "deadline": "2024-05-15",
+      "status": "active"
+    },
+    {
+      "id": "running_5k",
+      "type": "endurance",
+      "title": "Run 5K under 25 minutes",
+      "target": 25,
+      "current": 32,
+      "unit": "minutes",
+      "deadline": "2024-04-30",
       "status": "active"
     }
   ]

@@ -1,0 +1,592 @@
+{
+  "coaches": [
+    {
+      "id": "coach_001",
+      "userId": "user_001",
+      "name": "Sarah Johnson",
+      "email": "sarah.johnson@fitcoach.com",
+      "avatar": "https://via.placeholder.com/60",
+      "title": "Certified Personal Trainer",
+      "level": "senior",
+      "category": "strength_training",
+      "experience": 8,
+      "rating": 4.9,
+      "clientCount": 12,
+      "maxClients": 20,
+      "hourlyRate": 75,
+      "credentials": [
+        "NASM-CPT",
+        "ACSM-EP",
+        "Nutrition Specialist",
+        "Strength & Conditioning Specialist"
+      ],
+      "specialties": [
+        "Strength Training",
+        "Weight Loss",
+        "Functional Movement",
+        "Injury Prevention",
+        "Sports Performance"
+      ],
+      "achievements": [
+        "Certified Personal Trainer of the Year 2023",
+        "100+ Successful Client Transformations",
+        "Specialist in Post-Rehabilitation Training"
+      ],
+      "bio": "Passionate about helping people achieve their fitness goals through sustainable, science-based training methods. Specializing in strength training and functional movement.",
+      "contact": {
+        "phone": "+1-555-0123",
+        "timezone": "EST",
+        "availability": {
+          "monday": {"start": "06:00", "end": "20:00"},
+          "tuesday": {"start": "06:00", "end": "20:00"},
+          "wednesday": {"start": "06:00", "end": "20:00"},
+          "thursday": {"start": "06:00", "end": "20:00"},
+          "friday": {"start": "06:00", "end": "18:00"},
+          "saturday": {"start": "08:00", "end": "16:00"},
+          "sunday": {"start": "10:00", "end": "14:00"}
+        }
+      },
+      "status": "active",
+      "verificationStatus": "verified",
+      "joinDate": "2020-03-15",
+      "certificateUrl": "https://example.com/certificates/sarah-johnson.pdf"
+    },
+    {
+      "id": "coach_002",
+      "userId": "user_002",
+      "name": "Mike Rodriguez",
+      "email": "mike.rodriguez@fitcoach.com",
+      "avatar": "https://via.placeholder.com/60",
+      "title": "HIIT & Cardio Specialist",
+      "level": "intermediate",
+      "category": "cardio_hiit",
+      "experience": 5,
+      "rating": 4.7,
+      "clientCount": 8,
+      "maxClients": 15,
+      "hourlyRate": 60,
+      "credentials": [
+        "ACE-CPT",
+        "HIIT Specialist",
+        "Sports Nutrition Coach"
+      ],
+      "specialties": [
+        "High-Intensity Interval Training",
+        "Cardiovascular Fitness",
+        "Endurance Training",
+        "Fat Loss",
+        "Athletic Performance"
+      ],
+      "achievements": [
+        "Former College Track Coach",
+        "50+ Endurance Athletes Trained",
+        "Marathon Training Specialist"
+      ],
+      "bio": "Former collegiate athlete turned fitness coach. Specializing in high-intensity workouts and endurance training for all fitness levels.",
+      "contact": {
+        "phone": "+1-555-0124",
+        "timezone": "PST",
+        "availability": {
+          "monday": {"start": "05:00", "end": "19:00"},
+          "tuesday": {"start": "05:00", "end": "19:00"},
+          "wednesday": {"start": "05:00", "end": "19:00"},
+          "thursday": {"start": "05:00", "end": "19:00"},
+          "friday": {"start": "05:00", "end": "17:00"},
+          "saturday": {"start": "07:00", "end": "15:00"},
+          "sunday": {"start": "08:00", "end": "12:00"}
+        }
+      },
+      "status": "active",
+      "verificationStatus": "verified",
+      "joinDate": "2021-06-20",
+      "certificateUrl": "https://example.com/certificates/mike-rodriguez.pdf"
+    },
+    {
+      "id": "coach_003",
+      "userId": "user_003",
+      "name": "Emma Chen",
+      "email": "emma.chen@fitcoach.com",
+      "avatar": "https://via.placeholder.com/60",
+      "title": "Yoga & Wellness Coach",
+      "level": "senior",
+      "category": "yoga_wellness",
+      "experience": 10,
+      "rating": 4.8,
+      "clientCount": 15,
+      "maxClients": 20,
+      "hourlyRate": 70,
+      "credentials": [
+        "RYT-500",
+        "Yoga Therapy Certified",
+        "Mindfulness Coach",
+        "Reiki Master"
+      ],
+      "specialties": [
+        "Vinyasa Yoga",
+        "Yin Yoga",
+        "Meditation",
+        "Stress Management",
+        "Holistic Wellness"
+      ],
+      "achievements": [
+        "Yoga Alliance Certified Instructor",
+        "Mindfulness-Based Stress Reduction Teacher",
+        "Wellness Retreat Leader"
+      ],
+      "bio": "Dedicated to promoting holistic wellness through yoga, meditation, and mindful living practices. Helping clients find balance in body, mind, and spirit.",
+      "contact": {
+        "phone": "+1-555-0125",
+        "timezone": "CST",
+        "availability": {
+          "monday": {"start": "07:00", "end": "18:00"},
+          "tuesday": {"start": "07:00", "end": "18:00"},
+          "wednesday": {"start": "07:00", "end": "18:00"},
+          "thursday": {"start": "07:00", "end": "18:00"},
+          "friday": {"start": "07:00", "end": "16:00"},
+          "saturday": {"start": "08:00", "end": "14:00"},
+          "sunday": {"start": "09:00", "end": "13:00"}
+        }
+      },
+      "status": "active",
+      "verificationStatus": "verified",
+      "joinDate": "2019-01-10",
+      "certificateUrl": "https://example.com/certificates/emma-chen.pdf"
+    },
+    {
+      "id": "coach_004",
+      "userId": "user_004",
+      "name": "David Thompson",
+      "email": "david.thompson@fitcoach.com",
+      "avatar": "https://via.placeholder.com/60",
+      "title": "Sports Performance Coach",
+      "level": "expert",
+      "category": "sports_performance",
+      "experience": 12,
+      "rating": 4.9,
+      "clientCount": 18,
+      "maxClients": 30,
+      "hourlyRate": 90,
+      "credentials": [
+        "CSCS",
+        "USA Weightlifting Coach",
+        "Sports Nutrition Specialist",
+        "Athletic Performance Coach"
+      ],
+      "specialties": [
+        "Athletic Performance",
+        "Speed & Agility",
+        "Power Training",
+        "Sports-Specific Training",
+        "Injury Prevention"
+      ],
+      "achievements": [
+        "Former NFL Strength Coach",
+        "Olympic Athletes Trained",
+        "Sports Performance Consultant"
+      ],
+      "bio": "Former professional athlete and NFL strength coach. Specializing in sports performance training for athletes at all levels.",
+      "contact": {
+        "phone": "+1-555-0126",
+        "timezone": "EST",
+        "availability": {
+          "monday": {"start": "05:00", "end": "21:00"},
+          "tuesday": {"start": "05:00", "end": "21:00"},
+          "wednesday": {"start": "05:00", "end": "21:00"},
+          "thursday": {"start": "05:00", "end": "21:00"},
+          "friday": {"start": "05:00", "end": "19:00"},
+          "saturday": {"start": "06:00", "end": "16:00"},
+          "sunday": {"start": "08:00", "end": "14:00"}
+        }
+      },
+      "status": "active",
+      "verificationStatus": "verified",
+      "joinDate": "2018-08-15",
+      "certificateUrl": "https://example.com/certificates/david-thompson.pdf"
+    },
+    {
+      "id": "coach_005",
+      "userId": "user_005",
+      "name": "Lisa Martinez",
+      "email": "lisa.martinez@fitcoach.com",
+      "avatar": "https://via.placeholder.com/60",
+      "title": "Weight Loss Specialist",
+      "level": "intermediate",
+      "category": "weight_loss",
+      "experience": 6,
+      "rating": 4.6,
+      "clientCount": 10,
+      "maxClients": 15,
+      "hourlyRate": 55,
+      "credentials": [
+        "NASM-CPT",
+        "Weight Loss Specialist",
+        "Nutrition Coach",
+        "Behavioral Change Specialist"
+      ],
+      "specialties": [
+        "Weight Loss",
+        "Body Composition",
+        "Nutrition Coaching",
+        "Behavioral Change",
+        "Metabolic Health"
+      ],
+      "achievements": [
+        "100+ Pounds Lost by Clients",
+        "Nutrition Transformation Expert",
+        "Lifestyle Change Coach"
+      ],
+      "bio": "Passionate about helping clients achieve sustainable weight loss through comprehensive lifestyle changes, proper nutrition, and effective exercise programs.",
+      "contact": {
+        "phone": "+1-555-0127",
+        "timezone": "MST",
+        "availability": {
+          "monday": {"start": "06:00", "end": "19:00"},
+          "tuesday": {"start": "06:00", "end": "19:00"},
+          "wednesday": {"start": "06:00", "end": "19:00"},
+          "thursday": {"start": "06:00", "end": "19:00"},
+          "friday": {"start": "06:00", "end": "17:00"},
+          "saturday": {"start": "08:00", "end": "15:00"},
+          "sunday": {"start": "09:00", "end": "13:00"}
+        }
+      },
+      "status": "active",
+      "verificationStatus": "verified",
+      "joinDate": "2021-09-12",
+      "certificateUrl": "https://example.com/certificates/lisa-martinez.pdf"
+    },
+    {
+      "id": "coach_006",
+      "userId": "user_006",
+      "name": "James Wilson",
+      "email": "james.wilson@fitcoach.com",
+      "avatar": "https://via.placeholder.com/60",
+      "title": "Rehabilitation Specialist",
+      "level": "senior",
+      "category": "rehabilitation",
+      "experience": 9,
+      "rating": 4.8,
+      "clientCount": 14,
+      "maxClients": 20,
+      "hourlyRate": 80,
+      "credentials": [
+        "Physical Therapist",
+        "Corrective Exercise Specialist",
+        "Post-Rehabilitation Coach",
+        "Movement Specialist"
+      ],
+      "specialties": [
+        "Post-Injury Rehabilitation",
+        "Corrective Exercise",
+        "Pain Management",
+        "Movement Assessment",
+        "Functional Training"
+      ],
+      "achievements": [
+        "Licensed Physical Therapist",
+        "Sports Injury Rehabilitation Expert",
+        "Movement Pattern Specialist"
+      ],
+      "bio": "Licensed physical therapist specializing in post-injury rehabilitation and corrective exercise. Helping clients recover and prevent future injuries.",
+      "contact": {
+        "phone": "+1-555-0128",
+        "timezone": "PST",
+        "availability": {
+          "monday": {"start": "07:00", "end": "18:00"},
+          "tuesday": {"start": "07:00", "end": "18:00"},
+          "wednesday": {"start": "07:00", "end": "18:00"},
+          "thursday": {"start": "07:00", "end": "18:00"},
+          "friday": {"start": "07:00", "end": "16:00"},
+          "saturday": {"start": "08:00", "end": "14:00"},
+          "sunday": {"start": "09:00", "end": "12:00"}
+        }
+      },
+      "status": "active",
+      "verificationStatus": "verified",
+      "joinDate": "2020-11-05",
+      "certificateUrl": "https://example.com/certificates/james-wilson.pdf"
+    },
+    {
+      "id": "coach_007",
+      "userId": "user_007",
+      "name": "Amanda Foster",
+      "email": "amanda.foster@fitcoach.com",
+      "avatar": "https://via.placeholder.com/60",
+      "title": "Senior Strength Coach",
+      "level": "senior",
+      "category": "strength_training",
+      "experience": 7,
+      "rating": 4.7,
+      "clientCount": 16,
+      "maxClients": 20,
+      "hourlyRate": 75,
+      "credentials": [
+        "CSCS",
+        "USA Weightlifting Coach",
+        "Powerlifting Coach",
+        "Strength Specialist"
+      ],
+      "specialties": [
+        "Powerlifting",
+        "Olympic Weightlifting",
+        "Strength Building",
+        "Muscle Development",
+        "Competition Prep"
+      ],
+      "achievements": [
+        "Former Powerlifting Champion",
+        "Strength Training Expert",
+        "Competition Coach"
+      ],
+      "bio": "Former competitive powerlifter turned strength coach. Specializing in building raw strength and power for athletes and fitness enthusiasts.",
+      "contact": {
+        "phone": "+1-555-0129",
+        "timezone": "EST",
+        "availability": {
+          "monday": {"start": "06:00", "end": "20:00"},
+          "tuesday": {"start": "06:00", "end": "20:00"},
+          "wednesday": {"start": "06:00", "end": "20:00"},
+          "thursday": {"start": "06:00", "end": "20:00"},
+          "friday": {"start": "06:00", "end": "18:00"},
+          "saturday": {"start": "08:00", "end": "16:00"},
+          "sunday": {"start": "10:00", "end": "14:00"}
+        }
+      },
+      "status": "active",
+      "verificationStatus": "verified",
+      "joinDate": "2021-02-18",
+      "certificateUrl": "https://example.com/certificates/amanda-foster.pdf"
+    },
+    {
+      "id": "coach_008",
+      "userId": "user_008",
+      "name": "Carlos Rodriguez",
+      "email": "carlos.rodriguez@fitcoach.com",
+      "avatar": "https://via.placeholder.com/60",
+      "title": "Cardio & Endurance Coach",
+      "level": "intermediate",
+      "category": "cardio_hiit",
+      "experience": 4,
+      "rating": 4.5,
+      "clientCount": 9,
+      "maxClients": 15,
+      "hourlyRate": 50,
+      "credentials": [
+        "ACE-CPT",
+        "Endurance Coach",
+        "Running Coach",
+        "Triathlon Coach"
+      ],
+      "specialties": [
+        "Running",
+        "Cycling",
+        "Triathlon Training",
+        "Endurance Building",
+        "Race Preparation"
+      ],
+      "achievements": [
+        "Marathon Finisher",
+        "Triathlon Coach",
+        "Endurance Training Specialist"
+      ],
+      "bio": "Passionate endurance athlete and coach. Helping clients build stamina and prepare for endurance events from 5Ks to Ironman triathlons.",
+      "contact": {
+        "phone": "+1-555-0130",
+        "timezone": "CST",
+        "availability": {
+          "monday": {"start": "05:00", "end": "19:00"},
+          "tuesday": {"start": "05:00", "end": "19:00"},
+          "wednesday": {"start": "05:00", "end": "19:00"},
+          "thursday": {"start": "05:00", "end": "19:00"},
+          "friday": {"start": "05:00", "end": "17:00"},
+          "saturday": {"start": "06:00", "end": "15:00"},
+          "sunday": {"start": "07:00", "end": "13:00"}
+        }
+      },
+      "status": "active",
+      "verificationStatus": "verified",
+      "joinDate": "2022-03-22",
+      "certificateUrl": "https://example.com/certificates/carlos-rodriguez.pdf"
+    },
+    {
+      "id": "coach_009",
+      "userId": "user_009",
+      "name": "Sophie Kim",
+      "email": "sophie.kim@fitcoach.com",
+      "avatar": "https://via.placeholder.com/60",
+      "title": "Wellness & Mindfulness Coach",
+      "level": "junior",
+      "category": "yoga_wellness",
+      "experience": 2,
+      "rating": 4.4,
+      "clientCount": 6,
+      "maxClients": 10,
+      "hourlyRate": 40,
+      "credentials": [
+        "RYT-200",
+        "Mindfulness Coach",
+        "Wellness Coach",
+        "Meditation Teacher"
+      ],
+      "specialties": [
+        "Mindfulness",
+        "Stress Reduction",
+        "Work-Life Balance",
+        "Mental Wellness",
+        "Meditation"
+      ],
+      "achievements": [
+        "Mindfulness-Based Stress Reduction Certified",
+        "Corporate Wellness Coach",
+        "Mental Health Advocate"
+      ],
+      "bio": "Dedicated to promoting mental wellness and mindfulness in today's fast-paced world. Helping clients find balance and reduce stress through mindful practices.",
+      "contact": {
+        "phone": "+1-555-0131",
+        "timezone": "PST",
+        "availability": {
+          "monday": {"start": "08:00", "end": "17:00"},
+          "tuesday": {"start": "08:00", "end": "17:00"},
+          "wednesday": {"start": "08:00", "end": "17:00"},
+          "thursday": {"start": "08:00", "end": "17:00"},
+          "friday": {"start": "08:00", "end": "16:00"},
+          "saturday": {"start": "09:00", "end": "14:00"},
+          "sunday": {"start": "10:00", "end": "13:00"}
+        }
+      },
+      "status": "active",
+      "verificationStatus": "verified",
+      "joinDate": "2023-01-15",
+      "certificateUrl": "https://example.com/certificates/sophie-kim.pdf"
+    },
+    {
+      "id": "coach_010",
+      "userId": "user_010",
+      "name": "Marcus Johnson",
+      "email": "marcus.johnson@fitcoach.com",
+      "avatar": "https://via.placeholder.com/60",
+      "title": "Expert Performance Coach",
+      "level": "expert",
+      "category": "sports_performance",
+      "experience": 15,
+      "rating": 4.9,
+      "clientCount": 25,
+      "maxClients": 30,
+      "hourlyRate": 100,
+      "credentials": [
+        "CSCS",
+        "USA Weightlifting Coach",
+        "Sports Performance Specialist",
+        "Athletic Trainer"
+      ],
+      "specialties": [
+        "Elite Athletic Performance",
+        "Olympic Sports Training",
+        "Professional Athlete Development",
+        "Sports Psychology",
+        "Peak Performance"
+      ],
+      "achievements": [
+        "Olympic Coach",
+        "Professional Athletes Trained",
+        "Sports Performance Consultant",
+        "Elite Training Facility Owner"
+      ],
+      "bio": "Elite performance coach with experience training Olympic and professional athletes. Specializing in taking athletes to their highest potential.",
+      "contact": {
+        "phone": "+1-555-0132",
+        "timezone": "EST",
+        "availability": {
+          "monday": {"start": "04:00", "end": "22:00"},
+          "tuesday": {"start": "04:00", "end": "22:00"},
+          "wednesday": {"start": "04:00", "end": "22:00"},
+          "thursday": {"start": "04:00", "end": "22:00"},
+          "friday": {"start": "04:00", "end": "20:00"},
+          "saturday": {"start": "05:00", "end": "17:00"},
+          "sunday": {"start": "07:00", "end": "15:00"}
+        }
+      },
+      "status": "active",
+      "verificationStatus": "verified",
+      "joinDate": "2017-05-10",
+      "certificateUrl": "https://example.com/certificates/marcus-johnson.pdf"
+    }
+  ],
+  "coachLevels": [
+    {
+      "id": "junior",
+      "name": "Junior Coach",
+      "experienceRequired": 1,
+      "maxClients": 10,
+      "hourlyRateRange": [30, 50],
+      "badge": "🥉"
+    },
+    {
+      "id": "intermediate",
+      "name": "Intermediate Coach",
+      "experienceRequired": 3,
+      "maxClients": 15,
+      "hourlyRateRange": [50, 70],
+      "badge": "🥈"
+    },
+    {
+      "id": "senior",
+      "name": "Senior Coach",
+      "experienceRequired": 5,
+      "maxClients": 20,
+      "hourlyRateRange": [70, 90],
+      "badge": "🥇"
+    },
+    {
+      "id": "expert",
+      "name": "Expert Coach",
+      "experienceRequired": 8,
+      "maxClients": 30,
+      "hourlyRateRange": [90, 120],
+      "badge": "👑"
+    }
+  ],
+  "coachCategories": [
+    {
+      "id": "strength_training",
+      "name": "Strength Training",
+      "icon": "fas fa-weight-hanging",
+      "color": "#667eea",
+      "description": "Focus on building strength and muscle mass"
+    },
+    {
+      "id": "cardio_hiit",
+      "name": "Cardio & HIIT",
+      "icon": "fas fa-heart",
+      "color": "#ff6b6b",
+      "description": "High-intensity cardio and interval training"
+    },
+    {
+      "id": "yoga_wellness",
+      "name": "Yoga & Wellness",
+      "icon": "fas fa-leaf",
+      "color": "#32cd32",
+      "description": "Yoga, mindfulness, and holistic wellness"
+    },
+    {
+      "id": "sports_performance",
+      "name": "Sports Performance",
+      "icon": "fas fa-running",
+      "color": "#ffa500",
+      "description": "Athletic performance and sports-specific training"
+    },
+    {
+      "id": "weight_loss",
+      "name": "Weight Loss",
+      "icon": "fas fa-bullseye",
+      "color": "#4ecdc4",
+      "description": "Specialized weight loss and body transformation"
+    },
+    {
+      "id": "rehabilitation",
+      "name": "Rehabilitation",
+      "icon": "fas fa-heartbeat",
+      "color": "#9370db",
+      "description": "Post-injury recovery and rehabilitation training"
+    }
+  ]
+} 

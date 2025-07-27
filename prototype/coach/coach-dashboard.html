@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitAI Pro - Coach Dashboard</title>
+    <meta name="description" content="FitAI Pro Coach Dashboard - Manage clients, assign routines, and track progress.">
+    <meta name="keywords" content="fitness coach, personal trainer, client management, workout routines">
+    
+    <!-- Fonts and Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chart.js for visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- ExerciseDB API Service -->
+    <script src="../exercise-api-service.js"></script>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="coach-dashboard.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='90' font-size='90'>💪</text></svg>">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="login-screen" class="login-screen">
+        <div class="login-container">
+            <div class="login-header">
+                <div class="logo">
+                    <i class="fas fa-dumbbell"></i>
+                    <span>FitAI Pro</span>
+                </div>
+                <h2>Coach Dashboard</h2>
+                <p>Access your coaching tools and manage your clients</p>
+            </div>
+            
+            <div class="login-tabs">
+                <button class="login-tab active" data-tab="coach-login">
+                    <i class="fas fa-user-tie"></i>
+                    Coach Login
+                </button>
+                <button class="login-tab" data-tab="client-login">
+                    <i class="fas fa-user"></i>
+                    Client Login
+                </button>
+            </div>
+            
+            <div class="login-form active" id="coach-login-form">
+                <div class="form-group">
+                    <label class="form-label" for="coach-email">Email</label>
+                    <input type="email" id="coach-email" class="form-input" placeholder="Enter your email" value="sarah.johnson@fitcoach.com">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="coach-password">Password</label>
+                    <input type="password" id="coach-password" class="form-input" placeholder="Enter your password" value="password123">
+                </div>
+                <button class="btn btn-primary btn-block" onclick="loginAsCoach()">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Login as Coach
+                </button>
+            </div>
+            
+            <div class="login-form" id="client-login-form">
+                <div class="form-group">
+                    <label class="form-label" for="client-email">Email</label>
+                    <input type="email" id="client-email" class="form-input" placeholder="Enter your email" value="alex.johnson@email.com">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="client-password">Password</label>
+                    <input type="password" id="client-password" class="form-input" placeholder="Enter your password" value="password123">
+                </div>
+                <button class="btn btn-primary btn-block" onclick="loginAsClient()">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Login as Client
+                </button>
+            </div>
+            
+            <div class="login-footer">
+                <p>Demo Credentials:</p>
+                <div class="demo-credentials">
+                    <div class="demo-account">
+                        <strong>Coach:</strong> sarah.johnson@fitcoach.com / password123
+                    </div>
+                    <div class="demo-account">
+                        <strong>Client:</strong> alex.johnson@email.com / password123
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App Container -->
+    <div id="app-container" class="app-container" style="display: none;">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left flex items-center gap-md">
+                <div class="logo">
+                    <i class="fas fa-dumbbell"></i>
+                    <span>FitAI Pro - Coach</span>
+                </div>
+            </div>
+            
+            <div class="header-center">
+                <div class="current-user-info">
+                    <span id="current-user-name">Sarah Johnson</span>
+                    <span class="user-role">Coach</span>
+                </div>
+            </div>
+            
+            <div class="header-actions flex items-center gap-md">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                
+                <div class="user-profile">
+                    <div class="profile-info">
+                        <div class="profile-name" id="header-user-name">Sarah Johnson</div>
+                        <div class="xp-badge">Senior Coach • 12 Clients</div>
+                    </div>
+                    <div class="profile-avatar">
+                        <span>SJ</span>
+                    </div>
+                </div>
+                
+                <button class="btn btn-outline btn-sm" onclick="switchToClientView()">
+                    <i class="fas fa-exchange-alt"></i>
+                    Switch to Client
+                </button>
+            </div>
+        </header>
+
+        <!-- Sidebar Navigation Panel -->
+        <aside class="app-sidebar" id="app-sidebar">
+            <div class="sidebar-header">
+                <h2 class="sidebar-title">Coach Navigation</h2>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" data-tab="dashboard">
+                    <i class="nav-icon fas fa-th-large"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="clients">
+                    <i class="nav-icon fas fa-users"></i>
+                    <span>Clients</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="planner">
+                    <i class="nav-icon fas fa-calendar-alt"></i>
+                    <span>Planner</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="train">
+                    <i class="nav-icon fas fa-dumbbell"></i>
+                    <span>Train</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="progress">
+                    <i class="nav-icon fas fa-chart-line"></i>
+                    <span>Progress</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="nutrition">
+                    <i class="nav-icon fas fa-apple-alt"></i>
+                    <span>Nutrition</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="coach">
+                    <i class="nav-icon fas fa-user-tie"></i>
+                    <span>Coach</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="wellness">
+                    <i class="nav-icon fas fa-heart"></i>
+                    <span>Wellness</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="profile">
+                    <i class="nav-icon fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="gif">
+                    <i class="nav-icon fas fa-images"></i>
+                    <span>GIF</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="app-main">
+            <!-- Dashboard Tab -->
+            <div id="dashboard" class="tab-content active">
+                <div class="dashboard-grid">
+                    <!-- Coach Stats -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-chart-bar"></i>
+                                Coach Overview
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="stats-grid">
+                                <div class="stat-card">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <div class="stat-value" id="total-clients">12</div>
+                                    <div class="stat-label">Active Clients</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div class="stat-value" id="total-sessions">45</div>
+                                    <div class="stat-label">Sessions This Month</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="stat-value" id="avg-rating">4.9</div>
+                                    <div class="stat-label">Average Rating</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Client Activity -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-activity"></i>
+                                Recent Client Activity
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="recent-activity">
+                                <!-- Activity will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Client Messages -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-comments"></i>
+                                Recent Messages
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="recent-messages">
+                                <!-- Messages will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clients Tab -->
+            <div id="clients" class="tab-content">
+                <div class="dashboard-grid">
+                    <!-- Client List -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-users"></i>
+                                My Clients
+                            </h3>
+                            <div class="client-actions">
+                                <button class="btn btn-outline btn-sm" onclick="showClientRequests()">
+                                    <i class="fas fa-user-plus"></i>
+                                    Requests (2)
+                                </button>
+                                <button class="btn btn-primary btn-sm" onclick="addNewClient()">
+                                    <i class="fas fa-plus"></i>
+                                    Add Client
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div id="clients-list">
+                                <!-- Client list will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Selected Client Dashboard -->
+                    <div id="selected-client-dashboard" class="card" style="display: none;">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-user"></i>
+                                <span id="selected-client-name">Client Dashboard</span>
+                            </h3>
+                            <div class="client-dashboard-actions">
+                                <button class="btn btn-outline btn-sm" onclick="assignRoutine()">
+                                    <i class="fas fa-plus"></i>
+                                    Assign Routine
+                                </button>
+                                <button class="btn btn-primary btn-sm" onclick="sendMessage()">
+                                    <i class="fas fa-comment"></i>
+                                    Send Message
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div id="client-dashboard-content">
+                                <!-- Client dashboard content will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Planner Tab -->
+            <div id="planner" class="tab-content">
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-calendar-alt"></i>
+                                My Schedule
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="coach-planner">
+                                <!-- Coach planner will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Train Tab -->
+            <div id="train" class="tab-content">
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-dumbbell"></i>
+                                Exercise Library
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="coach-exercise-library">
+                                <!-- Exercise library will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Tab -->
+            <div id="progress" class="tab-content">
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-chart-line"></i>
+                                Client Progress Overview
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="client-progress-overview">
+                                <!-- Client progress will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nutrition Tab -->
+            <div id="nutrition" class="tab-content">
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-apple-alt"></i>
+                                Nutrition Management
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="coach-nutrition">
+                                <!-- Nutrition management will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coach Tab -->
+            <div id="coach" class="tab-content">
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-user-tie"></i>
+                                Coach Profile
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="coach-profile">
+                                <!-- Coach profile will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wellness Tab -->
+            <div id="wellness" class="tab-content">
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-heart"></i>
+                                Client Wellness Tracking
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="coach-wellness">
+                                <!-- Wellness tracking will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Tab -->
+            <div id="profile" class="tab-content">
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-user"></i>
+                                My Profile
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="coach-profile-settings">
+                                <!-- Coach profile settings will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GIF Tab -->
+            <div id="gif" class="tab-content">
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-images"></i>
+                                Exercise GIFs
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="coach-gif-gallery">
+                                <!-- GIF gallery will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="coach-dashboard.js"></script>
+</body>
+</html> 

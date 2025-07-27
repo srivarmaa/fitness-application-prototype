@@ -6044,14 +6044,18 @@ function initializeSavedRoutines() {
 // Load saved routines from localStorage
 function loadSavedRoutines() {
     const stored = localStorage.getItem('fitai-saved-routines');
+    console.log('Stored routines from localStorage:', stored);
     savedRoutines = stored ? JSON.parse(stored) : [];
+    console.log('Loaded savedRoutines:', savedRoutines);
 }
 
 
 
 // Save routines to localStorage
 function saveRoutinesToStorage() {
+    console.log('Saving routines to storage:', savedRoutines);
     localStorage.setItem('fitai-saved-routines', JSON.stringify(savedRoutines));
+    console.log('Routines saved to localStorage');
 }
 
 // Update saved routines preview
@@ -7003,6 +7007,8 @@ function setupRoutineUpload() {
 
 // Handle routine file upload
 function handleRoutineFile(file) {
+    console.log('handleRoutineFile called with:', file);
+    
     if (file.type !== 'application/json' && !file.name.endsWith('.json')) {
         showNotification('Please select a valid JSON file', 'error');
         return;
@@ -7012,9 +7018,11 @@ function handleRoutineFile(file) {
     reader.onload = (e) => {
         try {
             const routineData = JSON.parse(e.target.result);
+            console.log('Parsed routine data:', routineData);
             uploadedRoutineData = routineData;
             openRoutinePreviewModal();
         } catch (error) {
+            console.error('Error parsing JSON:', error);
             showNotification('Invalid JSON file format', 'error');
         }
     };
@@ -7044,11 +7052,26 @@ function closeUploadRoutineModal() {
 
 // Open routine preview modal
 function openRoutinePreviewModal() {
+    console.log('openRoutinePreviewModal called');
+    console.log('uploadedRoutineData:', uploadedRoutineData);
+    
     const modal = document.getElementById('routine-preview-modal');
     if (modal && uploadedRoutineData) {
         modal.classList.add('active');
         renderRoutinePreview();
         closeUploadRoutineModal();
+        
+        // Show action buttons for uploaded routine
+        const actionsContainer = document.getElementById('routine-preview-actions');
+        console.log('Actions container:', actionsContainer);
+        if (actionsContainer) {
+            actionsContainer.style.display = 'flex';
+            console.log('Action buttons should now be visible');
+        } else {
+            console.error('Actions container not found');
+        }
+    } else {
+        console.error('Modal or uploadedRoutineData not available');
     }
 }
 
@@ -7068,6 +7091,28 @@ function closeRoutinePreviewModal() {
         modal.classList.remove('active');
         uploadedRoutineData = null;
         editingRoutine = null; // Clear editing routine when closing
+        
+        // Reset modal state
+        const modalTitle = document.querySelector('#routine-preview-modal .modal-title');
+        if (modalTitle) {
+            modalTitle.innerHTML = '<i class="fas fa-eye"></i> Routine Preview';
+        }
+        
+        // Reset action buttons
+        const actionsContainer = document.getElementById('routine-preview-actions');
+        const editBtn = document.getElementById('edit-routine-btn');
+        const saveBtn = document.getElementById('save-routine-btn');
+        
+        if (actionsContainer) actionsContainer.style.display = 'none';
+        if (editBtn) {
+            editBtn.style.display = 'flex';
+            editBtn.innerHTML = '<i class="fas fa-edit"></i> Edit Routine';
+            editBtn.onclick = editRoutineFromPreview;
+        }
+        if (saveBtn) {
+            saveBtn.innerHTML = '<i class="fas fa-save"></i> Save Routine';
+            saveBtn.onclick = saveRoutineFromPreview;
+        }
     }
 }
 
@@ -7531,4 +7576,73 @@ document.addEventListener('keydown', (e) => {
         });
     }
 });
+
+// Edit routine from preview modal
+function editRoutineFromPreview() {
+    if (!uploadedRoutineData) return;
+    
+    // Set the editing routine to the uploaded data
+    editingRoutine = { ...uploadedRoutineData };
+    
+    // Render editable version
+    renderEditableRoutinePreview();
+    
+    // Update modal title
+    const modalTitle = document.querySelector('#routine-preview-modal .modal-title');
+    if (modalTitle) {
+        modalTitle.innerHTML = '<i class="fas fa-edit"></i> Edit Routine';
+    }
+    
+    // Update action buttons
+    const editBtn = document.getElementById('edit-routine-btn');
+    const saveBtn = document.getElementById('save-routine-btn');
+    
+    if (editBtn) editBtn.style.display = 'none';
+    if (saveBtn) {
+        saveBtn.innerHTML = '<i class="fas fa-save"></i> Save Changes';
+        saveBtn.onclick = saveRoutineEdit;
+    }
+}
+
+// Save routine from preview modal
+function saveRoutineFromPreview() {
+    console.log('saveRoutineFromPreview called');
+    console.log('uploadedRoutineData:', uploadedRoutineData);
+    console.log('savedRoutines before:', savedRoutines);
+    
+    if (!uploadedRoutineData) {
+        console.error('No uploaded routine data found');
+        showNotification('No routine data to save', 'error');
+        return;
+    }
+    
+    // Ensure savedRoutines is initialized
+    if (!Array.isArray(savedRoutines)) {
+        console.log('Initializing savedRoutines array');
+        savedRoutines = [];
+    }
+    
+    // Generate new ID and timestamps
+    const newRoutine = {
+        ...uploadedRoutineData,
+        id: `routine-${Date.now()}`,
+        createdAt: new Date().toISOString(),
+        lastModified: new Date().toISOString(),
+        favorite: false
+    };
+
+    console.log('New routine to save:', newRoutine);
+
+    // Add to saved routines
+    savedRoutines.push(newRoutine);
+    console.log('Saved routines after adding:', savedRoutines);
+    
+    saveRoutinesToStorage();
+    updateSavedRoutinesPreview();
+    renderSavedRoutinesList(); // Update the saved routines list
+
+    // Close modal and show success message
+    closeRoutinePreviewModal();
+    showNotification('Routine saved successfully!', 'success');
+}
    
